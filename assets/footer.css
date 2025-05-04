@@ -1,0 +1,24 @@
+.footer-docs{
+    padding: 10px;
+    background: var(--bgPlus);
+    color: var(--dimText);
+    font-family: helvetica;
+}
+.footer-social-media{
+    background: var(--bgPlus);
+    text-align: right;
+    color: var(--firstGreen);
+    width: 100%;
+    font-size: 22px;
+}
+.footer-social-media a{
+    margin-right: 15px;
+}
+.copyright-footer{
+    background: var(--firstGreen);
+    color: var(--riskText);
+    border-top: 2px solid var(--oppBg);
+    text-align: right;
+    font-family: cursive;
+    padding: 3px;
+}

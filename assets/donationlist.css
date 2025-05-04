@@ -1,0 +1,60 @@
+.donationList{
+    height: 93vh;
+    overflow: hidden;
+    overflow-y: scroll;
+    display: none;
+}
+#donationList{
+    overflow-y: scroll;
+    scrollbar-width: none;
+    height: 99%;
+    display: block;
+}
+
+#donationCart{
+    text-align: center;
+    margin-top: 20px;
+}
+#donationCart h5{
+    color: var(--dimText);
+    margin: 20px;
+}
+
+.main-donation{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;   
+}
+
+.main-donation button{
+    padding: 5px;
+    margin: 7px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 40%;
+    height: 170px;
+}
+
+.main-donation button i{
+    border: 1px solid var(--firstGreen);
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    text-align: center;
+    display: grid;
+    place-items: center;
+    font-size: 40px;
+}
+.go-cart{
+    background: var(--firstGreen);
+    color: var(--riskText);
+    border-radius: 20px;
+    padding: 5px;
+    width: 150px;
+    height: 40px;
+}
+.fa-solid.fa-gradnuation-cap{
+    display: none;
+}

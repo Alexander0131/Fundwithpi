@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FundWithPi</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="./assets/styles.css">
+    <link rel="stylesheet" href="./assets/loaders.css">
+    <link rel="stylesheet" href="./assets/header.css">
+    <link rel="stylesheet" href="./assets/footer.css">
+    <link rel="stylesheet" href="./assets/menu.css">
+    <link rel="stylesheet" href="./assets/createfundsacc.css">
+
+<link rel="stylesheet" href="./assets/dialog.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Swiper.js for carousels -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <!-- Axios for API requests -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.5/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <!-- Content managed in header.js -->
+    </header>
+
+    <div class="body-content">
+        
+        <div id="create-fund-account-page">
+            <div id="create-fund-account">
+             </div> 
+             
+        
+        <section class="navigation-controls">
+    <button class="nav-button-prev false" onclick="goToStep(-1)">Previous</button>
+    <span id="currentPlace">1/5</span>
+    <button class="nav-button-next disabled" id="nextBtnFund" onclick="goToStep(1)" disabled>Next</button>
+  </section>
+  
+  </div>
+
+        <br><br>
+
+        <!-- Footer Section -->
+        <footer class="footer-section">
+            <!-- Managed in footer.js -->
+        </footer>
+    </div>
+    
+    <!-- Menu section -->
+    <div class="menu-wrap" id="menu-wrap">
+        <!-- Managed in menu.js -->
+    </div>
+   
+   <span onclick="dialogFunc('','')" class="blur-dialog"></span>
+    <div id="dialog-wrap">
+        
+    </div>
+    
+    
+    <!-- Full Loader Section -->
+    <div id="fullLoaderSpace">
+        <!-- Managed in loader.js -->
+    </div>
+    
+    
+ 
+    
+
+    <!-- JavaScript Files -->
+    <script src="./src/data.js"></script>
+    <script src="./src/const.js"></script>
+    <script src="./src/index.js"></script>
+    <script src="./src/loader.js"></script>
+    <script src="./src/menu.js"></script>
+    <script src="./src/header.js"></script>
+    <script src="./src/singlerow.js"></script>
+    <script src="./src/footer.js"></script>
+    <script src="./src/dialog.js"></script>
+    <script src="./src/createfundpage.js"></script>
+    <script src="./src/crud.js"></script>
+
+</body>
+
+</html>

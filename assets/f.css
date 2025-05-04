@@ -1,0 +1,104 @@
+.single-fund-wrap{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    color: var(--text);
+}
+.single-fund-head{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 5px;
+}
+.single-fund-head .sub{
+    padding: 8px;
+    width: 100%;
+}
+.single-fund-head .full-img{
+    width: 100%;
+}
+.donation-verified{
+    background: var(--lightGreen);
+    color: var(--riskText);
+    border: 2px solid var(--firstGreen);
+    padding: 4px;
+    border-radius: 0 15px 0 15px;
+    font-size: 12px;
+    display: flex;
+    width: fit-content;
+    gap: 5px;
+}
+.flex-detail{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border: 1px solid var(--firstGreen);
+    padding: 5px;
+    height: 110px;
+    border-radius: 10px;
+    width: 90%;
+}
+.donation-body-text{
+    text-align: center;
+    height: 202px;
+    overflow: hidden;
+    position: relative;
+    padding: 5px;
+}
+.donation-body-text.disabled{
+    height: fit-content;
+}
+.text-fader{
+    position: absolute;
+    height: 5px;
+    backdrop-filter: blur(1px);
+    bottom: 0;
+    display: inline-block;
+    width: 100%;
+    left: 0;
+    right: 0;
+}
+.wrap-see-more{
+    width: 100%;
+    padding: 10px 15px;
+}
+.see-more{
+    box-shadow: 3px 3px 5px grey;
+    border-radius: 10px;
+    padding: 8px;
+}
+.wrap-btn{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.all-images{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+.all-images img{
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+}
+.update-zone{
+    width: 100%;
+    padding: 15px;
+}
+.donation-users{
+    width: 100%;
+    padding: 10px;
+}
+.report-fundsraiser {
+    display: flex;
+    gap: 10px;
+    color: var(--oppBg);
+}

@@ -1,0 +1,153 @@
+#singlefundhtml{
+    margin-top: 30px;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.wrapsinglefund {
+    max-width: 600px;
+    width: 96%;
+    margin: auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+  }
+
+  .wrapsinglefund:hover {
+    transform: translateY(-5px);
+  }
+
+  .wrapsinglefund .single-header {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+    gap: 1rem;
+  }
+
+  .wrapsinglefund .single-header img {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+
+  .wrapsinglefund .single-header h3 {
+    margin: 0;
+    font-size: 1.4rem;
+    color: #333;
+  }
+
+  .wrapsinglefund .single-det {
+    padding: 1rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    color: #444;
+  }
+
+  .wrapsinglefund .single-det span {
+    display: flex;
+    justify-content: space-between;
+    
+  }
+
+  .wrapsinglefund .progress-container {
+    margin: 1rem 1.5rem;
+  }
+
+  .wrapsinglefund .progress-bar {
+    background-color: #e4e4e4;
+    border-radius: 50px;
+    overflow: hidden;
+    height: 10px;
+  }
+
+  .wrapsinglefund .progress-bar-fill {
+    height: 100%;
+    background-color: #4CAF50;
+    width: 100%; /* Set dynamically via JS or backend */
+  }
+
+  .wrapsinglefund .status {
+    display: inline-block;
+    padding: 0.2rem 0.8rem;
+    background: #e0f7e9; 
+    color: #2e7d32;
+    font-weight: bold;
+    font-size: 0.85rem;
+    border-radius: 5px;
+    text-transform: capitalize;
+  }
+
+  .wrapsinglefund .status.active {
+    background-color: #ffecb3;
+    color: #ff9800;
+}
+.wrapsinglefund .status.completed {
+    background-color: #c8e6c9;
+    color: #388e3c;
+}
+.wrapsinglefund .status.aborted, .wrapsinglefund .status.ended {
+    background-color: #ffcdd2;
+    color: #c62828;
+}
+
+  .wrapsinglefund .actions {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem 1.5rem;
+    border-top: 1px solid #eee;
+  }
+
+  .wrapsinglefund .actions button {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+
+  .imgrow{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
+    padding: 5px;
+    flex-wrap: wrap;
+  }
+  .imgrow img{
+    width: 80px;
+    border-radius: 5px;
+    height: 80px;
+    cursor: pointer;
+  }
+  .flex-wrapfund{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  .wrap-fund{
+    padding: 10px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .wrap-end-donor{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }

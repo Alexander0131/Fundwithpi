@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="displayImg">
+        Element in js...
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        // Store references to upload handlers
+        const coverUploadHandler = initializeCoverUpload();
+        const multiUploadHandler = initializeMultiUpload();
+    
+        // Add a submit button dynamically
+        const uploadBtn = document.createElement("button");
+        uploadBtn.innerText = "Upload All Images";
+        uploadBtn.className = "default-btn";
+        uploadBtn.style.marginTop = "20px";
+        document.getElementById("displayImg").appendChild(uploadBtn);
+    
+        uploadBtn.addEventListener("click", () => {
+            const formData = new FormData();
+    
+            // Append cover
+            const coverFile = coverUploadHandler.getCoverFile?.();
+            if (coverFile) {
+                formData.append("cover", coverFile);
+            }
+    
+            // Append multiple
+            const multiFiles = multiUploadHandler.getMultipleFiles?.();
+            if (multiFiles && multiFiles.length > 0) {
+                multiFiles.forEach(file => {
+                    formData.append("images", file); // 'images' should match your backend field
+                });
+            }
+    
+            if (!coverFile && (!multiFiles || multiFiles.length === 0)) {
+                alert("No images selected!");
+                return;
+            }
+    
+            // Send using Axios
+            axios.post('https://your-backend-endpoint.com/upload', formData)
+                .then(response => {
+                    console.log("Upload successful:", response.data);
+                    alert("Upload successful!");
+                    coverUploadHandler.reset?.();
+                    multiUploadHandler.reset?.();
+                })
+                .catch(error => {
+                    console.error("Upload failed:", error);
+                    alert("Upload failed.");
+                });
+        });
+    </script>
+    
+</body>
+</html>

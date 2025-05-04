@@ -1,0 +1,7 @@
+const abtData = {
+    title: "About Fund with Pi",
+    desc: "Empowering Dreams, One Contribution at a Time.",
+    content: "Fund with Pi is a revolutionary crowdfunding platform designed to help individuals, businesses, and organizations raise funds for their causes. Whether you’re starting a business, funding a medical emergency, supporting a community project, or pursuing a personal dream, Fund with Pi provides a seamless and secure way to connect with donors and well-wishers.<br><br><b><u> Why Choose Fund with Pi?</u></b><ul> 	<li> 	Easy Campaign Setup – Launch your fundraising campaign in minutes with a user-friendly interface.</li>	<li>Secure Transactions – We ensure safe and transparent transactions for both fundraisers and donors.</li>	<li>	Global Reach – Raise funds from anywhere in the world with support for multiple payment options.</li><li>	Community-Driven – Join a network of passionate supporters who believe in making a difference.</li>	<li> Innovative Features – With unique tools powered by blockchain technology, Fund with Pi enhances trust and efficiency in crowdfunding.</li></ul><br><br>At Fund with Pi, we believe that every idea deserves a chance to flourish. Join us today and turn your dreams into reality!",
+    img: "./assets/images/about.jpg",
+    headText: ""
+}

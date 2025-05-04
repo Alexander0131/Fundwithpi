@@ -1,0 +1,50 @@
+.wrap-payment-page{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    flex-direction: column;
+    gap: 10px;
+}
+.opt-sugs{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.opt-sugs button{
+    width: 60px;
+    height: 40px;
+    border: 1px solid var(--oppBg);
+    border-radius: 5px;
+    padding: 3px;
+}
+.opt-sugs button:hover{
+    background: var(--firstGreen);
+    color: var(--riskText);
+}
+.wrap-amt-to-send{
+    width: 80%;
+    height: 50px;
+    border-radius: 8px;
+    border: 1px solid var(--oppBg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.wrap-amt-to-send input{
+    text-align: center;
+}
+.pay-btn{
+    width: 100%;
+    display: grid;
+    place-items: center;
+}
+.pay-btn button{
+    width: 80%;
+    display: flex;
+    gap:5px;
+    align-items: center;
+}

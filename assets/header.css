@@ -1,0 +1,15 @@
+.header-row{
+    background: var(--bgPlus);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 15px;
+    height: 45px;
+    color: var(--text);
+}
+.header-row img{
+    width: 110px;
+}
+.header-row .fa{
+    font-size: 20px;
+}

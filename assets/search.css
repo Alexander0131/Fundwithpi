@@ -1,0 +1,92 @@
+
+.search-container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: var(--dimText);
+    text-align: center;
+}
+.search-container p{
+    width: 70%;
+    font-size: 15px;
+}
+.search-flex{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bgPlus);
+    border-radius: 10px;
+    padding: 2px;
+    width: fit-content;
+    margin-top: 10px;
+    gap: 7px;
+    width: 70%;
+    max-width: 300px;
+    border: 2px solid var(--oppBg);
+}
+.search-flex .search-box{
+    background: inherit;
+    padding: 3px;
+    height: 40px;
+    width: 80%;
+}
+.searched-item{
+    margin: 7px;
+}
+
+.search-filter{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 10px;
+    color: var(--oppText);
+    background: var(--oppBg);
+    height: 55px;
+    border-radius: 40px;
+    padding: 5px;
+
+}
+.search-filter .fa-solid{
+    font-size: 22px;
+    height: 100%;
+    border-right: 2px solid var(--bg);
+    display: flex;
+    align-items: center;
+    padding: 7px;
+}
+
+
+.search-filter .each-filter-row{
+    background: var(--bg);
+    color: var(--text);
+    padding: 2px 7px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+.search-filter .each-filter-row .times{
+    font-size: 25px;
+}
+.search-filter-row{
+    display: flex;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    height: 30px;
+    gap: 10px;
+}
+.each-filter-row.i{
+    background: none;
+}
+.each-filter-row i{
+    font-size: 25px;
+    color: var(--bg);
+}
+.noSearch{
+    text-align: center;
+    margin-top: 20px;
+    color: var(--dimText);
+}

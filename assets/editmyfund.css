@@ -1,0 +1,149 @@
+#editmyfund-html{
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+}
+.editmyfund-wrap {
+    max-width: 800px;
+    margin: 2rem auto;
+    width: 95%;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .editfund-title {
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    color: #333;
+  }
+  
+  .editfund-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .editfund-label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #222;
+  }
+  
+  .editfund-input,
+  .editfund-textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    transition: border 0.3s ease;
+  }
+  
+  .editfund-input:focus,
+  .editfund-textarea:focus {
+    outline: none;
+    border-color: #0275d8;
+  }
+  
+  .editfund-disabled {
+    background-color: #f5f5f5;
+    color: #999;
+  }
+  
+  .editfund-note {
+    display: block;
+    margin-top: 0.3rem;
+    font-size: 0.85rem;
+  }
+  
+  .red {
+    color: #d9534f;
+  }
+  
+  .orange {
+    color: #f0ad4e;
+  }
+  
+  .editfund-images {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    
+  }
+  
+  .editfund-image-box {
+    /* width: 100%; */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+  }
+  
+  .editfund-image-box img {
+    width: 150px;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+  
+  .editfund-add-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed #ccc;
+    width: 120px;
+    height: 80px;
+    border-radius: 8px;
+    cursor: pointer;
+    color: #999;
+    transition: background-color 0.2s ease;
+  }
+  
+  .editfund-add-image:hover {
+    background-color: #f9f9f9;
+  }
+  
+  .editfund-actions {
+    text-align: right;
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .editfund-actions .default-btn{
+    width: 80%;
+  }
+  .editfund-actions .default-btn.disabled{
+    opacity: 0.4;
+  }
+  
+
+  .editmyfund-wrap  .preview-wrapper{
+    position: relative;
+  }
+  .editmyfund-wrap  .preview-wrapper img{
+    width: 150px;
+    border:1px solid #ccc; 
+    object-fit:cover;
+  }
+  .editmyfund-wrap  .preview-wrapper .closeBtnImg{
+    position: absolute;
+    bottom: 7px;
+    right: 7px;
+    background: var(--blackOpa);
+    padding: 4px;
+    color: var(--riskText);
+    border-radius: 50px;
+    height: 25px;
+    width: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }

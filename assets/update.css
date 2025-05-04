@@ -1,0 +1,176 @@
+#updateHtml{
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+/* Container */
+.update-span {
+    max-width: 800px;
+    width: 97%;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    font-family: "Segoe UI", sans-serif;
+    color: #333;
+  }
+  
+  /* Header */
+  .update-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .update-title {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .update-description {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+  }
+  
+  /* List of updates */
+  .update-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+  }
+  
+  .update-list li {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+  }
+  
+  /* Progress bar */
+  .progress-container {
+    position: relative;
+    background: #e0e0e0;
+    border-radius: 50px;
+    height: 1.25rem;
+    margin: 1rem 0;
+    overflow: hidden;
+  }
+  
+  .progress-bar {
+    height: 100%;
+    background: var(--firstGreen);
+    transition: width 0.4s ease;
+  }
+  
+  .progress-text {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    color: var(--oppBg);
+  }
+  
+  /* Buttons */
+  .btn {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    transition: background 0.3s ease;
+  }
+  
+  .btn-primary {
+    background: #007bff;
+    color: #fff;
+  }
+  
+  .btn-primary:hover {
+    background: #0056b3;
+  }
+  
+  /* Extra sections */
+  .update-extra {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  
+  .testimonials blockquote {
+    font-style: italic;
+    margin: 0 0 0.5rem;
+  }
+  
+  .testimonials cite {
+    font-size: 0.875rem;
+    color: #555;
+  }
+  
+  
+  
+  
+  /* Responsive */
+  @media (max-width: 600px) {
+    .update-extra {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .shareUpdate{
+    width: 100%;
+    padding: 5px;
+  }
+  .shareUpdateText{
+    min-height: 100px;
+    width: 80%;
+    min-width: 200px;
+    max-width: 350px;
+    background-color: var(--bgPlus);
+    border-radius: 10px;
+    padding: 10px;
+    border: 2px solid var(--firstGreen);
+    max-height: 250px;
+  }
+.update-header .default-btn:disabled{
+  opacity: 0.4;
+}
+
+.updateDateAndContent{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background: var(--bg);
+  margin-bottom: 5px;
+  border-radius: 5px;
+  padding: 3px;
+}
+.updateDateAndContent sub{
+  position: absolute;
+  top: 0;
+}
+.updateDateAndContent span{
+  position: absolute;
+  top: 12px;
+  margin-left: 10px;
+}
+.updateDateAndContent button{
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  font-size: 20px;
+  display: none;
+}
+.updateDateAndContent:hover button{
+  display: block;
+}
+.updateDateAndContent button:hover{
+  color: red;
+}

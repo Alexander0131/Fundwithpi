@@ -1,0 +1,135 @@
+.menu-wrap .menu-cover{
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow: hidden;
+    background: rgb(0,0,0,0.5);
+    backdrop-filter: blur(5px);
+    display: none;
+    z-index: 9998;
+}
+
+.menu-wrap{
+    color: var(--dimText);
+    z-index: var(--overSwiper);
+}
+
+
+
+.menu-container{
+    background: var(--bg);
+    width: 80%;
+    max-width: 350px;
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;    
+    flex-direction: column;
+    margin-right: -100vw;
+    transition: 1s ease;
+    z-index: var(--overSwiper);
+}
+.close-menu{
+    width: 100%;
+    text-align: right;
+}
+.close-menu .fa{
+    font-size: 25px;
+    padding: 5px;
+    margin: 5px;
+    margin-right: 10px;
+}
+.menu-wrap hr{
+    width: 80%;
+    height: 1px;
+    background: var(--dim);
+}
+.menu-all{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 1px;
+    width: 85%;
+}
+.menu-all a, .menu-account-settings, .menu-all button{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    margin-top: 5px;
+    width: 100%;
+    font-size: 15px;
+}
+.menu-all a span{
+    display: flex;
+    flex-direction: column;
+    gap:3px;
+    
+}
+.menu-all button span{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+
+}
+.menu-all a span small{
+    font-size: 11px;
+}
+.start-fund-menu{
+    position: absolute;
+    bottom: 25px;
+}
+.start-fund-menu a{
+    background: var(--firstGreen);
+    color: var(--riskText);
+    padding: 15px;
+    height: 30px;
+    width: 120px;
+    font-weight: 700;
+    border-radius: 15px;
+}
+
+.menu-user-account{
+    width: 85%;
+    padding: 5px;
+}
+.menu-account-wrap{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.menu-account-profile{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.menu-img-space{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: orangered;
+    color: #fff;
+    border: 3px solid var(--firstGreen);
+    padding: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+}
+.menu-profile-img-wrap{
+    position: relative;
+}
+#menu-profile-img{
+    disphlay: none;
+    position: absolute;
+    top: 0;
+    opacity: 0;
+}
+
+

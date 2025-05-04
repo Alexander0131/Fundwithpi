@@ -1,0 +1,130 @@
+.myfunds-wrap{
+    padding: 8px;
+    margin-top: 20px;
+    min-height: 65vh;
+}
+.myfunds-wrap .sub{
+    color: var(--dimText);
+    font-weight: 700;
+    font-style: italic;
+}
+.myfunds-wrap .sort {
+    display: flex;
+    gap: 8px;
+    margin: 5px;
+}
+.myfunds-wrap .sort button{
+    padding: 8px;
+    background: var(--oppBg);
+    color: var(--oppText);
+    border-radius: 15px;
+}
+.myfunds-wrap .sort button.active{
+    background: var(--firstGreen);
+}
+.myfunds-wrap .list-funds{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.list-funds .fund-row, .inner-fund-bar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--bgPlus);
+    border-radius: 50px;
+    padding: 8px;
+    position: relative;
+    height: 60px;
+    border: 1px solid var(--dimText);
+    overflow: hidden;
+}
+.inner-fund-bar{
+    background: var(--lightGreen);
+    position: absolute;
+    left: -2px;
+    z-index: 0;
+    border: none;
+}
+.list-funds .fund-row img{
+    width: 45px;
+    height: 45px;
+    border-radius: 50px;
+}
+.list-funds .fund-row .fund-inner{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 10px;
+    z-index: 1;
+}
+.list-funds .fund-row .fund-price{
+    background: var(--firstGreen);
+    color: var(--riskText);
+    border-radius: 10px;
+    padding: 2px 5px;
+}
+.fund-list-title {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 16ch; 
+    font-size: 13px;
+}
+.list-funds .fund-row .fa{
+    border: 1px solid var(--dim);
+    padding: 7px;
+    font-size: 15px;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    color: var(--dimText);
+}
+.startNewFunds {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    margin-top: 70px;
+    gap: 5px;
+}
+
+.fund-status {
+    padding: 2px 6px 4px 6px;
+    border-radius: 4px;
+    font-weight: bold;
+    width: fit-content;
+    font-size: 12px;
+    display: flex;
+    text-transform: capitalize;
+}
+.fund-status.active {
+    background-color: #ffecb3;
+    color: #ff9800;
+}
+.fund-status.completed {
+    background-color: #c8e6c9;
+    color: #388e3c;
+}
+.fund-status.aborted, .fund-status.ended{
+    background-color: #ffcdd2;
+    color: #c62828;
+}
+.fund-status.pending{
+    background-color: #d4cdce;
+    color: #242424;
+}
+.no-funds{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.no-funds img{
+    filter: grayscale();
+}

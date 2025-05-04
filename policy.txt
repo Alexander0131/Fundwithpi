@@ -1,0 +1,41 @@
+Welcome to FundWithPi, a decentralized application (DApp) developed as part of the Pi Network ecosystem, designed to facilitate crowdfunding transactions using Pi Coin. <br/> This Privacy Policy outlines how we collect, use, disclose, and protect your information when you use our app. By accessing or using FundWithPi, you agree to the practices described in this policy.<br/><br/>
+1. Information We Collect
+We may collect the following types of information to provide and improve our services:
+<br/><br/>
+ a. Personal Information<br/>
+-	Account Information: When you create an account, we may collect your Pi Network username,wallet address, and other identifiers linked to your Pi Network profile.<br/>
+-	Transaction Data: Details of your crowdfunding transactions, including the amount of Pi Coin sentor received, project details, and timestamps.<br/>
+-	Optional Profile Data: If you choose to provide it, your name, email address, or other contactinformation for communication or campaign purposes.<br/><br/>
+b. Non-Personal Information<br/>
+-	Usage Data: Information about how you interact with the app, such as features used, time spent,and technical data (e.g., device type, IP address, browser type).<br/>
+-	Analytics: Aggregated data collected to analyze app performance and user trends, which does notpersonally identify you.<br/><br/>
+c. Information from Third Parties<br/>
+- We may receive data from the Pi Network blockchain or other integrated DApps to verify transactions or ensure the integrity of your account.<br/><br/>
+2. How We Use Your Information
+We use the collected information for the following purposes:<br/>
+-	To facilitate crowdfunding transactions using Pi Coin.<br/>
+-	To verify your identity and ensure the security of your account and transactions.<br/>
+-	To communicate with you about your campaigns, updates, or support requests.<br/>
+-	To improve and optimize the app's functionality and user experience.<br/>
+-	To comply with legal obligations or protect against fraud and abuse.<br/><br/>
+3. How We Share Your Information
+We do not sell your personal information to third parties. However, we may share your information in the following circumstances:<br/>
+-	With Your Consent: When you authorize us to share specific data (e.g., campaign details withdonors).<br/>
+-	Service Providers: With trusted third-party service providers (e.g., blockchain nodes, analyticstools) who assist us in operating the app, under strict confidentiality agreements.<br/>
+-	Legal Requirements: If required by law, court order, or to protect the rights, property, or safety ofFundWithPi, its users, or the public.<br/>
+-	Business Transfers: In the event of a merger, acquisition, or sale of assets, your information maybe transferred as part of that transaction.<br/><br/>
+4.	Data Security<br/>
+We implement reasonable technical and organizational measures to protect your information from unauthorized access, loss, or misuse. However, no internet or blockchain-based system is 100% secure, and we cannot guarantee absolute security. Your Pi Coin wallet and transaction data are secured by the Pi Network blockchain, and you are responsible for safeguarding your private keys and passwords.<br/><br/>
+5.	Your Choices and Rights<br/>
+-	Access and Update: You can review and update your account information within the app or bycontacting us at [Insert Contact Email].<br/>
+-	Opt-Out: You may opt out of non-essential communications by adjusting your settings or contactingus.<br/>
+-	Data Deletion: You can request the deletion of your personal data, subject to legal retentionrequirements or transaction records stored on the blockchain (which are immutable).<br/>
+-	Pi Network Integration: As a DApp, some data may be managed by the Pi Network. Please reviewthe Pi Network Privacy Policy for additional details.<br/><br/>
+6.	Children's Privacy<br/>
+FundWithPi is not intended for individuals under the age of 13. We do not knowingly collect personal information from children. If we become aware that we have collected such data, we will delete it promptly.<br/><br/>
+7.	Changes to This Privacy Policy
+We may update this Privacy Policy from time to time to reflect changes in our practices or legal requirements. We will notify you of significant changes by posting the updated policy within the app or via an in-app notification. Your continued use of FundWithPi after such changes constitutes acceptance of the new policy.<br/><br/>
+8.	Contact Us
+If you have questions, concerns, or requests regarding this Privacy Policy or your information, please contact us at:<br/>
+-	Email: [Insert Contact Email]<br/>
+-	Support: Available through the FundWithPi app support section.<br/>

@@ -1,0 +1,74 @@
+.head-section{
+    position: relative;
+}
+
+.head-img{
+    width: 100%;
+}
+.head-details{
+    position: absolute;
+    top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 5px;
+    text-transform: capitalize;
+    gap: 3px;
+}
+.head-details .small-text{
+    font-family: cursive;
+}
+.head-details h4{
+    color: var(--firstGreen);
+}
+.head-details button{
+    background: var(--firstGreen);
+    color: var(--riskText);
+    height: 35px;
+    width: 100px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+.head-details button:hover{
+    background: var(--riskText);
+    color: var(--firstGreen);
+}
+
+.top-five-see-more{
+    display: flex;
+    text-align: center;
+    width: 100%;
+    justify-content: center;
+}
+
+.top-five-see-more button{
+    box-shadow: 3px 5px 5px grey;
+    padding: 10px;
+    border-radius: 10px;
+}
+.wrap-fund-hints{
+    padding: 15px;
+    margin: 10px;
+    border-radius: 15px;
+    background: var(--firstGreen);
+    color: var(--riskText);
+}
+
+/* Swipers stuff */
+
+.wrap-all-swiper{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    width: 100%;
+    background: var(--bgPlus);
+    border-radius: 20px;
+    overflow: hidden;
+    height: 100%;
+    border: 2px solid var(--firstGreen);
+    padding: 7px;
+    gap: 10px;
+}
+
+
+

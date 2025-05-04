@@ -1,0 +1,159 @@
+#wrap-fund-page{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.inner-fund-wrap {
+    font-size: 14px;
+    color: var(--dimText);
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin-top: 10px;
+    gap: 7px;
+    border-bottom: 1px solid var(--dimText);
+    width: 80%;
+}
+.inner-fund-wrap:nth-last-child(1){
+    border-bottom: none;
+}
+.inner-fund-wrap .fa{
+    font-size: 13px;
+}
+#wrap-data-funds{
+    margin: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.fundraising-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding: 2rem;
+  background-color: var(--bgPlus);
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+  max-width: 800px;
+  margin: 2rem auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  flex-wrap: wrap;
+}
+
+.fundraising-banner img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.fundraising-banner p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #333;
+  margin: 0;
+}
+
+
+
+
+
+
+.create-fund-acc{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px;
+}
+.sub-wrap-fund{
+    position: relative;
+}
+.sub-wrap-fund img{
+    width: 100%;
+    height: 200px;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+}
+.sub-wrap-fund .create-fund-acc{
+    background: rgb(0,0,0,0.5);
+    width: 100%;
+    height: 200px;
+    display: flex;
+    position: 0;
+    top: 0;
+    color: var(--riskText);
+    align-items: start;
+    flex-direction: column;
+    gap: 8px;
+
+}
+.sub-wrap-fund .create-fund-acc p{
+    background: rgb(0,0,0,0.4);
+    width: fit-content;
+    padding: 2px;
+    border-radius: 7px;
+}
+.sub-wrap-fund .create-fund-acc button{
+    border: 2px solid var(--riskText);
+}
+.mini-fund-nav{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+.mini-fund-nav a{
+    color: var(--dimText);
+    font-size: 14px;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    border-bottom: 1px solid var(--dimText);
+    width: fit-content;
+}
+.mini-fund-nav a i{
+    font-size: 10px;
+    text-decoration: none;
+}
+.main-content{
+    width: 100%;
+    display: grid;
+    place-items: center;
+    gap: 50px;
+}
+.each-row{
+    background: var(--bgPlus);
+    border-radius: 10px;
+    padding: 5px;
+    width: 80%;
+    border: 1px solid var(--firstGreen);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+    position: relative;
+}
+.each-row img{
+    width: 100%;
+    border-radius: 10px;
+}
+
+.each-row .float{
+    border-radius: 5px;
+    padding: 2px;
+    background: rgb(0,0,0,0.3);
+    color: var(--riskText);
+    font-size: 12px;
+}
+.each-row p{
+    font-size: 15px;
+}
+.create-btn-space{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}

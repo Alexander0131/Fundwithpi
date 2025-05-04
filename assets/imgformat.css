@@ -1,0 +1,96 @@
+/* Swiper container styling */ 
+.swiper-container { 
+    width: 100%; 
+    max-width: 600px; 
+    height: 400px; 
+    margin: auto; 
+    overflow: hidden; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
+
+/* Swiper slide styling */ 
+.swiper-slide { 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    background: inherit; 
+}
+
+.swiper-slide img { 
+    max-width: 100%; 
+    max-height: 100%; 
+    object-fit: cover; 
+    border-radius: 5px; 
+}
+
+/* Navigation buttons */ 
+.swiper-button-next, .swiper-button-prev { 
+    color: #fff; 
+    width: 40px; 
+    height: 40px; 
+    background: rgba(0, 0, 0, 0.5); 
+    padding: 5px; 
+    border-radius: 50%; 
+    overflow: hidden; 
+}
+
+.swiper-button-next::after, 
+.swiper-button-prev::after {
+    font-size: 20px;
+}
+
+.swiper-button-next:hover, .swiper-button-prev:hover { 
+    background: rgba(0, 0, 0, 0.8); 
+}
+
+/* Pagination styling */ 
+.swiper-pagination-bullet { 
+    background: #fff; 
+    opacity: 0.6; 
+}
+
+.swiper-pagination-bullet-active { 
+    background: #007aff; 
+    opacity: 1; 
+}
+
+.wrap-img-format{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    background: #000;
+    padding: 5px;
+    flex-direction: column;
+}
+.wrap-load-img{
+    position: relative;
+    height: fit-content;
+}
+.wrap-load-img button{
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}
+.wrap-load-img button i{
+    color: var(--riskText);
+    background: var(--blackOpa);
+    padding: 6px;
+    border-radius: 50px;
+}
+.imgDel{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+.imgDel img{
+    width: 100px;
+    border-radius: 10px;
+}
