@@ -5,9 +5,6 @@ function homeHead() {
             <div class="head-details">
                 <small class="small-text">We Rise by lifting others</small>
                 <h4>Helping is Resiprocal</h4>
-                <span>
-                    <button>Sign In </button>
-                </span>
             </div>
         </div>
     `

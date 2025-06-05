@@ -3,7 +3,10 @@ const currency = "π";
 const loggedIn = false;
 const fundraiserAcc = false;
 var titleLen = 60;
-const thisPiUser = "${thisPiUser}";
+var userId = null;
+var theme = localStorage.getItem("theme") || "light"; 
+body.className = theme;
+
 
 // Load pie
 function loadPie(){
@@ -13,20 +16,16 @@ function loadPie(){
  }
  
 }
- loadPie();
+loadPie();
 
 //formation of numbers
-
 function formatNumber(num) {
   if (num < 1000) return num.toString();
   if (num < 1000000) return (num / 1000).toFixed(1).replace(/\.0$/, '') + 'k';
   return (num / 1000000).toFixed(1).replace(/\.0$/, '') + 'm';
 }
 
-
 // get percentage 
-
-
 function getPercent(total, value) {
   return Math.round((value / total) * 100);
 }
@@ -47,13 +46,19 @@ function queryClass(value){
 }
 
 // ---- Get date start ---- //
-function getCurrentDateString() {
-  return new Date().toISOString(); 
+function getCurrentDateString(params) {
+  const currentDate = new Date();
+
+  if (typeof params === "number" && !isNaN(params)) {
+    currentDate.setDate(currentDate.getDate() + params);
+  }
+
+  return currentDate.toISOString();
 }
+
 // ---- Get date end ---- //
 
 // ---- deconstruct date start ---- //
-
 function formatMongoDateString(dateStr) {
   const date = new Date(dateStr);
   
@@ -65,11 +70,8 @@ function formatMongoDateString(dateStr) {
 }
 // ---- deconstruct date end ---- //
 
-
-
 // app.js
 //Pi.init({ version: "2.0", sandbox: true });
-
 
 // circle 
 function circleProgress(goalAmt, amtRaised) {
@@ -98,9 +100,7 @@ function confirmDel(img, dataId){
   openPop(toReturn);
 }
 
-
 // display all images...
-
 function selectedImage(num, dataRaw) {
   const data = JSON.parse(dataRaw); // Fix the parsing
   var reCreateData = [];
@@ -138,24 +138,26 @@ function loadThisImg(data, type, dataId) {
   return returnData;
 }
 
-
 // get donors mini
 function donorMini(data, dataId, type){
-  return `
+  let toReturn = "helllo";
+
+  toReturn = `
     <div class="donor-space">
             ${getDonorsText(data.filter(i => i.comments != "").reverse().slice(0, 3), type)}
 
             <div>
                 ${type == "text" ? 
-                `<button class="see-more" onclick="seeMoreMsgList('What Donors Are Saying', '${dataId}')">See more</button>`
+                `<button class="see-more" onclick="seeMoreMsgList('What Donors Are Saying', '${dataId}', '${type}')">See more</button>`
                 :
                 `<button class="see-more" onclick="seeMoreMsgList('What Donors Are Saying', '${dataId}', '${type}')">See more</button>`
                 }
             </div>
         </div>
-  `
-}
+  `;
 
+  return toReturn;
+}
 
 //get words of support 
 function getDonorsText(data, type) {
@@ -178,18 +180,13 @@ function getDonorsText(data, type) {
   return returnData;
 }
 
-function seeMoreDonorList(id) {
+
+
+function seeMoreMsgList(id, type) {
   const donorsList = donorsData.filter(i => i.objId == id);
   
-return seeMoreObjList("Donor List", donorsList)
+return seeMoreObjMsgList("Donor List", donorsList, type)
 }
-
-function seeMoreMsgList(id) {
-  const donorsList = donorsData.filter(i => i.objId == id);
-  
-return seeMoreObjMsgList("Donor List", donorsList)
-}
-
 
 // Extract img id
 function getPublicId(url){
@@ -209,4 +206,49 @@ function generateRandomString() {
     result += characters.charAt(randomIndex);
   }
   return result;
+}
+
+
+function setTheme() {
+  state = theme == "light" ? "dark" : "light";
+  var getCurrentState = localStorage.getItem("theme");
+  localStorage.setItem("theme", state);
+  document.getElementById("themeId").innerHTML = `<span class="caps">${state} Theme</span>
+                            <i class="${state == "light" ? "fa fa-sun" : "fa fa-moon"}"></i>`
+  theme = state;
+  body.className = theme;
+}
+
+async function accountDeactivateCheck() {
+  const checkAccState = await getThisUser();
+  console.log(checkAccState);
+  if(checkAccState.accountState.split("$$")[0] == "deactivated"){
+    console.log("Account Deactivated");
+    body.innerHTML = `
+      <div class="flex-center deactivated">
+      <div>
+        <b>This Account have been deactivated</b><br/>
+        <a href="reactivate.html" class="red">Reactivate now!</a>
+      </div>
+
+      </div>
+    `
+  }
+}
+
+function getTimeDifference(startTime, endTime) {
+  const start = new Date(startTime);
+  const end = new Date(endTime);
+
+  const diffMs = end - start;
+
+  if (diffMs <= 0) {
+    return "Time is up!";
+  }
+
+  const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+  const days = Math.floor(diffHours / 24);
+  const hours = diffHours % 24;
+
+  return `${days} day${days !== 1 ? 's' : ''} and ${hours} hour${hours !== 1 ? 's' : ''} left`;
 }

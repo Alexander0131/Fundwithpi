@@ -1,58 +1,160 @@
-async function getUsers(authResult){
-    console.log("Starting to get users");
-    console.log("Pi Username:", authResult.user.username);
-
-    try {
-        const res = await axios.post("http://localhost:3000/user/signin", { authResult });
-        console.log("Backend response:", res.data);
-    } catch (error) {
-        console.error("Error sending user to backend:", error.response?.data || error.message || error);
-    }
+window.__ENV = {
+  backendURL: "http://localhost:3000", // replace with actual backend
+  sandbox: "true"
 };
+// const API = "http://localhost:8000";
 
-async function initial() {
-    try {
-        // ✅ Check if Pi SDK is loaded
-        if (!window.Pi) {
-            console.error("⚠️ Pi SDK not available on window. Make sure the script tag is included:");
-            console.error(`<script src="https://sdk.minepi.com/pi-sdk.js"></script>`);
-            return;
-        }
 
-        console.log("✅ Pi SDK found. Initializing...");
-        window.Pi.init({ version: "2.0" });
-        console.log("✅ Pi SDK initialized");
 
-        const scopes = ['username', 'payments'];
-        console.log("🧪 Requesting Pi authentication with scopes:", scopes);
+let currentUser = "Unknown";
+const backendURL = window.__ENV?.backendURL;
 
-        // ✅ Set a timeout fallback in case Pi.authenticate hangs
-        const timeout = new Promise((_, reject) =>
-            setTimeout(() => reject(new Error("⚠️ Pi authentication timed out after 10 seconds")), 10000)
-        );
+const axiosClient = axios.create({
+  baseURL: "http://localhost:3000"
+});
+function initPiSdk() {
+  const loader = document.getElementById('loader');
+  const mainContent = document.getElementById('main-content');
 
-        // ✅ Try to authenticate with timeout protection
-        const authResult = await Promise.race([
-            window.Pi.authenticate(scopes),
-            timeout
-        ]);
+  try {
+    // Optional: Show loader
+    if (loader) loader.style.display = 'block';
+    if (mainContent) mainContent.style.display = 'none';
 
-        // ✅ Authentication succeeded
-        console.log("🎉 Authenticated user:", authResult.user.username);
+    // Initialize Pi SDK
+    window.Pi.init({
+      version: "2.0",
+      sandbox: window.__ENV?.sandbox === "true"
+    });
 
-        // ✅ Send user data to backend
-        await getUsers(authResult);
+    document.querySelectorAll('.buy-btn').forEach(btn => {
+      btn.addEventListener('click', e => {
+        const card = e.target.closest('.product-card');
+        const price = parseFloat(card.dataset.price);
+        const memo = card.dataset.memo;
+        const productId = card.dataset.id;
+        orderProduct(memo, price, { productId });
+      });
+    });
 
-    } catch (error) {
-        console.error("❌ Error during Pi authentication:", error);
+    // Optional: Run any post-init logic
+    console.log("Attempt Sign in")
+    signIn();
 
-        if (error instanceof Error) {
-            console.error("Message:", error.message);
-            console.error("Stack:", error.stack);
-        } else {
-            console.error("Unknown error object:", JSON.stringify(error));
-        }
-    }
+    // Hide loader and show content
+    if (loader) loader.style.display = 'none';
+    if (mainContent) mainContent.style.display = 'block';
+
+  } catch (err) {
+    console.error("Pi SDK init failed:", err);
+    if (loader) loader.innerText = "Failed to initialize Pi SDK.";
+  }
+}
+initPiSdk();
+
+
+  // Event Listeners
+  // document.getElementById('signin-btn').addEventListener('click', signIn);
+  // document.getElementById('signout-btn').addEventListener('click', signOut);
+//   document.getElementById('confirm-signin').addEventListener('click', signIn);
+
+
+
+
+async function signIn() {
+const scopes = ['username', 'payments'];
+
+try {
+const authResult = await window.Pi.authenticate(scopes, onIncompletePaymentFound);
+currentUser = authResult.user;
+axiosClient.post(`/user/signin`, { authResult });
+console.log("Signed In")
+updateHeader();
+const toReturn = await getThisUser(currentUser.uid);
+return toReturn;
+
+} catch (err) {
+console.error("Authentication error", err);
+}
 }
 
-initial();
+
+function signOut() {
+  currentUser = null;
+  axios.get(`${API}/user/signout`);
+  updateHeader();
+}
+
+ async function updateHeader() {
+  const mpn = document.getElementById("menu-profile-name");
+  const mil =  document.getElementById("menu-img-letter");
+  const mpi = document.getElementById("menu-profile-img");
+
+   if(mpn) mpn.textContent = currentUser.username;
+   console.log("first")
+  
+  //  get all account info
+  if(currentUser.uid){
+    userInfo = await getThisUser(currentUser.uid);
+   if(mil) mil.textContent = currentUser.username[0];
+    if(userInfo.profile){
+      if(mpi) mpi.src = userInfo.profile;
+    }
+
+    // Set to localstorage
+    localStorage.setItem('user', JSON.stringify(userInfo));
+    console.log({userInfo})
+
+
+
+}
+return currentUser;
+}
+
+function orderProduct(memo, amount, metadata) {
+  if (!currentUser) {
+    showModal();
+    return;
+  }
+
+  const paymentData = { amount, memo, metadata };
+  const callbacks = {
+    onReadyForServerApproval,
+    onReadyForServerCompletion,
+    onCancel,
+    onError
+  };
+
+  window.Pi.createPayment(paymentData, callbacks).then(payment => {
+    console.log("Payment created", payment);
+  }).catch(err => {
+    console.error("Payment creation error", err);
+  });
+}
+
+function onIncompletePaymentFound(payment) {
+  console.log("Incomplete Payment Found:", payment);
+  axiosClient.post('/payments/incomplete', { payment });
+}
+
+function onReadyForServerApproval(paymentId) {
+  console.log("Ready for Approval:", paymentId);
+  axiosClient.post('/payments/approve', { paymentId });
+}
+
+function onReadyForServerCompletion(paymentId, txid) {
+  console.log("Ready for Completion:", paymentId, txid);
+  axiosClient.post('/payments/complete', { paymentId, txid });
+}
+
+function onCancel(paymentId) {
+  console.log("Payment Cancelled:", paymentId);
+  axiosClient.post('/payments/cancelled_payment', { paymentId });
+}
+
+function onError(error, payment) {
+  console.error("Payment Error:", error);
+  if (payment) {
+    console.log("Related payment:", payment);
+  }
+}

@@ -9,11 +9,6 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="./assets/styles.css">
     <link rel="stylesheet" href="./assets/loaders.css">
-    <link rel="stylesheet" href="./assets/header.css">
-    <link rel="stylesheet" href="./assets/footer.css">
-    <link rel="stylesheet" href="./assets/menu.css">
-
-<link rel="stylesheet" href="./assets/dialog.css">
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
@@ -23,38 +18,19 @@
     <!-- Axios for API requests -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.5/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-   <!-- Pi SDK -->
-   <script src="https://sdk.minepi.com/pi-sdk.js?v=2.0.0"></script>
+    <script src="https://sdk.minepi.com/pi-sdk.js?v=2.0.0"></script>
 </head>
 
 <body>
+    <div class="flex-center deactivated">
+        <div>
 
-    <!-- Header Section -->
-    <header>
-        <!-- Content managed in header.js -->
-    </header>
-
-    <div class="body-content">
-        
-
-        <br><br>
-
-        <!-- Footer Section -->
-        <footer class="footer-section">
-            <!-- Managed in footer.js -->
-        </footer>
+            <h2>Account Reactivation</h2>
+            
+            <span id="accInfoText"> </span>
+        </div>
     </div>
-    
-    <!-- Menu section -->
-    <div class="menu-wrap" id="menu-wrap">
-        <!-- Managed in menu.js -->
-    </div>
-   
-   <span onclick="dialogFunc('','')" class="blur-dialog"></span>
-    <div id="dialog-wrap">
-        
-    </div>
-    
+
     
     <!-- Full Loader Section -->
     <div id="fullLoaderSpace">
@@ -69,14 +45,15 @@
     <script src="./src/data.js"></script>
     <script src="./src/const.js"></script>
     <script src="./src/index.js"></script>
-    <script src="./src/pi.js"></script>
+    <!-- <script src="./src/pi.js"></script> -->
     <script src="./src/crud.js"></script>
     <script src="./src/loader.js"></script>
-    <script src="./src/menu.js"></script>
-    <script src="./src/header.js"></script>
-    <script src="./src/singlerow.js"></script>
-    <script src="./src/footer.js"></script>
+    <!-- <script src="./src/menu.js"></script> -->
+    <!-- <script src="./src/header.js"></script> -->
+    <!-- <script src="./src/singlerow.js"></script> -->
+    <!-- <script src="./src/footer.js"></script> -->
     <script src="./src/dialog.js"></script>
+    <script src="./src/reactivate.js"></script>
     
 
 </body>

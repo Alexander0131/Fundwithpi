@@ -24,6 +24,7 @@
     max-width: 350px;
     position: fixed;
     right: 0;
+    min-height: 10vh;
     top: 0;
     bottom: 0;
     display: flex;
@@ -32,6 +33,7 @@
     margin-right: -100vw;
     transition: 1s ease;
     z-index: var(--overSwiper);
+    overflow-y: scroll;
 }
 .close-menu{
     width: 100%;
@@ -43,10 +45,12 @@
     margin: 5px;
     margin-right: 10px;
 }
-.menu-wrap hr{
-    width: 80%;
-    height: 1px;
-    background: var(--dim);
+.menu-user-account {
+   border-bottom: 1px solid var(--dim);
+}
+.menu-user-account button{
+    font-size: 15px;
+    cursor: default;
 }
 .menu-all{
     display: flex;
@@ -77,11 +81,14 @@
     justify-content: center;
 
 }
+#menu-img-letter{
+    text-transform: uppercase;
+}
 .menu-all a span small{
     font-size: 11px;
 }
 .start-fund-menu{
-    position: absolute;
+    position: fixed;
     bottom: 25px;
 }
 .start-fund-menu a{
@@ -126,7 +133,6 @@
     position: relative;
 }
 #menu-profile-img{
-    disphlay: none;
     position: absolute;
     top: 0;
     opacity: 0;

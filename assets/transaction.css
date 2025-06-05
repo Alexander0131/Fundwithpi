@@ -1,0 +1,84 @@
+
+#transHtml {
+    max-width: 700px;
+    margin: 10px;
+    border-radius: 15px;
+    margin-top: 30px;
+    box-shadow: 2px 2px 4px gray;
+    background: var(--bgPlus);
+    padding: 8px;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 95%;
+}
+#transWrap{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.trans-title {
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: var(--blue);
+}
+
+.trans-card {
+    background-color: #fff;
+    padding: 16px 20px;
+    margin: 10px;
+    margin-bottom: 16px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.07);
+    transition: transform 0.2s ease;
+    width: 100%;
+}
+
+.trans-card:hover {
+    transform: scale(1.01);
+}
+
+.trans-left {
+    max-width: 70%;
+}
+
+.trans-amount {
+    font-size: 20px;
+    color: #1abc9c;
+    font-weight: bold;
+}
+
+.trans-purpose {
+    font-size: 14px;
+    color: #555;
+    margin-top: 5px;
+}
+
+.trans-date {
+    font-size: 13px;
+    color: #999;
+    text-align: right;
+}
+
+.trans-status {
+    font-size: 13px;
+    font-weight: bold;
+    text-align: right;
+    margin-top: 5px;
+}
+
+.trans-status.success {
+    color: #27ae60;
+}
+
+.trans-status.pending {
+    color: #f39c12;
+}

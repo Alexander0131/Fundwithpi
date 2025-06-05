@@ -1,7 +1,18 @@
 function fullLoad(state, action) {
     let toReturn;
-    if(action != 'mini'){
+    if(action.includes('mini')){
+        var cssheight = action.split(" ")[1];
+        console.log({cssheight})
+        toReturn = `
+        <div id="full-load" class='full-load false' style="height:${cssheight}vh">
+        <div class="main-load">
+        <div class="loader"></div>
+        </div>
+        </div>
+    `;
 
+    }else{
+       
         if (state){
             
             fullLoaderHtml.innerHTML = `
@@ -15,14 +26,6 @@ function fullLoad(state, action) {
         else{
             fullLoaderHtml.innerHTML = "";
         }
-    }else{
-        toReturn = `
-            <div id="full-load" class='full-load false'>
-            <div class="main-load">
-            <div class="loader"></div>
-            </div>
-            </div>
-        `;
     }
    
 
@@ -31,7 +34,9 @@ function fullLoad(state, action) {
 
 // fullLoad(true, true)
 // fullLoaderHtml.innerHTML = fullLoad(false);
-
+if (document.getElementById("miniload")){
+    document.getElementById("miniload").innerHTML = fullLoad(true, 'mini')
+}
 
 let timeoutHandle = null;
 

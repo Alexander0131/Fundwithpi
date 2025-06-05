@@ -3,19 +3,24 @@ const itemsPerPage = 5;
 let isLoading = false;
 let filteredData = [];
 
-function loadMoreData(cat = ['all']) {
+async function loadMoreData(cat) {
     if (isLoading) return;
 
     if (page === 0) {
-        filteredData = []; // Reset to prevent duplicates
-
+        filteredData = []; 
+        console.log({ cat });
+    
+        const getTheData = await getAllData();
+    
         if (cat.includes('all')) {
-            filteredData = rowData;
+            filteredData = getTheData;
         } else {
-            // Flatten results to avoid nested arrays
-            filteredData = rowData.filter(item => cat.includes(item.category.toLowerCase()));
+            filteredData = getTheData.filter(item => cat.includes(item.category.toLowerCase()));
         }
+    
+        console.log({ filteredData });
     }
+    
 
     const start = page * itemsPerPage;
     if (start >= filteredData.length) return;
@@ -34,7 +39,7 @@ function loadMoreData(cat = ['all']) {
 
         newData.forEach(element => {
             donationList.innerHTML += `
-            <a href="/donationlist.html" class="single-row" key="${element._id}">
+            <a href="/f.html?q=${element._id}" class="single-row" key="${element._id}">
                 <div class="flex">
                     <img class="single-row-img" 
                     src="${element.images[0]}"
@@ -44,7 +49,7 @@ function loadMoreData(cat = ['all']) {
                         <hr>
                         <h6>${formatNumber(element.donorsCount)} Donations</h6>
                     </div>
-                </div>
+                </div> 
                 <div class="ctrl-progress-bar-wrap">
                     <div class="ctrl-progress-bar">
                         <div role="progressbar" aria-valuenow="${getPercent(element.goalAmount, element.amountRaised)}" aria-valuemin="0" aria-valuemax="100" style="--value: ${getPercent(element.goalAmount, element.amountRaised)}"></div>
@@ -67,7 +72,7 @@ function loadMoreData(cat = ['all']) {
 }
 
 function showLoading(show) {
-    donationListLoader.innerHTML = show ? fullLoad(false) : "";
+    donationListLoader.innerHTML = show ? fullLoad(true, 'mini') : "";
 }
 
 function handleScroll() {
@@ -77,5 +82,5 @@ function handleScroll() {
 }
 
 // Initial load with multiple categories
-loadMoreData(['education', 'health', 'food']);
+// loadMoreData(['education', 'health', 'food']);
 donationList.onscroll = handleScroll;

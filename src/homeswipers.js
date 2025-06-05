@@ -4,7 +4,7 @@ function swiperContentFunc(data) {
   for (i = 0; i < data.length; i++) {
       
   
-   toReturn +=  `
+    toReturn +=  `
     <div class="swiper-slide">
           <div class="wrap-all-swiper">
               <div class="img-content">

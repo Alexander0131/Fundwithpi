@@ -55,14 +55,44 @@ const editmyfundHtml = document.getElementById("editmyfund-html");
 // update page
 const updateHtml = document.getElementById("updateHtml");
 
+// report page
+const reportHtmlSpace = document.getElementById("reportHtmlSpace");
+
 
 
 var coverBtn = null;
 var coverInput = null;
 var coverContainer = null;
 
+
+// Account Settings
+const accHtml = document.getElementById("accHtml");
+
+
+// const userInfo = {
+//     id: 1, 
+//     name: 'John b', 
+//     email: 'john@example.com',
+//     username: 'Mathew',
+//     profile: './assets/images/sample.jpeg',
+//     uid: '7abd5d58-5139-460a-bfef-e94b14f9fb9d',
+// }
+// const currentUser = userInfo;
+
+var userInfo = localStorage.getItem('userInfo');
+if(!userInfo){
+    // signIn();
+}
+
+
+// Transaction Page
+const transHtml = document.getElementById("transHtml");
+
+// cfa page
+const wrapCfa = document.getElementById("wrap-cfa");
+
 /* var */
-var amtToSend = ""
+var amtToSend = "";
 var blurCookies = "";
 var cookiesContent = "";
 var donationBodyText = "";

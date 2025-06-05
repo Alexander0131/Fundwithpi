@@ -1,0 +1,62 @@
+  .cfa-container {
+    max-width: 500px;
+    margin: auto;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    text-align: center;
+    color: #333;
+  }
+  
+  form label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+  }
+  
+  form input, form textarea, form button, .phone-input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  form button {
+    background-color: #006aff;
+    color: white;
+    font-size: 16px;
+    border: none;
+    margin-top: 20px;
+    cursor: pointer;
+  }
+  
+  form button:hover {
+    background-color: #0052cc;
+  }
+  
+  #resultMessage {
+    margin-top: 20px;
+    text-align: center;
+    font-weight: bold;
+  }
+  .phone-input{
+    display: flex;
+    padding: 0px;
+    align-items: center;
+    justify-content: center;
+}
+.phone-input select{
+    outline: none;
+    width: 120px;
+}
+.phone-input input{
+    margin-top: 0;
+    border-radius: 0;
+    border: none;
+    border-left: 2px solid #ccc;
+  }

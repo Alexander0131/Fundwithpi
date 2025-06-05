@@ -1,10 +1,18 @@
 
 
-function fundPageFunc() {
-    const qValue = getQueryValue(); 
-    
-    if (!qValue) {
-        return `
+async function fundPageFunc() {
+    wrapFundPage.innerHTML = fullLoad(true, 'mini 60');
+        try {
+             userInfo = await signIn();
+             console.log(userInfo)
+        } catch (error) {
+            console.error(error)
+        }
+        console.log(userInfo)
+
+        
+    if (userInfo.fundraiser) {
+        wrapFundPage.innerHTML = `
         <div>
            <div class="fundraising-banner">
   <img src="./assets/images/help.png" alt="Fundraising Assistance Icon" />
@@ -18,12 +26,13 @@ function fundPageFunc() {
            
         `
     }else{
-    
-    return `
-        ${fundnoaccfunc(qValue)}
-    `;
+        wrapFundPage.innerHTML = `${fundnoaccfunc()}`
     }
+
 }
 
+async function wrapFundFunc(){
 
-wrapFundPage.innerHTML = fundPageFunc();
+    wrapFundPage.innerHTML = await fundPageFunc();
+}
+fundPageFunc();

@@ -414,7 +414,7 @@ function createFunds() {
     formData.append("externals", SecondaryKeys);
     formData.append("withdrawable", 0);
     formData.append("donorsCount", 0);
-    formData.append("organizer", ["${thisPiUser}"]); 
+    formData.append("organizer", ["${currentUser}"]); 
     formData.append("verifiedState", "pending");
     formData.append("category", selectedCat);
     formData.append("status", "pending");

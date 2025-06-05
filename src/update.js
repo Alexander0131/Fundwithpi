@@ -153,7 +153,7 @@ async function updateFunc() {
                 ${donorsHtml.length > 0 ? `
                     <div class="update-extra">
                         <section class="testimonials">
-                            <h3>What Donors Are Saying</h3>
+                            <h3>What are donors response</h3>
                             <br>
                                 ${donorsHtml}
                         </section>

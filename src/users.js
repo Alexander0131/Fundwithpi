@@ -1,0 +1,33 @@
+async function displayAcc(userId){
+    let toReturn;
+
+    const user = await getRandomUser('7abd5d58-5139-460a-bfef-e94b14f9fb9d');
+
+    console.log({user});
+
+    toReturn = `
+        <div>
+            <sub>Organizer: </sub>
+
+            <div class="fund-user-account">
+                <button class="menu-account-wrap" href="#">
+                    <div class="menu-account-profile">
+                        <div class="menu-profile-img-wrap">
+                           <span class="menu-img-space" id="menu-img-letter">
+  ${userInfo.username.split(" ")[0][0] + (userInfo.username.split(" ")[1] ? userInfo.username.split(" ")[1][0] : '')}
+</span>
+
+                            <img src="${userInfo.profile}" class="menu-img-space" alt=""
+                            id="menu-profile-img" onload="changeImg('menu-profile-img')">
+                        </div>
+                        <p class="caps" id="menu-profile-name">
+                            ${userInfo.name}
+                        </p>                    
+                    </div>
+                </button>
+                
+             </div>
+        </div>
+    `
+    return toReturn;
+}

@@ -1,3 +1,24 @@
+function reportThis() {
+    const reportTextarea = document.getElementById('report-textarea');
+    const reportEmail = document.getElementById('report-email');
+
+    if(reportEmail.value && reportTextarea.value) {
+        const reportData = {
+            uid: currentUser.uid,
+            issueType: 'In-Fund Reports',
+            desc: reportTextarea.value,
+            email: reportEmail.value,
+            status: "pending"
+        }        
+
+        postReport(reportData);
+        dialogFunc("");
+    }
+    
+
+}
+
+
 function reportUserFuncUi() {
     return  `
       <div> 
@@ -13,7 +34,7 @@ function reportUserFuncUi() {
                   <input id="report-email" type="email" placeholder="enteryouremail@email.com" value="" required/>
               </div>
               <div class="wrap-return-btn" align="right">
-                  <button class="default-btn">Send</button>
+                  <button class="default-btn" onclick="reportThis()">Send</button>
               </div>
           </div>
       </div>

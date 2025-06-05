@@ -102,3 +102,19 @@
     gap: 10px;
     color: var(--oppBg);
 }
+.listUpdate p{
+    margin-left: 15px;
+}
+.flex-funds-user{
+    display: flex;
+    width: 100%;
+    max-width: 400px;
+    align-items: center;
+    justify-content: space-around;
+    border: 1px solid var(--firstGreen);
+    border-radius: 0 15px 0 15px;
+}
+.fund-user-account{
+    padding: 4px;
+    min-width: 200px;
+}

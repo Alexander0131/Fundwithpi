@@ -96,7 +96,7 @@
     padding: 2px;
     border-radius: 7px;
 }
-.sub-wrap-fund .create-fund-acc button{
+.sub-wrap-fund .create-fund-acc a{
     border: 2px solid var(--riskText);
 }
 .mini-fund-nav{

@@ -1,3 +1,4 @@
+var actualAmt = 0;
 function setDonateVal(val) {
     const amtToSend = document.getElementById('amtToSend');
     const donatePrice = document.getElementById('donatePrice');
@@ -8,16 +9,32 @@ function setDonateVal(val) {
         const currentVal = parseFloat(amtToSend.value) || 0;
         const newVal = currentVal + conVal;
         amtToSend.value = newVal;
+        actualAmt = newVal;
         donatePrice.textContent = newVal + "π";
         donateState.disabled = newVal <= 0;
     } else {
         amtToSend.value = "";
+        actualAmt = "";
         donatePrice.textContent = "";
         donateState.disabled = true;
     }
+};
+
+function getActualAmt(val) {
+    actualAmt = val.value;
+    console.log({actualAmt});
 }
 
-function donateBtnRaw(itemId, title) {
+function makePaymentRaw(objId, memo, purpose) {
+    try {
+        makePayment(objId, actualAmt, memo, purpose);
+        window.location.href = "transaction.html";
+    } catch (error) {
+        
+    }
+}
+
+async function donateBtnRaw(itemId, title) {
     return `
         <div class="wrap-payment-page">
             <div>
@@ -34,18 +51,18 @@ function donateBtnRaw(itemId, title) {
             </div>
             <small>We rise by lifting others.</small>
             <div class="wrap-amt-to-send">
-                <input type="number" id="amtToSend" placeholder="Enter your desired amount."/>
+                <input type="number" id="amtToSend" placeholder="Enter your desired amount." oninput="getActualAmt(this)"/>
                 <small onclick="setDonateVal('clear')">Clear</small>
             </div>
             <div class="pay-btn">
-                <button class="default-btn" id="donateState" disabled onclick="makePayment()">Donate <span id="donatePrice"> </span></button>
+                <button class="default-btn" id="donateState" disabled onclick="makePaymentRaw('${actualObjId}', 'Test payment', '${actualPurpose}')"> Donate <span id="donatePrice"> </span></button>
             </div>
         </div>
     `;
 }
 
-function donateBtn(itemId) {
-    dialogFunc(donateBtnRaw(itemId, "No title yet"), 'Donate', true);
+async function donateBtn(itemId) {
+    dialogFunc(await donateBtnRaw(itemId, ""), 'Donate', true);
 
     
     setTimeout(() => {

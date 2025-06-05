@@ -1,6 +1,7 @@
 var selectedCart = [];
 
 function callDonationList(cat, itsClass) {
+    console.log({cat})
     const element = document.querySelector(`.${itsClass.replace(/\s+/g, ".")}`);
     if (!element) return console.error(`Element with class '${itsClass}' not found.`);
 
@@ -24,7 +25,7 @@ function callDonationList(cat, itsClass) {
     }
 }
 
-function  goCartFunction() {
+function  goCartFunction() { 
    donationCart.style.display = "none";
    donationListClass.style.display = "block";
     if (selectedCart.length > 0) {
@@ -32,6 +33,7 @@ function  goCartFunction() {
        for (i = 0; i < selectedCart.length; i++) {
            setData.push(selectedCart[i].cat);
        }
+       console.log({selectedCart})
        
         loadMoreData(setData)
         donationList.onscroll = handleScroll;
@@ -47,7 +49,7 @@ function  goCartFunction() {
 
 function allCartList() {
     return allCat.map(allCartPro => `
-        <button onclick="callDonationList('${allCartPro.cat}', '${allCartPro.faClass}')">
+        <button onclick="callDonationList('${allCartPro.name}', '${allCartPro.faClass}')">
             <i class="${allCartPro.faClass}"></i> <span>${allCartPro.name}</span>
         </button>
     `).join('');

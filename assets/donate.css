@@ -5,6 +5,7 @@
     width: 100%;
     flex-direction: column;
     gap: 10px;
+    padding: 20px;
 }
 .opt-sugs{
     display: flex;

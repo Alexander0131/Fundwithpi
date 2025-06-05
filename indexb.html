@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Shop</title>
+  <style>
+    .hidden { display: none; }
+    .product-card { border: 1px solid #ccc; padding: 1rem; margin: 1rem 0; }
+    #signin-modal { position: fixed; top: 0; left: 0; background: rgba(0,0,0,0.5); width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+    #signin-modal > div { background: white; padding: 2rem; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <header id="header">
+    <span id="username"></span>
+    <button id="signin-btn">Sign In</button>
+    <button id="signout-btn" class="hidden">Sign Out</button>
+  </header>
+
+  <div id="product-list">
+    <div class="product-card" data-id="apple_pie_1" data-price="3" data-memo="Order Apple Pie">
+      <h3>Apple Pie</h3>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Apple_pie.jpg/1280px-Apple_pie.jpg" width="200">
+      <p>You know what this is. Pie. Apples. Apple pie.</p>
+      <button class="buy-btn">Buy</button>
+    </div>
+    <div class="product-card" data-id="lemon_pie_1" data-price="5" data-memo="Order Lemon Meringue Pie">
+      <h3>Lemon Meringue Pie</h3>
+      <img src="https://live.staticflickr.com/1156/5134246283_f2686ff8a8_b.jpg" width="200">
+      <p>Non-contractual picture. Order at your own risk.</p>
+      <button class="buy-btn">Buy</button>
+    </div>
+  </div>
+
+
+
+  <!-- ENV Simulation -->
+   <!-- Pi SDK -->
+<script src="https://sdk.minepi.com/pi-sdk.js?v=2.0.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="./src/pi.js"> </script>
+    
+</body>
+</html>

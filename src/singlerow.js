@@ -15,11 +15,11 @@ function singleRowFunc(useThisData) {
 
         
         returnDataHtml += `
-        <a href="/donationlist.html" class="single-row" key="${usePro._id}">
+        <a href="/f.html?q=${usePro._id}" class="single-row" key="${usePro._id}">
             <div class="flex">
                 <img class="single-row-img" 
                      src="${usePro.images[0]}"
-                     alt="">
+                     alt="">  
                 <div class="single-row-desc">
                     <h4>${usePro.title}.</h4>
                     <hr>

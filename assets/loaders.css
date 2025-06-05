@@ -53,7 +53,9 @@ min-height: 100%;
   }
 
 
-
+#miniload{
+  height: 100%;
+}
 
   /* time out */
   .timeout-message {

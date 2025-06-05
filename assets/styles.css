@@ -33,6 +33,7 @@ input{
     justify-content: center;
     color: var(--riskText);
     border-radius: 10px;
+    cursor: pointer;
 }
 a{
     color: inherit;
@@ -43,6 +44,12 @@ a{
     display: flex;
     gap:5px;
     align-items: center;
+}
+.flex-center{
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .flex-col{
     display: flex;
@@ -89,13 +96,19 @@ a{
   .caps{
     text-transform: capitalize;
   }
-
+.flex-right{
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    justify-content: end;
+}
 /* General*/
 body {
 	background-color: hsl(223, 90%, 95%);
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 	--bg: hsl(223, 90%, 95%);
 	--bgPlus: #f9fafb;
+    --bgWhiteAsh: #c0c0c0;
 	--bgCream: #FFFDD0;
 	--text: #000;
 	--firstGreen: #06402b;
@@ -103,6 +116,7 @@ body {
 	--greenOpa: rgb(6, 64, 43, 0.2);
     --blackOpa: rgb(0, 0, 0, 0.4);
 	--riskText: #fff;
+    --darkText: #000;
 	--oppBg: #121212;
 	--dim: #555;
 	--dimText: dimgrey;
@@ -111,6 +125,7 @@ body {
 	--overSwiper: 9999;
     max-width: 500px;
     --blue: #123456;
+    transition: 0.5s ease;
 }
 
 body.dark{
@@ -123,6 +138,9 @@ body.dark{
     --greenYt: #fff;
     --oppText: #000;
 }
+body::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
 h1, h2, h3, h4, h5, h6{
     color: inherit;
     
@@ -152,4 +170,10 @@ h1, h2, h3, h4, h5, h6{
     display: flex;
     align-items: start;
     flex-direction: column;
+}
+.flex-center.deactivated{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }

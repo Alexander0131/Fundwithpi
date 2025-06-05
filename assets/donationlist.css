@@ -1,9 +1,16 @@
+.donationWrap{
+    margin-bottom: 20px;
+
+}
 .donationList{
     height: 93vh;
     overflow: hidden;
     overflow-y: scroll;
     display: none;
 }
+.donationList::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
 #donationList{
     overflow-y: scroll;
     scrollbar-width: none;

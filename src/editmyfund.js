@@ -157,10 +157,10 @@ async function editMyFundFunc(){
 
          const data = await getAllData();
          const foundData = data.find(i => i._id == queryData);
-         if( queryData == null || !foundData || foundData.organizer[0] != thisPiUser){
+         if( queryData == null || !foundData || foundData.organizer[0] != currentUser){
              editmyfundHtml.innerHTML = errorPage;
             }
-            if(foundData.organizer[0] == thisPiUser){
+            if(foundData.organizer[0] == currentUser){
                 
          if(foundData){
             descText = foundData.description;

@@ -12,8 +12,10 @@
     <link rel="stylesheet" href="./assets/header.css">
     <link rel="stylesheet" href="./assets/footer.css">
     <link rel="stylesheet" href="./assets/menu.css">
+    <link rel="stylesheet" href="./assets/pop.css">
 
 <link rel="stylesheet" href="./assets/dialog.css">
+<link rel="stylesheet" href="./assets/account.css">
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
@@ -23,8 +25,7 @@
     <!-- Axios for API requests -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.5/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-   <!-- Pi SDK -->
-   <script src="https://sdk.minepi.com/pi-sdk.js?v=2.0.0"></script>
+    <script src="https://sdk.minepi.com/pi-sdk.js?v=2.0.0"></script>
 </head>
 
 <body>
@@ -36,6 +37,9 @@
 
     <div class="body-content">
         
+        <div id="accHtml">
+            <div id="miniload"></div>
+        </div>
 
         <br><br>
 
@@ -62,7 +66,15 @@
     </div>
     
     
- 
+    <div id="pop">
+        <div class="blur-pop" onclick="openPop(null)"></div>
+        <div id="pop-html">
+            <button class="closePop" onclick="openPop(null)"><i class="fa fa-close"></i></button>
+            <div id="pop-content">
+                Open Pop
+            </div>
+        </div>
+    </div>
     
 
     <!-- JavaScript Files -->
@@ -73,10 +85,12 @@
     <script src="./src/crud.js"></script>
     <script src="./src/loader.js"></script>
     <script src="./src/menu.js"></script>
+    <script src="./src/pop.js"></script>
     <script src="./src/header.js"></script>
     <script src="./src/singlerow.js"></script>
     <script src="./src/footer.js"></script>
     <script src="./src/dialog.js"></script>
+    <script src="./src/accountsettings.js"></script>
     
 
 </body>

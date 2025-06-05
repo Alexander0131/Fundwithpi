@@ -1,0 +1,140 @@
+#accHtml{
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    color: var(--text);
+}
+.acc-wrap{
+    width: 100%;
+}
+
+.edit-img{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+.icon-edit{
+    width: 100px;
+    height: 100px;
+    position: relative;
+    overflow: hidden;
+    display: block;
+    background: red;
+    border-radius: 50px;
+}
+
+
+
+.icon-edit img{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.edit-profile-opt{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+.edit-profile-opt button{
+    height: 35px;
+    width: 100px;
+}
+.edit-profile-opt .remove{
+    border: 2px solid red;
+    border-radius: 10px;
+    color: red;
+}
+.acc-wrap{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 30px;
+    gap: 15px;
+}
+.edit-img{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+}
+.edits{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 15px;
+    width: 85%;
+    background: var(--bgPlus);
+    padding: 10px;
+    border-radius: 15px;    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+
+}
+.edits .edits-list{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.edits .edits-list label{
+    font-size: 12px;
+    font-style: italic;
+}
+.edits .edits-list input{
+    background: var(--bgWhiteAsh);
+    height: 35px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    border-radius: 5px;
+    padding: 0 5px;
+    color: var(--darkText);
+}
+#profile-update{
+    /* display: none; */
+}
+.center-Text{
+    font-size: 70px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    color: var(--riskText);
+}
+.acc-delete{
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.acc-delete .acc-list{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    gap: 10px;    
+}
+.acc-delete .acc-list span, .acc-delete .acc-list a{
+    background: var(--bgPlus);
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.upload-section .default-btn:disabled{
+    opacity: 0.4;
+}
+
+
+

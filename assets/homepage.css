@@ -45,6 +45,7 @@
     box-shadow: 3px 5px 5px grey;
     padding: 10px;
     border-radius: 10px;
+    color: var(--text);
 }
 .wrap-fund-hints{
     padding: 15px;

@@ -16,12 +16,12 @@ function listDataHere(data) {
      return returnData;
 }
 
-function seeMoreObjList(title, dataId) {
+function seeMoreObjList(title, dataId, type) {
     var returnData = `
       <div class="objList">
           
           <div class="obj-stuck-list">
-              ${listDataMsgHere(dataId, "amt")}
+              ${listDataMsgHere(dataId, '${type == "text" ? "text" : "amt"}')}
           </div>
       </div>
     `;
@@ -42,7 +42,7 @@ async function listDataMsgHere(dataId, type) {
                 <div class="single-stuck-detail">
                     <span>${data[i].userId}</span>
                     ${type == "text" ? 
-                        `<sup><small> ${data[i].comments}</small></sup>`
+                        `<sup><small class="caps"> ${data[i].comments}</small></sup>`
                     :
                         `<sup><small> ${formatNumber(data[i].amt)}</small></sup>`
                     }

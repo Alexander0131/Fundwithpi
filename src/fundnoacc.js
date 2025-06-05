@@ -18,7 +18,6 @@ function listTheTips() {
     
     
     const reData = fundWithPiTips.tips.find(i => i.id == getId).items;
-    console.log(JSON.stringify(reData))
     
     for (i = 0; i < reData.length; i++) {
         const current = reData[i];
@@ -45,6 +44,9 @@ function listTheTips() {
 
 
 function fundnoaccfunc() {
+    if(!getQueryValue()){
+        window.location.href = "fundraiser.html?q=1"
+    }
     return `
         <div class="no-acc">
                 <div class="sub-wrap-fund">
@@ -54,7 +56,7 @@ function fundnoaccfunc() {
                    <p>
                        Hit your goals by creating an account in the #1 fundraising platform with Pi.
                    </p>
-                   <button class="default-btn">Start FundWithPi</button>   </div>
+                   <a class="default-btn" href="createfundraiseraccount.html">Start FundWithPi</a>   </div>
             </div>
             
             <div class="mini-fund-nav">
@@ -66,7 +68,7 @@ function fundnoaccfunc() {
             </div>
             
             <div class="create-btn-space">
-                <button class="default-btn">Start fundWithPi</button>
+                <a class="default-btn" href="createfundraiseraccount.html">Start fundWithPi</a>
             </div>
             
             <!-- end of no acc -->

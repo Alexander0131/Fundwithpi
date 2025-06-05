@@ -48,6 +48,16 @@ async function editToDb(formData, id) {
     }
 }
 
+async function getOneFund(params) {
+    try {
+        const res = await axios.get(`${API}/funds/${params}`);
+        return res.data;
+    } catch (error) {
+        console.error(error)
+        
+    }
+}
+
 async function getAllData() {
     try {
         const res = await axios.get(`${API}/funds`);
@@ -87,8 +97,6 @@ async function delSingleImg(img, dataId) {
     console.log(img)
         const dataImg = await axios.get(`${API}/funds/${dataId}`);
         if(dataImg.data.images.includes(img)){
-            console.log(getPublicId(img));
-            console.log("The image dey");
             const delImg = await axios.delete(`${API}/funds/delete-image`, {
                 data: { publicId: getPublicId(img) }
             });
@@ -161,5 +169,266 @@ async function pushUpdateToAPI(id, data) {
 }
 
 
-// --------------- update crud End -----------------------//
+// --------------- update crud End ----------------------- //
+
+// Handle users start
+// --------------- get user start ----------------------- //
+
+async function getThisUser() {
+    try {
+        const res = await axios.get(`${API}/user/user/${currentUser.uid}`);
+
+        return res.data;
+    } catch (error) {
+        console.log(error)
+    } 
+}
+
+// --------------- get user end ----------------------- //
+
+
+// --------------- get random start ----------------------- //
+
+async function getRandomUser(params) {
+    try {
+        const res = await axios.get(`${API}/user/user/${params}`);
+
+        return res.data;
+    } catch (error) {
+        console.log(error)
+    } 
+}
+
+// --------------- get random user end ----------------------- //
+// --------------- user profile picture Start ----------------------- //
+
+async function changeProImg(params) {
+    fullLoad(true, true);
+    try {
+        const userInfo = await getThisUser(currentUser.uid);
+        if(userInfo.profile){
+            console.log("Deleting older Image")
+            const delOld =  await delProfileImg();
+                const res = await axios.put(`${API}/user/edit/img/${currentUser.uid}`, params);
+                document.getElementById("menu-profile-img").src = res.data.profile;
+            
+        }
+        else{
+            const res = await axios.put(`${API}/user/edit/img/${currentUser.uid}`, params);
+                document.getElementById("menu-profile-img").src = res.data.profile;
+            }
+            fullLoad(false, false)
+        } catch (error) {
+        fullLoad(false, false)
+        console.log(error)
+    }
+}
+
+
+// ---------------  user profile picture end ----------------------- //
+// ---------------  edit user detail start ----------------------- //
+async function updateUserInfo(data) {
+    console.log({data})
+    try {
+        const res = await axios.put(
+            `${API}/user/update/${currentUser.uid}`,
+            data, // regular JS object
+            {
+                headers: {
+                    "Content-Type": "application/json" // optional; Axios sets this automatically
+                }
+            }
+        );
+        console.log(res);
+        console.log("Updated Successfully...");
+    } catch (error) {
+        console.error("Update failed:", error.response?.data || error.message);
+    }
+}
+
+// ---------------  edit user detail end ----------------------- //
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ---------------  delete profile picture start --------------------- //
+
+
+async function delProfileImg() {
+    // get dataId
+    fullLoad(true, true);
+    console.log("Attempting Delete")
+    
+    try {
+        const dataImg = await axios.get(`${API}/user/${currentUser.uid}`);
+        console.log({dataImg}) 
+        if(dataImg.data.profile){  
+            const delImg = await axios.delete(`${API}/user/delete-image`, {
+                data: { publicId: getPublicId(dataImg.data.profile) }
+            });
+            if (delImg) {
+                // Reform the images array by filtering out the deleted image   
+                
+                // Update the DB with the new images array
+                const editData = await axios.put(`${API}/user/update/${currentUser.uid}`, {
+                    profile: null 
+                });
+                fullLoad(false, false);  
+                
+               
+            }
+           
+        }
+    fullLoad(false, false);
+
+        
+    } catch (error) {
+    fullLoad(false, false);
+    console.log("Eror")
+    console.error(error)
+    }
+};
+
+// ---------------  delete profile picture end ----------------------- //
+
+
+
+// ------------ deactivate user start   ----------  //
+
+async function deactivateMyAcc() {
+    fullLoad(true, true);
+    openPop("");
+    try {
+        const res = await axios.put(`${API}/user/update/${currentUser.uid}`, {accountState: `deactivated$$${getCurrentDateString(3)}`});
+        fullLoad(false, false);
+        accountDeactivateCheck();
+        console.log("Account deactivated succesfully");
+    } catch (error) {
+        fullLoad(false, false);
+        console.log(error);
+    }
+}
+
+
+// Handle users ends
+
+
+// Handle transaction start
+
+// get All transaction start
+async function getAllTrans() {
+    try {
+        await signIn();
+        const res = await axios.get(`${API}/transaction/${currentUser.uid}`);
+        console.log("first");
+        return res.data;
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+// get All transaction ends
+
+
+
+
+// Handle transactions ends
+// Handle users ends
+// Handle users ends
+// Handle users ends
+
+
+
+// Report crud //
+
+// post report start //
+
+async function postReport(params) {
+    fullLoad(true, 'true');
+
+    const issueType = document.getElementById("issueType");
+    const desc = document.getElementById("description");
+    const reportTextarea = document.getElementById("report-textarea");
+    const reportEmail = document.getElementById("report-email");
+    try {
+
+        const res = await axios.post(`${API}/report/`, params);
+        if (issueType) issueType.value = "";
+        if (desc) desc.value = "";
+        if (reportTextarea) reportTextarea.value = "";
+        if (reportEmail) reportEmail.value = "";
+    fullLoad(false, 'false')
+    
+} catch (error) {
+        fullLoad(false, 'false')
+        console.log(error)
+    }
+};
+
+
+
+async function makePayment(objId, amount, memo, purpose) {
+    await signIn();
+    console.log("Trying payment");
+    const currentUserId = currentUser.uid;
+    const paymentData = {
+      amount,
+      memo,
+      metadata: { productId: objId }
+    };
+    console.log({paymentData})
+  
+    try {
+      window.Pi.createPayment(paymentData, {
+        onReadyForServerApproval: async function (paymentId) {
+          console.log("Ready for server approval:", paymentId);
+          try {
+            await axios.post(`${API}/payments/approve`, { paymentId, amount, purpose, currentUserId });
+          } catch (err) {
+            console.error("Error during server approval:", err);
+          }
+        },
+  
+        onReadyForServerCompletion: async function (paymentId, txid) {
+          console.log("Ready for server completion:", paymentId, txid);
+          try {
+            await axios.post(`${API}/payments/complete`, { paymentId, txid });
+          } catch (err) {
+            console.error("Error during server completion:", err);
+          }
+        },
+  
+        onCancel: async function (paymentId) {
+          console.log("Payment cancelled:", paymentId);
+          try {
+            await axios.post(`${API}/payments/cancelled_payment`, { paymentId });
+          } catch (err) {
+            console.error("Error notifying server of cancellation:", err);
+          }
+        },
+  
+        onError: function (error, paymentId) {
+          console.error("Payment error:", error);
+        }
+      });
+    } catch (err) {
+      console.error("Failed to initiate Pi payment:", err);
+    }
+  }
+  
+
+
 
