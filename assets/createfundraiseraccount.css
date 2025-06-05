@@ -27,18 +27,13 @@
   }
   
   form button {
-    background-color: #006aff;
-    color: white;
     font-size: 16px;
     border: none;
     margin-top: 20px;
     cursor: pointer;
   }
   
-  form button:hover {
-    background-color: #0052cc;
-  }
-  
+
   #resultMessage {
     margin-top: 20px;
     text-align: center;
