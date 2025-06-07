@@ -28,7 +28,7 @@ function getActualAmt(val) {
 function makePaymentRaw(objId, memo, purpose) {
     try {
         makePayment(objId, actualAmt, memo, purpose);
-        window.location.href = "transaction.html";
+        // window.location.href = "transaction.html";
     } catch (error) {
         
     }
