@@ -12,21 +12,22 @@
     color: #333;
   }
   
-  form label {
+  #fundraisingForm label {
     display: block;
     margin-top: 15px;
     font-weight: bold;
   }
   
-  form input, form textarea, form button, .phone-input {
+  #fundraisingForm input, #fundraisingForm textarea, #fundraisingForm button, .phone-input {
     width: 100%;
     padding: 10px;
     margin-top: 5px;
     border-radius: 5px;
     border: 1px solid #ccc;
+    outline: none;
   }
   
-  form button {
+  #fundraisingForm button {
     font-size: 16px;
     border: none;
     margin-top: 20px;
@@ -49,7 +50,7 @@
     outline: none;
     width: 120px;
 }
-.phone-input input{
+#fundraisingForm .phone-input input{
     margin-top: 0;
     border-radius: 0;
     border: none;

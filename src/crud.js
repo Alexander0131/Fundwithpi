@@ -1,4 +1,4 @@
-const API = "http://localhost:3000";
+const API = "https://fund-backend-gold.vercel.app";
 
 async function postToDb(formData, updateParam, donorParam) {
     console.log("Attempting post");
@@ -228,7 +228,7 @@ async function changeProImg(params) {
 // ---------------  user profile picture end ----------------------- //
 // ---------------  edit user detail start ----------------------- //
 async function updateUserInfo(data) {
-    console.log({data})
+    fullLoad(true, 'true');
     try {
         const res = await axios.put(
             `${API}/user/update/${currentUser.uid}`,
@@ -239,10 +239,12 @@ async function updateUserInfo(data) {
                 }
             }
         );
-        console.log(res);
-        console.log("Updated Successfully...");
+        fullLoad(false, 'false');
+
     } catch (error) {
         console.error("Update failed:", error.response?.data || error.message);
+        fullLoad(false, 'false');
+
     }
 }
 

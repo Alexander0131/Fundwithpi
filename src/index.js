@@ -1,7 +1,7 @@
 
 const currency = "π";
 const loggedIn = false;
-const fundraiserAcc = false;
+// const fundraiserAcc = false;
 var titleLen = 60;
 var userId = null;
 var theme = localStorage.getItem("theme") || "light"; 

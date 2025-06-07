@@ -7,8 +7,8 @@ function openMenu(state) {
         body.style.overflow = 'hidden';
     }
     else{
-        menuContainer.style.marginRight = "-100vw";
-        menuCover.style.display = 'none';
+        if(menuContainer) menuContainer.style.marginRight = "-100vw";
+        if (menuCover) menuCover.style.display = 'none';
         body.style.overflow = 'scroll';
     }
 }
