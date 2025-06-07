@@ -1,9 +1,11 @@
 async function displayAcc(userId){
     let toReturn;
 
-    const user = await getRandomUser('7abd5d58-5139-460a-bfef-e94b14f9fb9d');
+    try {
+        
+   
+    const userInfo = await signIn()
 
-    console.log({user});
 
     toReturn = `
         <div>
@@ -30,4 +32,7 @@ async function displayAcc(userId){
         </div>
     `
     return toReturn;
+} catch (error) {
+        
+}
 }
