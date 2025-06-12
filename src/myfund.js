@@ -17,6 +17,10 @@ document.getElementById("list-funds").innerHTML = fullLoad(false, 'mini');
     const mainData = await getAllData();
     let dataToUse = null;
 
+    console.log(mainData.length >= 0)
+    if(mainData.length >= 0){
+        startNewFunds.style.display = 'none';
+    }
 
    
     // Filter logic
@@ -34,7 +38,7 @@ document.getElementById("list-funds").innerHTML = fullLoad(false, 'mini');
                 <span class="inner-fund-bar" style="width: ${getPercent(dataPro.goalAmount, dataPro.amountRaised)}%;"></span>
                 <div class="fund-inner">
                     <img src="${dataPro.images[0]}" alt="">
-                    <span class="flex-col">
+                    <span class="flex-col start">
                         <span class="fund-list-title">
                             ${dataPro.title}
                         </span>

@@ -144,7 +144,6 @@ function selectUserOwner(value, newElement) {
 
 
 
-
 function selectFundOwnerFunc() {
     return `
         <div class="funds-owner">
@@ -152,17 +151,28 @@ function selectFundOwnerFunc() {
             <sup>This information helps us to advance the way your funds would be presented.</sup>
             
             <div class="wrap-owner">
-            <span onclick="selectUserOwner('yourself', this)" class="owner inactive"> <i class="fa fa-user"></i> <span class="main-texts"> <b> Yourself</b>
-            <small> Hello </small> </span>
-             </span>
-            <span onclick="selectUserOwner('someone else', this)" class="owner inactive"> <i class="fa fa-users"></i> <span class="main-texts"> <b>Someone Else</b> 
-            <small>Hello</small></span>
-            </span>
-            <span onclick="selectUserOwner('charity', this)" class="owner inactive"><i class="fa fa-hand-holding-heart"></i>  <span class="main-texts"> <b> Charity </b>
-            <small>Hello</small></span>
-            </span>
+                <span onclick="selectUserOwner('yourself', this)" class="owner inactive">
+                    <i class="fa fa-user"></i>
+                    <span class="main-texts">
+                        <b> Yourself</b>
+                        <small>Raise funds for your personal needs or goals.</small>
+                    </span>
+                </span>
+                <span onclick="selectUserOwner('someone else', this)" class="owner inactive">
+                    <i class="fa fa-users"></i>
+                    <span class="main-texts">
+                        <b>Someone Else</b> 
+                        <small>Support a friend, family member, or loved one in need.</small>
+                    </span>
+                </span>
+                <span onclick="selectUserOwner('charity', this)" class="owner inactive">
+                    <i class="fa fa-hand-holding-heart"></i>
+                    <span class="main-texts">
+                        <b>Charity</b>
+                        <small>Fundraise for a cause or nonprofit organization.</small>
+                    </span>
+                </span>
             </div>
-            
         </div>
     `;
 }

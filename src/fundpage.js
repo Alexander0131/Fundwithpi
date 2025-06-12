@@ -4,11 +4,11 @@ async function fundPageFunc() {
     wrapFundPage.innerHTML = fullLoad(true, 'mini 60');
         try {
              userInfo = await signIn();
-             console.log(userInfo)
+             console.log(userInfo);
+
         } catch (error) {
             console.error(error)
         }
-        console.log(userInfo)
 
         
     if (userInfo.fundraiser) {
@@ -21,7 +21,7 @@ async function fundPageFunc() {
   </p>
      </div>
         
-               ${fundRaisersTips(true)}
+               ${await fundRaisersTips(true)}
            </div>
            
         `

@@ -5,10 +5,13 @@ async function mySingleFundFunc() {
     singleFundHtml.innerHTML = fullLoad(true, 'mini');
 
    const queryData = getQueryValue();
-   const data = await getAllData();
-   const foundData = data.find(i => i._id == queryData);
+   const foundData = await getOneFund(queryData);
+   const userInfo = await signIn();
+   const currentUser = userInfo.uid;
+
+    console.log({currentUser});
    console.log(foundData.organizer[0] != currentUser)
-   if(!foundData || foundData.organizer[0] != currentUser){
+   if(!foundData || foundData.organizer[0] != '${thisPiUser}'){
     singleFundHtml.innerHTML = `
            <div class="errorLand">
                <img src="./assets/images/error.gif" alt=""/>
@@ -20,7 +23,7 @@ async function mySingleFundFunc() {
 
 
         if(foundData){
-
+            console.log(foundData)
         
         
         singleFundHtml.innerHTML = `
@@ -77,8 +80,8 @@ async function mySingleFundFunc() {
                             <span><b>${currency}${foundData.withdrawable}</b></span>
                         </span>
                         <span class="flex-wrapfund">
-                            <button class="default-btn">Withdraw now</button>
-                            <button class="default-btn">Move to wallet.</button>
+                            <button class="default-btn" onclick="withDrawFunc('${foundData._id}', '${currentUser}')">Withdraw now</button>
+                            <button class="default-btn" onclick="moveToWallet('${foundData._id}', '${currentUser}', '${userInfo.wallet}')">Move to wallet.</button>
                         </span>
                         
                     </div>

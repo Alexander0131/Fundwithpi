@@ -151,3 +151,24 @@
     gap: 10px;
     text-align: center;
   }
+
+  .withdraw-dialog{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .withdraw-dialog .flex-col{
+    gap: 20px;
+  }
+
+  .withdraw-amt{
+    height: 40px;
+    border: 1px solid grey;
+    text-align: center;
+    border-radius: 10px;
+  }
+  .withdraw-dialog .default-btn{
+    width: 90%;
+  }

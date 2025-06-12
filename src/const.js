@@ -45,6 +45,7 @@ const nextBtnFund =  document.getElementById('nextBtnFund')
 
 //My fund page
 const myFundPage = document.getElementById('myfunds-page');
+const startNewFunds = document.getElementById('startNewFunds');
 
 // My single fund page.
 const singleFundHtml = document.getElementById("singlefundhtml");

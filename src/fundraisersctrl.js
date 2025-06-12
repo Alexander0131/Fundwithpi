@@ -14,7 +14,8 @@ function openFundSub(toReturn) {
     
     const wrapData = `
         <div class="flex" id="wrap-data-funds">
-            <button class="default-btn">Start fundWithPi</button>
+            <a href="createfundraiser.html" class="default-btn">Start fundraising</a>
+            <a href="myfunds.html" class="default-btn">My funds</a>
         </div>
         ${passData}
     `
@@ -28,18 +29,27 @@ function openFundSub(toReturn) {
 }
 
 
-function fundRaisersTips(toReturn){
-    openMenu(false)
-    if(fundraiserAcc){
-        return;
-    }
-    else{
-        
-    if (toReturn) {
-        return openFundSub(toReturn)
-    }
-    else {
-        openFundSub(toReturn);
-    }
+async function fundRaisersTips(toReturn){
+    try {
+        const userInfo = await signIn();
+        const fundraiserAcc = userInfo.fundraiser;
+        console.log({fundraiserAcc})
+  
+        openMenu(false)
+        if(!fundraiserAcc){
+            window.location.href = "createfundraiseraccount.html";
+            return '';
+        }
+        else{
+            
+        if (toReturn) {
+            return openFundSub(toReturn)
+        }
+        else {
+            openFundSub(toReturn);
+        }
+        }
+      } catch (error) {
+        console.log(error)
     }
 }

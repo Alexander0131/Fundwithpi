@@ -1,8 +1,9 @@
+// const API = "http://localhost:3000";
 const API = "https://fund-backend-gold.vercel.app";
 
 async function postToDb(formData, updateParam, donorParam) {
     console.log("Attempting post");
-    fullLoad(true, true);
+    fullLoad(true, 'true');
 
     try {
         const res = await axios.post(`${API}/funds/create`, formData, {
@@ -17,18 +18,18 @@ async function postToDb(formData, updateParam, donorParam) {
 
 
         console.log("Posted successfully");
-        fullLoad(false, false);
+        fullLoad(false, 'false');
         window.location.href = "myfunds.html";
     } catch (error) {
         console.error("Post error:", error.response?.data || error.message);
-        fullLoad(false, false);
+        fullLoad(false, 'false');
 
     }
 }
 
 async function editToDb(formData, id) {
     console.log("Attempting post");
-    fullLoad(true, true);
+    fullLoad(true, 'true');
 
     try {
         const res = await axios.put(`${API}/funds/update/${id}`, formData, {
@@ -39,11 +40,11 @@ async function editToDb(formData, id) {
 
         console.log("Edited successfully");
         // console.log(res.data);
-        fullLoad(false, false);
+        fullLoad(false, 'false');
         window.location.href = "myfunds.html";
     } catch (error) {
         console.error("Post error:", error.response?.data || error.message);
-        fullLoad(false, false);
+        fullLoad(false, 'false');
 
     }
 }
@@ -91,7 +92,7 @@ async function getFundByCat(theKey, theValue){
 
 async function delSingleImg(img, dataId) {
     // get dataId
-    fullLoad(true, true);
+    fullLoad(true, 'true');
 
     try {
     console.log(img)
@@ -108,7 +109,7 @@ async function delSingleImg(img, dataId) {
                 const editData = await axios.put(`${API}/funds/update/${dataId}`, {
                   images: reformImg
                 });
-                fullLoad(false, false);
+                fullLoad(false, 'false');
                 openPop(null);
                 
                 console.log("Updated data:", editData.data);
@@ -155,15 +156,15 @@ async function getThisUpdate(id) {
 
 // edit method
 async function pushUpdateToAPI(id, data) {
-    fullLoad(true)
+    fullLoad(true, 'true');
     try {
         const res = await axios.put(`${API}/update/edit/${id}`, {data});
         document.getElementById("textareaUpdate").value = "";
         document.getElementById("shareBtnId").disabled = true;
         callDisUpdate();
-        fullLoad(false)
+        fullLoad(false, 'false')
     } catch (error) {
-        fullLoad(false)
+        fullLoad(false, 'false')
         
     }
 }
@@ -432,5 +433,29 @@ async function makePayment(objId, amount, memo, purpose) {
   }
   
 
+// Withdraw 
+async function withdrawAPI(params) {
+    try {
+        const res = await axios.post(`${API}/withdraw/`, params);
+        return true;
+    } catch (error) {
+        console.log(error);
+        return false;
+    }
+}
 
+async function moveToWalletAPI(user, amt, balance, itemId) {
+    console.log({user})
+    console.log({balance})
+    try {
+        const res = await axios.put(`${API}/user/update/${user}`, {wallet: amt});
+        const formData = new FormData();
+        formData.append("withdrawable", balance);
 
+       editToDb(formData, itemId);
+        console.log(res)
+        return true;
+    } catch (error) {
+        return false;
+    }
+}

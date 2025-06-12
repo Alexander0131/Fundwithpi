@@ -1,4 +1,5 @@
 window.__ENV = {
+  // backendURL: "http://localhost:3000", // replace with actual backend
   backendURL: "https://fund-backend-gold.vercel.app", // replace with actual backend
   sandbox: "true"
 };
@@ -11,6 +12,7 @@ const backendURL = window.__ENV?.backendURL;
 
 const axiosClient = axios.create({
   baseURL: "https://fund-backend-gold.vercel.app"
+  // baseURL: "http://localhost:3000"
 });
 function initPiSdk() {
   const loader = document.getElementById('loader');

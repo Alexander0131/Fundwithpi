@@ -24,6 +24,9 @@
     <!-- Axios for API requests -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.5/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- Pi SDK -->
+    <script src="https://sdk.minepi.com/pi-sdk.js?v=2.0.0"></script>
+
 </head>
 
 <body>
@@ -54,7 +57,7 @@
                 </div>
                     
                
-                <div class="startNewFunds">
+                <div class="startNewFunds" id="startNewFunds">
                     <p>You haven't started any fundraiser yet. Let’s get one going!</p>
                     <button class="default-btn">Start a Fundraiser</button>
                 </div>
@@ -95,6 +98,7 @@
     <!-- JavaScript Files -->
     <script src="./src/data.js"></script>
     <script src="./src/const.js"></script>
+    <script src="./src/pi.js"></script>
     <script src="./src/crud.js"></script>
     <script src="./src/index.js"></script>
     <script src="./src/loader.js"></script>

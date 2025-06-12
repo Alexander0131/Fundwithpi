@@ -1,18 +1,18 @@
-
-#dialog-wrap{
+#dialog-wrap {
     display: none;
     flex-direction: column;
     position: fixed;
-    top: 60px;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    background: inherit;
+    inset: 100px 0 0 0; /* Replaces top/right/bottom/left */
     border: 2px solid var(--firstGreen);
+    background: inherit;
     border-radius: 20px 20px 0 0;
-    overflohw: hidden;
     box-shadow: 3px 2px 2px grey;
+    max-height: 90vh; /* allow some limit to prevent full overflow */
+    width: 100%;
+    overflow: hidden; /* keeps internal overflow inside */
 }
+
+
 #dialog-wrap.false{
     top: 0;
 }
@@ -59,15 +59,14 @@
     align-items: center;
     justify-content: center;
 }
-.dialog-content{
-    overflow: scroll;
-    position: absolute;
-    top: 50px;
-    height: 85vh;
+.dialog-content {
+    overflow-y: auto;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 16px;
+    flex: 1; /* let it grow */
 }
 .blur-dialog{
     position: fixed;

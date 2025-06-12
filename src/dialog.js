@@ -17,10 +17,10 @@ function dialogFunc(htmlData, title, titleDis) {
         document.body.style.overflow = "hidden"; 
         blurDialog.style.display = "block";
         if (!titleDis) {
-            dialogWrap.style.top = "0";
+            // dialogWrap.style.top = "200px";
         }
         else{
-            dialogWrap.style.top = "60px";
+            // dialogWrap.style.top = "200px";
         }
         
         
