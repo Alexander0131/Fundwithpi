@@ -6,6 +6,8 @@ function homeHead() {
                 <small class="small-text">We Rise by lifting others</small>
                 <h4>Helping is Resiprocal</h4>
             </div>
+
+            
         </div>
     `
 };
