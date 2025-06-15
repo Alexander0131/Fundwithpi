@@ -241,11 +241,12 @@ async function updateUserInfo(data) {
             }
         );
         fullLoad(false, 'false');
+        return true;
 
     } catch (error) {
         console.error("Update failed:", error.response?.data || error.message);
         fullLoad(false, 'false');
-
+        return false;
     }
 }
 
