@@ -1,6 +1,5 @@
 window.__ENV = {
-  // backendURL: "http://localhost:3000", // replace with actual backend
-  backendURL: "https://fund-backend-gold.vercel.app", // replace with actual backend
+  backendURL: "http://localhost:3000", // replace with actual backend
   sandbox: "true"
 };
 // const API = "http://localhost:8000";
@@ -11,8 +10,7 @@ let currentUser = "Unknown";
 const backendURL = window.__ENV?.backendURL;
 
 const axiosClient = axios.create({
-  baseURL: "https://fund-backend-gold.vercel.app"
-  // baseURL: "http://localhost:3000"
+  baseURL: "http://localhost:3000"
 });
 function initPiSdk() {
   const loader = document.getElementById('loader');
@@ -40,8 +38,8 @@ function initPiSdk() {
     });
 
     // Optional: Run any post-init logic
-    // console.log("Attempt Sign in")
-    // signIn();
+    console.log("Attempt Sign in")
+    signIn();
 
     // Hide loader and show content
     if (loader) loader.style.display = 'none';
@@ -80,8 +78,6 @@ console.error("Authentication error", err);
 }
 }
 
-signIn();
-
 
 function signOut() {
   currentUser = null;
@@ -95,6 +91,7 @@ function signOut() {
   const mpi = document.getElementById("menu-profile-img");
 
    if(mpn) mpn.textContent = currentUser.username;
+   console.log("first")
   
   //  get all account info
   if(currentUser.uid){
