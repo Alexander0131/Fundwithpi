@@ -38,7 +38,7 @@ function setDesc(value){
   value.style.border = "1px solid #ccc";
 }
 
-function pushChanges(){
+async function pushChanges(){
   const fNameId = document.getElementById("fullName");
   const emailId = document.getElementById("email");
   const countryId = document.getElementById("countrySelect");
@@ -78,7 +78,7 @@ function pushChanges(){
       desc: descId.value,
       fundraiserTitle: fundraiserTitleId.value
     }
-   const updateThis = updateUserInfo(toEdit)
+   const updateThis = await updateUserInfo(toEdit)
     if(updateThis){
       window.location.href = 'fundraiser.html';
     }
