@@ -80,6 +80,8 @@ console.error("Authentication error", err);
 }
 }
 
+signIn();
+
 
 function signOut() {
   currentUser = null;
