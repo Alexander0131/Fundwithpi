@@ -2,6 +2,14 @@ let withdrawAmt = "";
 
 function changeToWithVal(value) {
     const amtToWithdrawBtn = document.getElementById("amtToWithdrawBtn");
+    const amtWithdrawMainBtn = document.getElementById("amtWithdrawMainBtn");
+
+     if(value.value <= 0){
+            amtWithdrawMainBtn.disabled = true;
+        }
+        else{
+            amtWithdrawMainBtn.disabled = false;
+        }
 
     const sanitized = value.value
         .replace(/[^0-9.]/g, '')        
@@ -74,7 +82,7 @@ async function withDrawFunc(itemId, currentUser){
                     <label>Enter amount to be withdrawn</label>
                     <input class="withdraw-amt" oninput="changeToWithVal(this)" placeholder="Amount" value="${foundData.withdrawable}"/>
                 </div>
-                <button class="default-btn" onclick="mainWithdrawFunc('${currency}', '${itemId}')"> Withdraw ${currency}<span id="amtToWithdrawBtn">${foundData.withdrawable}</span></button>
+                <button class="default-btn" id="amtWithdrawMainBtn" onclick="mainWithdrawFunc('${currency}', '${itemId}')"> Withdraw ${currency}<span id="amtToWithdrawBtn">${foundData.withdrawable}</span></button>
             </div>
         `
     };

@@ -158,6 +158,7 @@
     justify-content: space-between;
     flex-direction: column;
     gap: 20px;
+    color: var(--text);
   }
   .withdraw-dialog .flex-col{
     gap: 20px;

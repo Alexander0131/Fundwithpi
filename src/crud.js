@@ -41,7 +41,7 @@ async function editToDb(formData, id) {
         console.log("Edited successfully");
         // console.log(res.data);
         fullLoad(false, 'false');
-        window.location.href = "myfunds.html";
+        // window.location.href = "myfunds.html";
     } catch (error) {
         console.error("Post error:", error.response?.data || error.message);
         fullLoad(false, 'false');
@@ -427,8 +427,10 @@ async function makePayment(objId, amount, memo, purpose) {
           console.error("Payment error:", error);
         }
       });
+      return true;
     } catch (err) {
       console.error("Failed to initiate Pi payment:", err);
+      return false;
     }
   }
   

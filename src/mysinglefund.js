@@ -11,7 +11,7 @@ async function mySingleFundFunc() {
 
     console.log({currentUser});
    console.log(foundData.organizer[0] != currentUser)
-   if(!foundData || foundData.organizer[0] != '${thisPiUser}'){
+   if(!foundData || foundData.organizer[0] != currentUser){
     singleFundHtml.innerHTML = `
            <div class="errorLand">
                <img src="./assets/images/error.gif" alt=""/>

@@ -14,10 +14,11 @@ function listFundsHref() {
 
 function listTheTips() {
     let returnData = "";
-    const getId = getQueryValue();
-    
+    const getIdQuery = getQueryValue();
+    const getId = getIdQuery ? getIdQuery : 1;
     
     const reData = fundWithPiTips.tips.find(i => i.id == getId).items;
+    console.log({reData})
     
     for (i = 0; i < reData.length; i++) {
         const current = reData[i];
@@ -44,9 +45,6 @@ function listTheTips() {
 
 
 function fundnoaccfunc() {
-    if(!getQueryValue()){
-        window.location.href = "fundraiser.html?q=1"
-    }
     return `
         <div class="no-acc">
                 <div class="sub-wrap-fund">

@@ -23,6 +23,9 @@ input{
 .red{
     color: red;
 }
+textarea{
+    color: inherit;
+}
 .default-btn{
     height: 40px;
     padding: 0 20px;
@@ -34,6 +37,9 @@ input{
     color: var(--riskText);
     border-radius: 10px;
     cursor: pointer;
+}
+.default-btn:disabled{
+    opacity: 0.4;
 }
 a{
     color: inherit;

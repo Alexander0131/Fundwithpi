@@ -12,11 +12,11 @@
     width: 97%;
     margin: 2rem auto;
     padding: 1.5rem;
-    background: #fff;
+    background: var(--bgPlus);
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     font-family: "Segoe UI", sans-serif;
-    color: #333;
+    color: var(--text);
   }
   
   /* Header */
@@ -71,7 +71,7 @@
     transform: translateX(-50%);
     font-size: 0.875rem;
     line-height: 1.25rem;
-    color: var(--oppBg);
+    color: #000;
   }
   
   /* Buttons */

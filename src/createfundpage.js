@@ -412,8 +412,15 @@ function titleAndDescFunc(){
 }
 
 
-function createFunds() {
-    console.log("first");
+async function createFunds() {
+    fullLoad(true, 'true');
+
+    try {
+        
+    
+    const userInfo = await signIn();
+    const currentUser = userInfo.uid;
+    console.log(currentUser);
     const formData = new FormData();
 
     formData.append("title", fundTitle);
@@ -424,7 +431,7 @@ function createFunds() {
     formData.append("externals", SecondaryKeys);
     formData.append("withdrawable", 0);
     formData.append("donorsCount", 0);
-    formData.append("organizer", ["${currentUser}"]); 
+    formData.append("organizer", [currentUser]); 
     formData.append("verifiedState", "pending");
     formData.append("category", selectedCat);
     formData.append("status", "pending");
@@ -446,7 +453,9 @@ function createFunds() {
         "data": []
      }
     postToDb(formData, createUpdate, createDonor);
-   
+   } catch (error) {
+      console.error("Error")  
+    }
 }
 
 

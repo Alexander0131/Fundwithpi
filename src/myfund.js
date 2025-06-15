@@ -14,7 +14,14 @@ document.getElementById("list-funds").innerHTML = fullLoad(false, 'mini');
         
    
     var toReturn = "";
-    const mainData = await getAllData();
+    const queryData = getQueryValue();
+    const mainDataRaw = await getAllData();
+    const userInfo = await signIn();
+    const currentUser = userInfo.uid;
+    const mainData = mainDataRaw.filter(item => item.organizer[0] == currentUser); 
+
+    
+    // const mainData = mainDataRaw.filter(i => i.)
     let dataToUse = null;
 
     console.log(mainData.length >= 0)

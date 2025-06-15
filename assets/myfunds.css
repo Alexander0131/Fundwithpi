@@ -2,6 +2,7 @@
     padding: 8px;
     margin-top: 20px;
     min-height: 65vh;
+    color: var(--text);
 }
 .myfunds-wrap .sub{
     color: var(--dimText);

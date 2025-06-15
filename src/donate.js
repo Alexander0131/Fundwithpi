@@ -25,13 +25,24 @@ function getActualAmt(val) {
     console.log({actualAmt});
 }
 
-function makePaymentRaw(objId, memo, purpose) {
-    try {
-        makePayment(objId, actualAmt, memo, purpose);
+async function makePaymentRaw(objId, memo, purpose) {
+    // prepare the fundupdate
+   
+
+       const trans = makePayment(objId, actualAmt, memo, purpose);
+
+       if(trans){
+        console.log("Payment made successfully");
+        const thisData = await getOneFund(objId);
+        const formData = new FormData();
+        formData.append('amountRaised', Number(thisData.amountRaised) + Number(actualAmt));
+        formData.append('donorsCount', thisData.donorsCount + 1);
+        editToDb(formData, objId);
+
+
+       }
         // window.location.href = "transaction.html";
-    } catch (error) {
-        
-    }
+    
 }
 
 async function donateBtnRaw(itemId, title) {

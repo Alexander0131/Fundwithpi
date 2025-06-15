@@ -40,8 +40,8 @@ function initPiSdk() {
     });
 
     // Optional: Run any post-init logic
-    console.log("Attempt Sign in")
-    signIn();
+    // console.log("Attempt Sign in")
+    // signIn();
 
     // Hide loader and show content
     if (loader) loader.style.display = 'none';
@@ -93,7 +93,6 @@ function signOut() {
   const mpi = document.getElementById("menu-profile-img");
 
    if(mpn) mpn.textContent = currentUser.username;
-   console.log("first")
   
   //  get all account info
   if(currentUser.uid){

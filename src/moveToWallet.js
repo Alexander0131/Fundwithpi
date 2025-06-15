@@ -3,10 +3,18 @@ let moveToWalletAmt = "";
 
 function changeToMoveVal(value) {
     const amtToMoveBtn = document.getElementById("amtToMovedBtn"); 
+    const amtToMoveMainBtn = document.getElementById("amtToMoveMainBtn");
 
     const sanitized = value.value
         .replace(/[^0-9.]/g, '')        
-        .replace(/(\..*)\./g, '$1');   
+        .replace(/(\..*)\./g, '$1');  
+        
+        if(value.value <= 0){
+            amtToMoveMainBtn.disabled = true;
+        }
+        else{
+            amtToMoveMainBtn.disabled = false;
+        }
 
     value.value = sanitized; 
     amtToMoveBtn.textContent = sanitized;
@@ -61,7 +69,7 @@ async function moveToWallet(itemId, currentUser, wallet){
                     <label>Enter amount to be moved</label>
                     <input class="withdraw-amt" oninput="changeToMoveVal(this)" placeholder="Amount" value="${foundData.withdrawable}"/>
                 </div>
-                <button class="default-btn" onclick="mainMoveFunc('${itemId}', '${currentUser}', '${Number(wallet)}', '${Number(foundData.withdrawable)}')"> Move (${currency}<span id="amtToMovedBtn">${foundData.withdrawable} </span>) to wallet. </button>
+                <button class="default-btn" id="amtToMoveMainBtn" onclick="mainMoveFunc('${itemId}', '${currentUser}', '${Number(wallet)}', '${Number(foundData.withdrawable)}')"> Move (${currency}<span id="amtToMovedBtn">${foundData.withdrawable} </span>) to wallet. </button>
             </div>
         `
     };

@@ -109,7 +109,7 @@ function pushChanges(){
               <input type="text" id="username" value="${userInfo.name}" disabled />
         
               <label>Email:</label>
-              <input type="email" id="email" oninput="setEmail(this)" value="${userInfo.email}" required />
+              <input type="email" id="email" oninput="setEmail(this)" value="${userInfo.email ? userInfo.email : ""}" required />
         
               
               <label>Country & Phone Number:</label>
