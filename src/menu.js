@@ -22,6 +22,9 @@ function openMenu(state) {
 
 try {
     const userInfo = await signIn();
+    if(!userInfo) {
+        menuFunc();
+    }
 } catch (error) {
 
     const userInfo = localStorage.getItem('userInfo');
