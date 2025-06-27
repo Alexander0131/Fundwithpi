@@ -117,4 +117,4 @@ verifiedState == "pending");
     }
     
 } 
-approvalswrapFunc('funds', 'fundsAppBtn');
+approvalswrapFunc('user', 'userAppBtn');
