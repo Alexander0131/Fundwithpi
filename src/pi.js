@@ -39,10 +39,13 @@ function initPiSdk() {
       });
     });
 
+    async function rawSignIn() {
+      return await signIn();
+    } 
+    rawSignIn()
     // Optional: Run any post-init logic
     // console.log("Attempt Sign in")
-    signIn();
-
+  
     // Hide loader and show content
     if (loader) loader.style.display = 'none';
     if (mainContent) mainContent.style.display = 'block';
@@ -69,13 +72,17 @@ const scopes = ['username', 'payments'];
 try {
 const authResult = await window.Pi.authenticate(scopes, onIncompletePaymentFound);
 currentUser = authResult.user;
-axiosClient.post(`/user/signin`, { authResult });
-console.log("Signed In")
-updateHeader();
-const toReturn = await getThisUser(currentUser.uid);
-return toReturn;
+const sign = await axiosClient.post(`/user/signin`, { authResult });
+console.log({sign})
+if(sign){
+  currentUser = sign.data.user;
+  console.log({currentUser})
+  updateHeader();
+  const toReturn = await getThisUser(currentUser.uid) ? await getThisUser(currentUser.uid) : sign.data.user;
+  return toReturn;
+}
 
-} catch (err) {
+} catch (err) { 
 console.error("Authentication error", err);
 }
 }
@@ -96,7 +103,8 @@ function signOut() {
   
   //  get all account info
   if(currentUser.uid){
-    userInfo = await getThisUser(currentUser.uid);
+    userInfo = await getThisUser(currentUser.uid) ? await getThisUser(currentUser.uid) : currentUser;
+    console.log({userInfo})
    if(mil) mil.textContent = currentUser.username[0];
     if(userInfo.profile){
       if(mpi) mpi.src = userInfo.profile;
@@ -104,7 +112,7 @@ function signOut() {
 
     // Set to localstorage
     localStorage.setItem('user', JSON.stringify(userInfo));
-    console.log({userInfo})
+    // console.log({userInfo})
 
 
 

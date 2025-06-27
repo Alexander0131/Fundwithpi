@@ -12,6 +12,16 @@
     width: 70%;
     font-size: 15px;
 }
+.searchNotFound{
+    min-height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+#search-wrap h3{
+    color: var(--text);
+}
 .search-flex{
     display: flex;
     align-items: center;
@@ -37,7 +47,7 @@
 }
 
 .search-filter{
-    display: flex;
+    display: none;
     align-items: center;
     gap: 10px;
     margin-left: 10px;

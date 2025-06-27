@@ -2,8 +2,8 @@
 
 function openMenu(state) {
     if(state) {
-        menuContainer.style.marginRight = "0px";
-        menuCover.style.display = 'block';
+        if(menuContainer) menuContainer.style.marginRight = "0";
+        if (menuCover) menuCover.style.display = 'block';
         body.style.overflow = 'hidden';
     }
     else{
@@ -18,13 +18,10 @@ function openMenu(state) {
 
 
 
- async function menuFunc() {
-
+async function menuFunc() {
+    //  fullLoad(true, 'true');
 try {
     const userInfo = await signIn();
-    if(!userInfo) {
-        menuFunc();
-    }
 } catch (error) {
 
     const userInfo = localStorage.getItem('userInfo');
@@ -89,6 +86,19 @@ try {
                     </span>
                     <i class="fa fa-chevron-right"></i>
                 </a>
+                ${userInfo.roles == "admin" ?
+                    `
+                    <a href="dashboard.html">
+                        <span>
+                            <b>Dashoard</b>
+                            <small>Control users activities</small>
+                        </span>
+                        <i class="fa fa-chevron-right"></i>
+                    </a>
+                    `
+                    : 
+                    ""
+                }
                 <a href="about.html">
                     <span>
                         <b>About</b>
@@ -111,9 +121,11 @@ try {
                     <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
+            ${userInfo.fundraiser  ? "" : `
             <div class="start-fund-menu">
-                <a href="#">Start FundWithPi</a>
+                <a href="fundraiser.html">Start FundWithPi</a>
             </div>
+            `}
             <br/>
             <br/>
             <br/>

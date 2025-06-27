@@ -6,9 +6,11 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
-    background: var(--bg);
+    background: var(--bgPlus);
     min-width: 200px;
+    color: var(--text);
     display: flex;
+    box-shadow: 2px 2px 3px var(--bgPlus);
     align-items: center;
     justify-content: center;
     min-height: 100px;

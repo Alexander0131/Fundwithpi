@@ -51,7 +51,7 @@ async function editToDb(formData, id) {
 
 async function getOneFund(params) {
     try {
-        const res = await axios.get(`${API}/funds/${params}`);
+        const res = await axios.get(`${API}/funds/single/${params}`);
         return res.data;
     } catch (error) {
         console.error(error)
@@ -138,6 +138,17 @@ async function delSingleImg(img, dataId) {
         }
     }
 
+    async function searchMainData(params) {
+        try {
+            const res = await axios.get(`${API}/funds/search?q=${params}`);
+            return res.data.results;
+
+        } catch (error) {
+
+            console.log(error)
+        }
+    }
+
 
 // --------------- donor crud End -----------------------//
 
@@ -177,17 +188,26 @@ async function pushUpdateToAPI(id, data) {
 
 async function getThisUser() {
     try {
-        const res = await axios.get(`${API}/user/user/${currentUser.uid}`);
+        const res = await axios.get(`${API}/user/single/${currentUser.uid}`);
 
         return res.data;
     } catch (error) {
-        console.log(error)
+        console.log("User not found")
     } 
 }
 
+async function getAllUsers() {
+    try {
+        const res = await axios.get(`${API}/user/users`);
+
+        return res.data;
+    } catch (error) {
+        console.log("User not found")
+    } 
+}
 // --------------- get user end ----------------------- //
 
-
+ 
 // --------------- get random start ----------------------- //
 
 async function getRandomUser(params) {
@@ -233,10 +253,32 @@ async function updateUserInfo(data) {
     try {
         const res = await axios.put(
             `${API}/user/update/${currentUser.uid}`,
-            data, // regular JS object
+            data,
             {
                 headers: {
-                    "Content-Type": "application/json" // optional; Axios sets this automatically
+                    "Content-Type": "application/json" 
+                }
+            }
+        );
+        fullLoad(false, 'false');
+        return true;
+
+    } catch (error) {
+        console.error("Update failed:", error.response?.data || error.message);
+        fullLoad(false, 'false');
+        return false;
+    }
+}
+
+async function updateUsersInfo(data, id) {
+    fullLoad(true, 'true');
+    try {
+        const res = await axios.put(
+            `${API}/user/update/${id}`,
+            data,
+            {
+                headers: {
+                    "Content-Type": "application/json" 
                 }
             }
         );
@@ -325,6 +367,24 @@ async function deactivateMyAcc() {
         console.log(error);
     }
 }
+
+// delete profile picture end  //
+
+// delete user start  //
+
+async function mainDelCrud(params){
+    fullLoad(true, 'true');
+    try {
+        const res = await axios.delete(`${API}/user/delete/${params}`);
+        fullLoad(false, 'false');
+        console.log("User deleted succesfully");
+        return true;
+    } catch (error) {
+        console.log(error);
+        return false;
+    }
+}
+// delete user end  //
 
 
 // Handle users ends
@@ -460,5 +520,51 @@ async function moveToWalletAPI(user, amt, balance, itemId) {
         return true;
     } catch (error) {
         return false;
+    }
+}
+
+// fetch withdrawals
+
+async function getAllWithdraws() {
+    try {
+        const res = await axios.get(`${API}/withdraw/`);
+        return res.data;
+    } catch (error) {
+        console.log(error);
+        
+    }
+}
+
+// confirm withdrawals
+
+async function confirmWithdrawals(id, params) {
+    try {
+        const res = await axios.put(`${API}/withdraw/${id}`, params);
+        return true;
+    } catch (error) {
+        return false;
+    }
+}
+
+//notifiction 
+async function getAllNotifications() {
+    try {
+        const res = await axios.get(`${API}/notification/`);
+        return res.data;
+    } catch (error) {
+        console.log(error);
+        
+    }
+}
+
+
+//read all notifications
+async function readAllNotifications(params) {
+    try {
+        const res = await axios.post(`${API}/notification/read-all/${params}`);
+        return res.data;
+    } catch (error) {
+        console.log(error);
+        
     }
 }

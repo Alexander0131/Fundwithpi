@@ -40,7 +40,7 @@ async function mainWithdrawFunc(userId, itemId){
         <div style="text-align: center; padding: 20px;">
             <i class="fas fa-check-circle" style="color: green; font-size: 48px; margin-bottom: 10px;"></i>
             <h3 style="color: green; margin: 10px 0;">Withdrawal Request Submitted Successfully!</h3>
-            <p style="font-size: 16px; color: #444;">
+            <p style="font-size: 16px;">
             You’ve requested to withdraw <strong>${withdrawAmt}</strong>. Please allow up to 12 hours for the transaction to be processed.
             </p>
         </div>
@@ -72,7 +72,6 @@ async function withDrawFunc(itemId, currentUser){
     toReturn = fullLoad(true, 'mini');
    const foundData = await getOneFund(itemId);
    withdrawAmt = foundData.withdrawable;
-   console.log({currentUser})
     if(foundData.organizer[0] == currentUser){
         toReturn = `
             <div class="withdraw-dialog" id="withdraw-dialog">
@@ -82,7 +81,7 @@ async function withDrawFunc(itemId, currentUser){
                     <label>Enter amount to be withdrawn</label>
                     <input class="withdraw-amt" oninput="changeToWithVal(this)" placeholder="Amount" value="${foundData.withdrawable}"/>
                 </div>
-                <button class="default-btn" id="amtWithdrawMainBtn" onclick="mainWithdrawFunc('${currency}', '${itemId}')"> Withdraw ${currency}<span id="amtToWithdrawBtn">${foundData.withdrawable}</span></button>
+                <button class="default-btn" id="amtWithdrawMainBtn" onclick="mainWithdrawFunc('${currentUser}', '${itemId}')"> Withdraw ${currency}<span id="amtToWithdrawBtn">${foundData.withdrawable}</span></button>
             </div>
         `
     };
