@@ -1,8 +1,6 @@
 function singleRowFunc(useThisDataRaw) {
    var returnDataHtml = "";
    const useThisData = useThisDataRaw;
-//    .filter(i => i.
-// verifiedState == "active");
 
      if(!useThisData) {
          returnDataHtml = fullLoad(false);

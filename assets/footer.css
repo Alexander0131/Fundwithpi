@@ -1,3 +1,4 @@
+/*
 .footer-docs{
     padding: 10px;
     background: var(--bgPlus);
@@ -21,4 +22,90 @@
     text-align: right;
     font-family: cursive;
     padding: 3px;
+}
+
+*/
+
+/* General Footer Wrapper */
+.wrap-footer {
+    background-color: var(--bgPlus);
+    color: var(--dimText);
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-top: 1px solid #ddd;
+}
+
+/* Individual Footer Sections */
+.wrap-footer > div {
+    flex: 1 1 50px;
+    min-width: 200px;
+}
+
+/* Section Titles */
+.wrap-footer h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: var(--oppCream);
+}
+
+/* Links in Resources Section */
+.footer-docs p a {
+    display: block;
+    text-decoration: none;
+    margin-bottom: 8px;
+    transition: color 0.3s ease;
+}
+
+.footer-docs p a:hover {
+    color: var(--firstGreen);
+    text-decoration: underline;
+}
+
+/* About Text */
+.footer-about p {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* Social Media */
+.footer-social-media {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.footer-social-media h2 {
+    margin-bottom: 10px;
+}
+
+.footer-social-media a {
+    margin-right: 10px;
+    font-size: 22px;
+    transition: color 0.3s ease;
+}
+
+.footer-social-media a:hover {
+    color: var(--firstGreen);
+}
+
+/* Copyright */
+.copyright-footer {
+    text-align: center;
+    width: 100%;
+    margin-top: 10px;
+    font-size: 14px;
+    border-top: 1px solid #e1e1e1;
+    padding-top: 5px;
+}
+
+/* Responsive Adjustment */
+@media screen and (max-width: 768px) {
+    .wrap-footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }

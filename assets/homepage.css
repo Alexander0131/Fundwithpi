@@ -1,7 +1,18 @@
 .head-section{
     position: relative;
 }
-
+.don-btn{
+    background: var(--oppBg);
+    color: var(--oppText);
+    height: 25px;
+    padding: 0 20px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    cursor: pointer;
+}
 .head-img{
     width: 100%;
 }
@@ -29,6 +40,13 @@
     border-radius: 10px;
     margin-top: 10px;
 }
+.head-don{
+    position: absolute;
+    top: 60px;
+    width: 250px;
+    font-size: 14px;
+    left: 10px;
+}
 .head-details button:hover{
     background: var(--riskText);
     color: var(--firstGreen);
@@ -44,15 +62,32 @@
 .top-five-see-more button{
     box-shadow: 3px 5px 5px grey;
     padding: 10px;
-    border-radius: 10px;
+    border-radius: 10px; 
     color: var(--text);
 }
+.funding-hint{
+    margin-top: -120px;
+    position: relative;
+}
 .wrap-fund-hints{
-    padding: 15px;
+    box-shadow: 2px 2px 3px var(--oppText);
     margin: 10px;
     border-radius: 15px;
-    background: var(--firstGreen);
+    background: rgb(6, 64, 43, 0.7);
     color: var(--riskText);
+    overflow: hidden;
+}
+.wrap-fund-hints .head{
+    backdrop-filter: blur(1px);
+    padding: 15px;
+
+}
+.wrap-fund-hints span{
+    background: var(--firstGreen);
+    padding: 15px;
+    display: block;
+    width: 100%;
+    margin-top: -30px;
 }
 
 /* Swipers stuff */
@@ -74,5 +109,9 @@
     width: 100%;
     margin-top: 10px;
 }
-
+#applause{
+    color: var(--riskText);
+    background: var(--firstGreen);
+    padding: 50px;
+}
 

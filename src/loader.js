@@ -2,7 +2,6 @@ function fullLoad(state, action) {
     let toReturn;
     if(action.includes('mini')){
         var cssheight = action.split(" ")[1];
-        console.log({cssheight})
         toReturn = `
         <div id="full-load" class='full-load false' style="height:${cssheight}vh">
         <div class="main-load">

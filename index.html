@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="./assets/footer.css">
     <link rel="stylesheet" href="./assets/menu.css">
     <link rel="stylesheet" href="./assets/local.css">
-    <link rel="stylesheet" href="./assets/swipers.css">
+    <link rel="stylesheet" href="./assets/feed.css">
     
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -48,21 +48,31 @@
             <div class="head-wrap" id="head-wrap">
                 <!-- Managed in homeheader.js -->
             </div>
-            
-            <!-- Top Five Section -->
-            <div class="top-five-wrap" id="top-five-wrap">
-                <!-- Managed in topfivehome.js -->
 
-            </div>
-            <img  class="fundwithpi" src="./assets/images/fundwithpi.png"/>
-            
-            <!-- Funding Hint Section -->
+                <!-- Funding Hint Section -->
             <div class="funding-hint" id="fund-hint">
                 <!-- Managed in fundhint.js -->
             </div>
             
+            <!-- Top Five Section -->
+            <div class="top-five-wrap" id="top-five-wrap">
+                <!-- Managed in topfivehome.js -->
+            <div id="" class='full-load false' style="height:60vh">
+                <div class="main-load">
+                    <div class="loader"></div>
+                 </div>
+            </div>
+            </div>
+            <img  class="fundwithpi" src="./assets/images/fundwithpi.png"/>
+            
+        
+            
             <!-- Swiper Section for Donations -->
-            <div class="donate-swiper" id="donate-swiper"></div>
+            <div class="donate-feed" id="donate-feed"></div>
+
+            <div id="applause">
+
+            </div>
             
             <br><br>
             
@@ -89,8 +99,10 @@
         </div>
         
         
-        
-        
+        <!-- Notifier section -->
+        <div id="notifier">
+            <!-- Managed in index.js -->
+        </div>
          
         <!-- JavaScript Files -->
         <script src="./src/data.js"></script>
@@ -105,7 +117,7 @@
         <script src="./src/singlerow.js"></script>
         <script src="./src/topfivehome.js"></script>
         <script src="./src/fundhint.js"></script>
-        <script src="./src/homeswipers.js"></script>
+        <script src="./src/homefeed.js"></script>
         <script src="./src/swiper.js"></script>
         <script src="./src/footer.js"></script>
         <script src="./src/cookies.js"></script>

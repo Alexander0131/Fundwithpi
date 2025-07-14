@@ -1,5 +1,5 @@
-// const API = "http://localhost:3000";
-const API = "https://fund-backend-gold.vercel.app";
+const API = "http://localhost:3000";
+// const API = "https://fund-backend-gold.vercel.app";
 
 async function postToDb(formData, updateParam, donorParam) {
     console.log("Attempting post");
@@ -41,11 +41,12 @@ async function editToDb(formData, id) {
         console.log("Edited successfully");
         // console.log(res.data);
         fullLoad(false, 'false');
+        return true;
         // window.location.href = "myfunds.html";
     } catch (error) {
         console.error("Post error:", error.response?.data || error.message);
         fullLoad(false, 'false');
-
+        return false;
     }
 }
 
@@ -136,6 +137,17 @@ async function delSingleImg(img, dataId) {
 
             console.log(error)
         }
+    };
+
+
+    async function  pushDonorData(id, data) {
+        try {
+        const res = await axios.put(`${API}/donor/update/${id}`, {data});
+        return true;
+    } catch (error) {
+        return false;
+    }
+
     }
 
     async function searchMainData(params) {
@@ -156,6 +168,7 @@ async function delSingleImg(img, dataId) {
 
 // get method
 async function getThisUpdate(id) {
+    console.log({id})
     try {
         const res = await axios.get(`${API}/update/${id}`);
         return res.data;
@@ -213,7 +226,7 @@ async function getAllUsers() {
 async function getRandomUser(params) {
     try {
         const res = await axios.get(`${API}/user/user/${params}`);
-
+        console.log(res.data)
         return res.data;
     } catch (error) {
         console.log(error)
@@ -238,6 +251,7 @@ async function changeProImg(params) {
             const res = await axios.put(`${API}/user/edit/img/${currentUser.uid}`, params);
                 document.getElementById("menu-profile-img").src = res.data.profile;
             }
+            
             fullLoad(false, false)
         } catch (error) {
         fullLoad(false, false)
@@ -447,6 +461,7 @@ async function postReport(params) {
 async function makePayment(objId, amount, memo, purpose) {
     await signIn();
     console.log("Trying payment");
+    theState = false;
     const currentUserId = currentUser.uid;
     const paymentData = {
       amount,
@@ -461,6 +476,7 @@ async function makePayment(objId, amount, memo, purpose) {
           console.log("Ready for server approval:", paymentId);
           try {
             await axios.post(`${API}/payments/approve`, { paymentId, amount, purpose, currentUserId });
+            theState = false;
           } catch (err) {
             console.error("Error during server approval:", err);
           }
@@ -470,8 +486,11 @@ async function makePayment(objId, amount, memo, purpose) {
           console.log("Ready for server completion:", paymentId, txid);
           try {
             await axios.post(`${API}/payments/complete`, { paymentId, txid });
+
+            theState = true;
           } catch (err) {
             console.error("Error during server completion:", err);
+            theState = false;
           }
         },
   
@@ -482,13 +501,17 @@ async function makePayment(objId, amount, memo, purpose) {
           } catch (err) {
             console.error("Error notifying server of cancellation:", err);
           }
+          theState = false
         },
   
         onError: function (error, paymentId) {
           console.error("Payment error:", error);
+          
         }
-      });
-      return true;
+
+    });
+    console.log({theState})
+    return theState;
     } catch (err) {
       console.error("Failed to initiate Pi payment:", err);
       return false;

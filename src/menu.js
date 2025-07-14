@@ -21,10 +21,15 @@ function openMenu(state) {
 async function menuFunc() {
     //  fullLoad(true, 'true');
 try {
-    const userInfo = await signIn();
+     userInfo = await signIn();
 } catch (error) {
 
-    const userInfo = localStorage.getItem('userInfo');
+    // const userInfo = localStorage.getItem('userInfo');
+     userInfo = {
+        "_id": 1,
+        "username" : "",
+        "role": "void"
+    }
     console.error(error)
 }
 
@@ -36,7 +41,7 @@ try {
                 <i onclick="openMenu(false)" class="fa fa-x"></i>
             </div>
             <div class="menu-user-account">
-            ${userInfo ?  `
+            ${userInfo.username ?  `
                 <button class="menu-account-wrap" href="#">
                     <div class="menu-account-profile">
                         <div class="menu-profile-img-wrap">

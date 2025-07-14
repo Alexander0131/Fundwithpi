@@ -36,3 +36,11 @@ async function displayAcc(userId){
         
 }
 }
+
+async function getUserInfo(userId) {
+    try {
+        
+    } catch (error) {
+        
+    }
+} 

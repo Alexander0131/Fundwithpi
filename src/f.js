@@ -1,16 +1,16 @@
-let actualObjId, memo, actualPurpose;
+let actualObjId, memo, actualPurpose, actualExternal;
 
 //see more function 
 let textSeeState = false;
 function textSeeMore() {
     if(!textSeeState) {
-        donationBodyText.style.height = "fit-content";
+        donationBodyText.style.maxHeight = "fit-content";
         textFader.style.display = "none";
         seeMoreText.innerText = "See Less";
         textSeeState = true;
     }else{
         textSeeState = false;
-        donationBodyText.style.height = "202px";
+        donationBodyText.style.maxHeight = "202px";
         seeMoreText.innerText = "See More";
         textFader.style.display = "inline-block";
     }
@@ -24,8 +24,14 @@ function textSeeMore() {
 async function displayDonorAmt(link, type){
     let toReturn = fullLoad(true, 'mini')
     try {
-        toReturnRaw = donorMini((await fetchDonorData(link)).data, link, type);
-        if(toReturnRaw) toReturn = toReturnRaw;
+        const toReturnRaw = await  donorMini((await fetchDonorData(link)).data, link, type);
+        const checkDonorLen = (await fetchDonorData(link)).data;
+        if(checkDonorLen.length > 0) {
+            toReturn = `<h4>${type != 'text' ?'Donations' : 'Words of support'} (${formatNumber(checkDonorLen.length)})</h4>  ${toReturnRaw}`;
+        }
+        else{
+            toReturn = ""
+        }
     } catch (error) {
         console.log(error)
     }
@@ -36,12 +42,13 @@ async function listAllUpdatesHere(id){
     let toReturn = fullLoad(true, 'mini');
     try {
         const getUpdate = await getThisUpdate(id);
-        if(getUpdate){
-            toReturn = "";
+        console.log({getUpdate})
+        if(getUpdate.data.length > 0){
+            var toReturnPlus = "";
             // console.log("first");
             for (let i = 0; i < getUpdate.data.length; i++) {
                 const ele = getUpdate.data[i];
-                toReturn += `
+                toReturnPlus += `
                     
                     <p> 
                         <sub><small>${formatMongoDateString(ele.date)}</small></sub> 
@@ -50,10 +57,15 @@ async function listAllUpdatesHere(id){
                     </p>
                 `
             } 
-        };
+            toReturn = `<h2>Update</h2> ${toReturnPlus}`
+        }
+        else{
+            toReturn = ""
+        }
     } catch (error) {
         console.log(error)
     }
+    
     return toReturn;
 }
 
@@ -68,6 +80,7 @@ async function singleFundFunc(allObj) {
     singleFundWrap.innerHTML = fullLoad(true, 'mini 60');
     actualObjId = allObj._id;
     actualPurpose = allObj.title;
+    actualExternal = allObj.externals;
     singleFundWrap.innerHTML = `
         <div class="single-fund-head">
     <img class="full-img" src="${allObj.images[0]}" alt="">
@@ -83,7 +96,7 @@ async function singleFundFunc(allObj) {
         </span>
         </span>
         <div class="wrap-btn">
-            <div class="default-btn" onclick="donateBtn('${allObj._id}')">Donate Now!</div>
+            <div class="default-btn" onclick="donateBtn('${allObj._id}', '${allObj.externals}')">Donate Now!</div>
         </div>
     </div>
 </div><div class="flex-detail">
@@ -110,7 +123,6 @@ async function singleFundFunc(allObj) {
 </div><!-- images zone --><div class="all-images"> 
     ${loadThisImg(allObj.images)}
 </div><!-- update zone --><div class="update-zone">
-    <h2>Update</h2>
     <span class="listUpdate">
         ${await listAllUpdatesHere(allObj.externals)}
     </span>
@@ -118,7 +130,6 @@ async function singleFundFunc(allObj) {
 <!-- donations list -->
 <div class="donation-users">
     <div>
-        <h4>Donations 2.1k</h4>
         <div class="donor-space">
             ${await displayDonorAmt(allObj.externals)}
              
@@ -127,7 +138,6 @@ async function singleFundFunc(allObj) {
 
 </div><!-- words of support --><div class="donation-users">
     <div>
-        <h4>Words of support</h4>
         <div class="donor-space">
              ${await displayDonorAmt(allObj.externals, 'text')}
         </div>

@@ -14,11 +14,11 @@
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 7px;
 }
 .opt-sugs button{
     width: 60px;
-    height: 40px;
+    height: 30px;
     border: 1px solid var(--oppBg);
     border-radius: 5px;
     padding: 3px;
@@ -29,7 +29,7 @@
 }
 .wrap-amt-to-send{
     width: 80%;
-    height: 50px;
+    height: 40px;
     border-radius: 8px;
     border: 1px solid var(--oppBg);
     display: flex;
@@ -50,4 +50,21 @@
     display: flex;
     gap:5px;
     align-items: center;
+}
+.wrap-textarea{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.wrap-textarea textarea{
+    background: inherit;
+    color: inherit;
+    border: 1px solid var(--oppBg);
+    padding: 10px;
+    border-radius: 10px;
+    width: 100%;
 }

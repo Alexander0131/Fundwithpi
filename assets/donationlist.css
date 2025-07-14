@@ -66,3 +66,33 @@
 .fa-solid.fa-gradnuation-cap{
     display: none;
 }
+.no-data{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+    gap: 50px;
+    color: var(--text);
+    font-weight: 700;
+}
+.no-data .fa{
+    color: var(--text);
+    font-size: 200px;
+}
+.mini-back{
+    color: var(--oppText);
+    background: var(--text);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    position: relative;
+    height: 35px;
+}
+.mini-back .fa{
+    position: absolute;
+    left: 15px;
+}
+.mini-back span{
+    height: 20px;
+}

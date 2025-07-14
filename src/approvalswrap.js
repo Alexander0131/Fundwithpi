@@ -5,7 +5,19 @@ async function approveUser(id) {
         if (state) {
            approvalswrapFunc('users', 'userAppBtn');
         }
-}
+};
+
+
+async function approveFunds(id) {
+        const toChange = {status: "active"};
+        const formData = new FormData();
+        formData.append("verifiedState", "active");
+        const state = await editToDb(formData, id);
+        if (state) {
+        dialogFunc(false);
+        }
+};
+
 function approveModal(img, username, email, phone, country, desc, id) {
     var content = 
         `<div class="flex-col" id="approve-modal">
@@ -31,10 +43,12 @@ function approveModal(img, username, email, phone, country, desc, id) {
     dialogFunc(content, "User Approval", "Approve User");
 }
 
-async function approveFundModal(img, organizer, desc) {
+async function approveFundModal(img, organizer, desc, id) {
+    fullLoad(true, 'true');
     console.log(img.length);
     var content = 
         `<div class="flex-col" id="approve-modal">
+            <div class="approve-inner">
             <div class="flex-col">
             <div>
                 <img class="approveImg" src="${img[0]}"/>
@@ -55,12 +69,16 @@ async function approveFundModal(img, organizer, desc) {
             <br/>
             <div>
                 <button class="delete-btn" onclick="dialogFunc('')"> Decline </button>
-                <button class="edit-btn" onclick="approveUser('')"> Approve </button>
+                <button class="edit-btn" onclick="approveFunds('${id}')"> Approve </button>
             </div>
             <br/>
             </div>
+            </div>
         </div>`;
-    dialogFunc(content, "Funds Approval", "Approve Fund");
+        if(content){
+        fullLoad(false, 'false');
+        dialogFunc(content, "Funds Approval", "Approve Fund");
+        }
 }
 
 let prevId = "";
@@ -82,6 +100,8 @@ async function approvalswrapFunc(params, activeId) {
         const listDataRaw = await getAllUsers();
         const listData = listDataRaw.filter(i => i.fundraiser == true && i.fundraiserState == "pending");
         
+        if(listData.length > 0){
+
         approvebody.innerHTML = "";
         for (let b = 0; b < listData.length; b++) {
             const element = listData[b];
@@ -94,6 +114,10 @@ async function approvalswrapFunc(params, activeId) {
                                     </div>
 `
     }
+        }
+else{
+    approvebody.innerHTML = "No data available";
+}
         }
 
     else{
@@ -109,7 +133,7 @@ verifiedState == "pending");
                                         <span>
                                             ${element.title} 
                                         </span>
-                                       <button onclick='approveFundModal(${JSON.stringify(element.images)}, ${JSON.stringify(element.organizer)}, "${element.description.replace(/"/g, '&quot;')}")' class="see-more">see more</button>
+                                       <button onclick='approveFundModal(${JSON.stringify(element.images)}, ${JSON.stringify(element.organizer)}, "${element.description.replace(/"/g, '&quot;')}", "${element._id}")' class="see-more">see more</button>
 
                                     </div>
 `
@@ -117,4 +141,4 @@ verifiedState == "pending");
     }
     
 } 
-approvalswrapFunc('user', 'userAppBtn');
+approvalswrapFunc('users', 'userAppBtn');

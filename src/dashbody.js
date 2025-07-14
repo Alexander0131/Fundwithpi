@@ -29,7 +29,7 @@ function dashbodyFunc(params) {
                             <div class="approval-row">
                                 <div class="approve-flex">
                                     <div class="approve-users active" id="userAppBtn" onclick="approvalswrapFunc('users', 'userAppBtn')">Users</div>
-                                    <fundsAppBtndiv class="approve-users" id="fundsAppBtn" onclick="approvalswrapFunc('funds', '')">Funds</fundsAppBtndiv>
+                                    <fundsAppBtndiv class="approve-users" id="fundsAppBtn" onclick="approvalswrapFunc('funds', 'fundsAppBtn')">Funds</fundsAppBtndiv>
                                 </div>
                                 <div class="approve-body" id="approvebody">
                                                                     </div>

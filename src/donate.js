@@ -3,6 +3,7 @@ function setDonateVal(val) {
     const amtToSend = document.getElementById('amtToSend');
     const donatePrice = document.getElementById('donatePrice');
     const donateState = document.getElementById("donateState");
+    const donateText = document.getElementById("wordOfSup");
 
     if (val != 'clear') {
         const conVal = Number(val);
@@ -25,11 +26,16 @@ function getActualAmt(val) {
     console.log({actualAmt});
 }
 
-async function makePaymentRaw(objId, memo, purpose) {
+async function makePaymentRaw(objId, externals, memo, purpose) {
     // prepare the fundupdate
-   
 
-       const trans = makePayment(objId, actualAmt, memo, purpose);
+    
+        // post the deposited amount
+
+
+
+
+       const trans = await makePayment(objId, actualAmt, memo, purpose);
 
        if(trans){
         console.log("Payment made successfully");
@@ -37,15 +43,46 @@ async function makePaymentRaw(objId, memo, purpose) {
         const formData = new FormData();
         formData.append('amountRaised', Number(thisData.amountRaised) + Number(actualAmt));
         formData.append('donorsCount', thisData.donorsCount + 1);
-        editToDb(formData, objId);
 
+        // set the word of support
+
+        const getUpdate = await fetchDonorData(externals);
+        var prevUpdateData = getUpdate.data;
+        const dataLen = prevUpdateData.length;
+        prevUpdateData.push({
+          id: dataLen + 1,
+          comments: document.getElementById("wordOfSup").value, 
+          amt: document.getElementById("amtToSend").value,
+          userId: currentUser.uid,
+          date: getCurrentDateString()
+});
+        const postNew = await pushDonorData(getUpdate.objId, prevUpdateData);
+
+
+    
+
+
+
+
+
+        editToDb(formData, objId);
+        if(postNew){
+            notifier("Donation made succesfully");    
+            setTimeout(() => {
+                window.location.href = "transaction.html";
+            }, 5000)
+            }
+            
 
        }
-        // window.location.href = "transaction.html";
+       else{
+        notifier("Donation failed, try again after few minutes");
+        console.log("Payment failed");
+       }
     
 }
 
-async function donateBtnRaw(itemId, title) {
+async function donateBtnRaw(itemId, title, externals) {
     return `
         <div class="wrap-payment-page">
             <div>
@@ -65,15 +102,20 @@ async function donateBtnRaw(itemId, title) {
                 <input type="number" id="amtToSend" placeholder="Enter your desired amount." oninput="getActualAmt(this)"/>
                 <small onclick="setDonateVal('clear')">Clear</small>
             </div>
+            <div class="wrap-textarea">
+                <label>Enter a word of encouragement(optional).</label>
+                <div id="randomSupport"></div>
+                <textarea placeholder="Kindly enter a word of encouragement." id="wordOfSup"></textarea>
+            </div>
             <div class="pay-btn">
-                <button class="default-btn" id="donateState" disabled onclick="makePaymentRaw('${actualObjId}', 'Test payment', '${actualPurpose}')"> Donate <span id="donatePrice"> </span></button>
+                <button class="default-btn" id="donateState" disabled onclick="makePaymentRaw('${actualObjId}', '${externals}', 'Test payment', '${actualPurpose}')"> Donate <span id="donatePrice"> </span></button>
             </div>
         </div>
     `;
 }
 
-async function donateBtn(itemId) {
-    dialogFunc(await donateBtnRaw(itemId, ""), 'Donate', true);
+async function donateBtn(itemId, externals) {
+    dialogFunc(await donateBtnRaw(itemId, "", externals), 'Donate', true);
 
     
     setTimeout(() => {

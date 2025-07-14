@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="./assets/footer.css">
     <link rel="stylesheet" href="./assets/menu.css">
     <link rel="stylesheet" href="./assets/donationlist.css">
+    <link rel="stylesheet" href="./assets/feed.css">
 
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -25,18 +26,21 @@
     <!-- Axios for API requests -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.5/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+     <!-- Pi SDK -->
+     <script src="https://sdk.minepi.com/pi-sdk.js?v=2.0.0"></script>
 </head>
 
 <body>
 
     <!-- Header Section -->
-    <header>
+    <header id="header">
         <!-- Content managed in header.js -->
     </header>
 
     <div class="body-content">
 
         <div class="donationWrap">
+           
             <div id="donationCart">
                  
             </div>
@@ -46,11 +50,19 @@
              <div id="donationList">
                 <!-- Managed elsewhere -->
 
+                <div id="" class='full-load false' style="height:40vh">
+            <div class="main-load">
+                <div class="loader"></div>
+            </div>
+        </div>
+
             </div>
         </div>
         <div id="donationListLoader"></div> 
             </div>
         </div>
+
+             <div class="donate-feed" id="donate-feed"></div>
         
 
         
@@ -81,9 +93,11 @@
     <script src="./src/const.js"></script>
     <script src="./src/index.js"></script>
     <script src="./src/crud.js"></script>
+    <script src="./src/pi.js"></script>
     <script src="./src/loader.js"></script>
     <script src="./src/menu.js"></script>
     <script src="./src/header.js"></script>
+    <script src="./src/homefeed.js"></script>
     <script src="./src/donationlist.js"></script>
     <script src="./src/donationcart.js"></script>
     <script src="./src/footer.js"></script>

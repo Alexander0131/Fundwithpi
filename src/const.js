@@ -4,13 +4,15 @@ const headWrap = document.getElementById('head-wrap');
 const topFiveWrap = document.getElementById('top-five-wrap');
 const fundHint = document.getElementById('fund-hint');
 const swiperContent = document.getElementById('swiper-content');
-const donateSwiper = document.getElementById('donate-swiper');
+const donateFeed = document.getElementById('donate-feed');
 const footer = document.querySelector('footer');
 const body = document.body;
 const menuWrap = document.getElementById('menu-wrap');
 const localStorageAccess = document.getElementById('local-storage-access');
 const dialogWrap = document.getElementById('dialog-wrap');
 const blurDialog = document.querySelector('.blur-dialog');
+const notifierHtml = document.getElementById("notifier");
+
 
 
 

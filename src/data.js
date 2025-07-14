@@ -1,3 +1,103 @@
+const sampleData = [
+  {
+    "title": "Community Support",
+    "description": "Helping a local family who has lost their home due to a fire",
+    "content":"",
+    "organizedfor": "",
+    "goalAmount": "",
+    "amountRaised": "",
+    "withdrawable": "",
+    "balance": "",
+    "externals": "",
+    "donorsCount": "",
+    "organizer": "",
+    "verifiedState": "sample",
+    "category": "",
+    "status": "",
+    "deadline": "", 
+    "images": ["/assets/images/Community Support.jpg"]
+  },
+    {
+    "title": "Education & Youth",
+    "description": "Supporting a child's education or a local youth program.",
+    "content":"",
+    "organizedfor": "",
+    "goalAmount": "",
+    "amountRaised": "",
+    "withdrawable": "",
+    "balance": "",
+    "externals": "",
+    "donorsCount": "",
+    "organizer": "",
+    "verifiedState": "sample",
+    "category": "",
+    "status": "",
+    "deadline": "", 
+    "images": ["/assets/images/Education & Youth.jpg"]
+  },
+    {
+    "title": "Animal Welfare",
+    "description": "Raising money for a local animal shelter's needs (food, care, medical).",
+    "content":"",
+    "organizedfor": "",
+    "goalAmount": "",
+    "amountRaised": "",
+    "withdrawable": "",
+    "balance": "",
+    "externals": "",
+    "donorsCount": "",
+    "organizer": "",
+    "verifiedState": "sample",
+    "category": "",
+    "status": "",
+    "deadline": "", 
+    "images": ["/assets/images/Animal Welfare.jpg"]
+  },
+    {
+    "title": "Emergency Relief",
+    "description": "Providing aid to people affected by a recent local event (e.g., flooding).",
+    "content":"",
+    "organizedfor": "",
+    "goalAmount": "",
+    "amountRaised": "",
+    "withdrawable": "",
+    "balance": "",
+    "externals": "",
+    "donorsCount": "",
+    "organizer": "",
+    "verifiedState": "sample",
+    "category": "",
+    "status": "",
+    "deadline": "", 
+    "images": ["/assets/images/Emergency Relief.jpg"]
+  },
+    {
+    "title": "Medical Expenses",
+    "description": "Raising funds for urgent medical treatment for a loved one.",
+    "content":"",
+    "organizedfor": "",
+    "goalAmount": "",
+    "amountRaised": "",
+    "withdrawable": "",
+    "balance": "",
+    "externals": "",
+    "donorsCount": "",
+    "organizer": "",
+    "verifiedState": "sample",
+    "category": "",
+    "status": "",
+    "deadline": "", 
+    "images": ["/assets/images/Medical Expenses.jpg"]
+  }
+]
+
+
+
+
+
+
+
+
 
     const rowData = [
     {

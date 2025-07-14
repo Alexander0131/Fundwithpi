@@ -102,6 +102,8 @@
     height: 100%;
     margin: 10px;
     width: 100%;
+    display: block;
+
 }
 .approve-inner{
     display: flex;

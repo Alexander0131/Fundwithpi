@@ -21,8 +21,8 @@ function reportThis() {
 
 function reportUserFuncUi() {
     return  `
-      <div> 
-          <h3>Suggestions</h3>
+      <div class="report-over-wrap"> 
+          <h3>Suggestions...</h3>
           <div class="report-wrap">
               <div class="report-opts">
                   <div class="option" onclick="selectThisOpt(this, 'This is scam!')">This is scam!</div>

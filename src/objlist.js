@@ -16,12 +16,12 @@ function listDataHere(data) {
      return returnData;
 }
 
-function seeMoreObjList(title, dataId, type) {
+async function seeMoreObjList(title, dataId, type) {
     var returnData = `
       <div class="objList">
           
           <div class="obj-stuck-list">
-              ${listDataMsgHere(dataId, '${type == "text" ? "text" : "amt"}')}
+              ${await listDataMsgHere(dataId, '${type == "text" ? "text" : "amt"}')}
           </div>
       </div>
     `;
@@ -35,12 +35,13 @@ async function listDataMsgHere(dataId, type) {
     const data = dataRaw.data;
    var returnData = "";
     for (i = 0; i < data.length; i++) {
+          const aUser = await getRandomUser(data[i].userId);
         returnData += `
             <div>
                 <div class="single-stuck-donor-obj">
                 <span class="fa-solid fa-hand-holding-dollar"></span>
                 <div class="single-stuck-detail">
-                    <span>${data[i].userId}</span>
+                    <span>${aUser.username}</span>
                     ${type == "text" ? 
                         `<sup><small class="caps"> ${data[i].comments}</small></sup>`
                     :

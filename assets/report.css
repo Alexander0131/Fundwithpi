@@ -1,4 +1,6 @@
-
+.report-over-wrap{
+    margin-top: 35px;
+}
 .report-opts{
     display: flex;
     flex-direction: column;

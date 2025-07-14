@@ -1,9 +1,8 @@
 window.__ENV = {
-  // backendURL: "http://localhost:3000", // replace with actual backend
-  backendURL: "https://fund-backend-gold.vercel.app", // replace with actual backend
+  backendURL: "http://localhost:3000", 
+  // backendURL: "https://fund-backend-gold.vercel.app",
   sandbox: "true"
 };
-// const API = "http://localhost:8000";
 
 
 
@@ -11,8 +10,8 @@ let currentUser = "Unknown";
 const backendURL = window.__ENV?.backendURL;
 
 const axiosClient = axios.create({
-  baseURL: "https://fund-backend-gold.vercel.app"
-  // baseURL: "http://localhost:3000"
+  // baseURL: "https://fund-backend-gold.vercel.app"
+  baseURL: "http://localhost:3000"
 });
 function initPiSdk() {
   const loader = document.getElementById('loader');
@@ -68,23 +67,36 @@ initPiSdk();
 
 async function signIn() {
 const scopes = ['username', 'payments'];
+// check localstorage 
+const tempAcc = localStorage.getItem("thisuser");
+const tempAccJson = JSON.parse(tempAcc);
+if(tempAcc && !tempAccJson.update && tempAccJson.count < 3) {
+  console.log("Acc gotten from temp");
+  const wrapAcc = { acc: tempAccJson.acc, count: tempAccJson.count + 1, update: tempAccJson.update};
+      localStorage.setItem("thisuser", JSON.stringify(wrapAcc));
+  return tempAccJson.acc;  
+}else{
 
-try {
-const authResult = await window.Pi.authenticate(scopes, onIncompletePaymentFound);
-currentUser = authResult.user;
-const sign = await axiosClient.post(`/user/signin`, { authResult });
-console.log({sign})
-if(sign){
-  currentUser = sign.data.user;
-  console.log({currentUser})
-  updateHeader();
-  const toReturn = await getThisUser(currentUser.uid) ? await getThisUser(currentUser.uid) : sign.data.user;
-  return toReturn;
+  try {
+    const authResult = await window.Pi.authenticate(scopes, onIncompletePaymentFound);
+    currentUser = authResult.user;
+    const sign = await axiosClient.post(`/user/signin`, { authResult });
+    if(sign){
+      console.log("Signed In")
+      currentUser = sign.data.user;
+      updateHeader();
+      const toReturn = await getThisUser(currentUser.uid) ? await getThisUser(currentUser.uid) : sign.data.user;
+      const wrapAcc = { acc: toReturn, count: 0, update: false};
+      localStorage.setItem("thisuser", JSON.stringify(wrapAcc));
+      return toReturn;
+    }
+    
+  } catch (err) { 
+    console.error("Authentication error", err);
+  }
 }
 
-} catch (err) { 
-console.error("Authentication error", err);
-}
+
 }
 
 
@@ -104,7 +116,6 @@ function signOut() {
   //  get all account info
   if(currentUser.uid){
     userInfo = await getThisUser(currentUser.uid) ? await getThisUser(currentUser.uid) : currentUser;
-    console.log({userInfo})
    if(mil) mil.textContent = currentUser.username[0];
     if(userInfo.profile){
       if(mpi) mpi.src = userInfo.profile;

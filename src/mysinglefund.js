@@ -59,14 +59,14 @@ async function mySingleFundFunc() {
                     <div>
         <h4>Donations 2.1k</h4>
         <div class="donor-space">
-            ${donorMini(donorsData.filter(i => i.objId == foundData.donors).reverse().slice(0, 3), foundData.externals, "amt")}
+            ${await donorMini(donorsData.filter(i => i.objId == foundData.donors).reverse().slice(0, 3), foundData.externals, "amt")}
         </div>
     </div>
 </div><!-- words of support --><div class="donation-users">
     <div>
         <h4>Words of support</h4>
         <div class="donor-space">
-           ${donorMini(donorsData.filter(i => i.objId == foundData.donors).reverse().slice(0, 3), foundData.externals, "text")}
+           ${await donorMini(donorsData.filter(i => i.objId == foundData.donors).reverse().slice(0, 3), foundData.externals, "text")}
         </div>
                 </div>
                 </div>

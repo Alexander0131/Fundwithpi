@@ -1,7 +1,6 @@
 var selectedCart = [];
 
 function callDonationList(cat, itsClass) {
-    console.log({cat})
     const element = document.querySelector(`.${itsClass.replace(/\s+/g, ".")}`);
     if (!element) return console.error(`Element with class '${itsClass}' not found.`);
 
@@ -28,6 +27,8 @@ function callDonationList(cat, itsClass) {
 function  goCartFunction() { 
    donationCart.style.display = "none";
    donationListClass.style.display = "block";
+   donationListClass.style.height = "93vh";
+   window.location.href = "#header";
     if (selectedCart.length > 0) {
       var setData = [];
        for (i = 0; i < selectedCart.length; i++) {
@@ -68,7 +69,14 @@ function donationCartFunc() {
 }
 
 if (donationCart) {
-    donationCart.innerHTML = donationCartFunc();
+    const autoCat = getQueryValue();
+    
+    if(autoCat == 'all'){
+        console.log("Listing all")
+       goCartFunction()
+    }else{
+        donationCart.innerHTML = donationCartFunc();
+    }
 } else {
     console.error("donationCart element not found.");
 }

@@ -144,7 +144,8 @@ function selectUserOwner(value, newElement) {
 
 
 
-function selectFundOwnerFunc() {
+ function selectFundOwnerFunc() {
+    console.log({currentUser})
     return `
         <div class="funds-owner">
             <h2>Who are you raising this funds for?</h2>
@@ -172,6 +173,15 @@ function selectFundOwnerFunc() {
                         <small>Fundraise for a cause or nonprofit organization.</small>
                     </span>
                 </span>
+                ${currentUser.roles == "admin" || currentUser.roles == "moderator" ? ` 
+                <span onclick="selectUserOwner('global', this)" class="owner inactive">
+                    <i class="fa fa-hand-holding-heart"></i>
+                    <span class="main-texts">
+                        <b>Global</b>
+                        <small>Fundraise for a pandemic, global attack or similar cases.</small>
+                    </span>
+                </span>
+                ` : ``}
             </div>
         </div>
     `;
@@ -198,7 +208,7 @@ function updateTargetText() {
         customNext(false);
         console.log("hi")
     }
-}
+}  
 
 function setGoalAmtFunc() {
     return `
@@ -429,6 +439,7 @@ async function createFunds() {
     formData.append("goalAmount", goalAmt);
     formData.append("amountRaised", 0);
     formData.append("externals", SecondaryKeys);
+    formData.append("organizedfor", fundOwner);
     formData.append("withdrawable", 0);
     formData.append("donorsCount", 0);
     formData.append("organizer", [currentUser]); 
@@ -462,7 +473,6 @@ async function createFunds() {
 
 
 function selectImgsFunc() {
-    console.log("Run a")
     return `
         <div>
             <h1>Select a cover photo</h1>

@@ -88,7 +88,9 @@ a{
     padding: 7px;
     border-radius: 5px;
   }
-
+ .fa{
+    cursor: pointer;
+ }
  .edit-btn:hover {
     background-color: #1976D2;
   }
@@ -137,6 +139,7 @@ body {
     max-width: 500px;
     --blue: #123456;
     transition: 0.5s ease;
+    --oppCream: #333;
 }
 
 body.dark{
@@ -148,6 +151,7 @@ body.dark{
     --dimText: #fff;
     --greenYt: #fff;
     --oppText: #000;
+    --oppCream: #FFFDD0;
 }
 body::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera */
@@ -187,4 +191,55 @@ h1, h2, h3, h4, h5, h6{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+/* Notifier Styles */
+
+#notifier{
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: var(--oppBg);
+    min-width: 300px;
+    border-radius: 5px;
+    height: 40px;
+    overflow: hidden;
+    padding: 1px;
+    margin-right: -500px;
+    border: 1px solid var(--oppBg);
+    transition: 0.5s ease;
+}
+#notifier .notter{
+    display: flex;
+    justify-content: space-between;
+    padding: 6px;
+    color: var(--bgPlus);
+}
+#notifier .notter .fa-close{
+    font-size: 25px;
+    color: var(--bgPlus);
+    /* background: red; */
+}
+#notifier .progress-bar{
+    background: grey;
+    display: inline-block;
+    height: 5px;
+    padding: 2px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    border-radius: 5px;
+    overflow: hidden; 
+}
+#notifier .progress-bar #progresser{
+    background: var(--firstGreen);
+    display: inline-block;
+    height: 5px;
+    padding: 2px; 
+    width: 99%;
+    margin-left: -100%;
+    position: absolute;
+    bottom: 0;
+    border-radius: 5px;
+    transition: 8s ease;
 }

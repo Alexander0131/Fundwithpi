@@ -139,18 +139,18 @@ function loadThisImg(data, type, dataId) {
 }
 
 // get donors mini
-function donorMini(data, dataId, type){
+async function donorMini(data, dataId, type){
   let toReturn = "helllo";
 
   toReturn = `
     <div class="donor-space">
-            ${getDonorsText(data.filter(i => i.comments != "").reverse().slice(0, 3), type)}
+            ${await getDonorsText(data.filter(i => i.comments != "").reverse().slice(0, 3), type)}
 
             <div>
                 ${type == "text" ? 
-                `<button class="see-more" onclick="seeMoreMsgList('What Donors Are Saying', '${dataId}', '${type}')">See more</button>`
+                `<button class="see-more" onclick="seeMoreMsgList('What Donors Are Saying?', '${dataId}', '${type}')">See more</button>`
                 :
-                `<button class="see-more" onclick="seeMoreMsgList('What Donors Are Saying', '${dataId}', '${type}')">See more</button>`
+                `<button class="see-more" onclick="seeMoreMsgList('How much are people raising?', '${dataId}', '${type}')">See more</button>`
                 }
             </div>
         </div>
@@ -160,14 +160,16 @@ function donorMini(data, dataId, type){
 }
 
 //get words of support 
-function getDonorsText(data, type) {
+async function getDonorsText(data, type) {
   var returnData = ""
+
   for (i = 0; i < data.length; i++) {
+    const aUser = await getRandomUser(data[i].userId);
       returnData += `
         <div class="single-stuck-donor">
               <i class="fa-solid fa-hand-holding-dollar"></i>
               <div class="single-stuck-detail">
-                  <span class="caps">${data[i].userId}</span>
+                  <span class="caps">${aUser.username}</span>
                   ${type == "text" ? 
                     `<sup><small> ${data[i]. comments}</small></sup>`
                     :
@@ -252,3 +254,62 @@ function getTimeDifference(startTime, endTime) {
 
   return `${days} day${days !== 1 ? 's' : ''} and ${hours} hour${hours !== 1 ? 's' : ''} left`;
 }
+
+function applauseFunc() {
+  const applauseHtml = document.getElementById("applause");
+  applauseHtml.innerHTML = `
+  <h2>You're in good hands.</h2><br/>
+  <p>
+    As a trusted platform built on the Pi Network, we make fundraising simple, secure, and accessible. With transparent tools and a strong focus on trust and safety, you can confidently raise funds or support causes that matter.
+  </p>`;
+}
+applauseFunc();
+
+function closeNotier(){
+  console.log("closing")
+  const progresserId = document.getElementById("progresser");
+  setTimeout(() => {
+
+    progresserId.style.marginLeft = "0";
+  }, 1000);
+  setTimeout(() => {
+    notifierHtml.style.marginRight = "50px";
+  }, 8000);
+  setTimeout(() => {
+    notifierHtml.style.marginRight = "-500px";
+  }, 8200);
+
+ 
+
+}
+ 
+function notifier(text){
+    notifierHtml.style.marginRight = "0";
+  notifierHtml.innerHTML = `
+    <div>
+      <div class="flex-row">
+        <div class="notter">
+          <div>${text}</div>
+        </div>
+        <span class="progress-bar">
+          <span id="progresser"></span>
+        </span>
+      </div>
+    </div>
+  `;
+  closeNotier()
+}
+
+// function accLocalStore(params) {
+//   if (params == "get") {
+//     const tempAcc = localStorage.getItem("thisuser");
+//     const tempAccJson = JSON.parse(tempAcc);
+//     return tempAccJson;
+//   }
+  
+//   const tempAcc = localStorage.getItem("thisuser");
+//   const tempAccJson = JSON.parse(tempAcc);
+//   console.log("Acc gotten from temp");
+//   const wrapAcc = { acc: tempAccJson.acc, count: tempAccJson.count + 1, update: tempAccJson.update};
+//       localStorage.setItem("thisuser", JSON.stringify(wrapAcc));
+// }

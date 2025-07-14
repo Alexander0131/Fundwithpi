@@ -10,7 +10,7 @@ async function runSearch(val) {
 );
 
     if(setSearch) {
-        toReturn = singleRowFunc(setSearch);
+        toReturn = singleRowFunc(setSearch.filter(i => i.verifiedState == "active"));
     }
    
     }else{

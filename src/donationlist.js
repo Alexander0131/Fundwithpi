@@ -1,21 +1,46 @@
-let page = 0;
+let page = 0; 
 const itemsPerPage = 5;
 let isLoading = false;
 let filteredData = [];
 
+function goBackCart(){
+    donationCart.style.display = "block";
+    donationListClass.style.display = "none";
+}
+
 async function loadMoreData(cat) {
+
+    const listAllTheCat = cat.toString().replace(/,/g, ", ");
+    const listAllTheCatRaw = listAllTheCat.slice(0,40) + `${listAllTheCat.length > 40 ? "..." : ""}`;
+    
+
     if (isLoading) return;
 
-    if (page === 0) {
+    if (page === 0) { 
         filteredData = []; 
         console.log({ cat });
     
         const getTheData = await getAllData();
+        if (getTheData) {
+            donationList.innerHTML = "";
+
+        }
     
         if (cat.includes('all')) {
             filteredData = getTheData;
         } else {
             filteredData = getTheData.filter(item => cat.includes(item.category.toLowerCase()));
+
+            if (filteredData.length == 0){
+                donationListClass.style.height = "fit-content";
+                donationListClass.innerHTML = 
+                `
+                 <div class="mini-back"><i class="fa fa-arrow-left" onclick="goBackCart()"></i><span>${listAllTheCatRaw}</span></div>
+                 <div class="no-data">
+                    <i class="fa fa-exclamation-circle" ></i>
+                    No data of this category found...
+                </div>` 
+            }
         }
     
         console.log({ filteredData });
@@ -32,7 +57,7 @@ async function loadMoreData(cat) {
         const end = start + itemsPerPage;
         const newData = filteredData.slice(start, end);
 
-        if (newData.length === 0) {
+        if (newData.length == 0) {
             showLoading(false);
             return;
         }
