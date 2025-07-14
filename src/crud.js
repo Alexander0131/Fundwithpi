@@ -1,5 +1,5 @@
-const API = "http://localhost:3000";
-// const API = "https://fund-backend-gold.vercel.app";
+// const API = "http://localhost:3000";
+const API = "https://fund-backend-gold.vercel.app";
 
 async function postToDb(formData, updateParam, donorParam) {
     console.log("Attempting post");
