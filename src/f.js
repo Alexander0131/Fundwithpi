@@ -21,22 +21,7 @@ function textSeeMore() {
 
 
 
-async function displayDonorAmt(link, type){
-    let toReturn = fullLoad(true, 'mini')
-    try {
-        const toReturnRaw = await  donorMini((await fetchDonorData(link)).data, link, type);
-        const checkDonorLen = (await fetchDonorData(link)).data;
-        if(checkDonorLen.length > 0) {
-            toReturn = `<h4>${type != 'text' ?'Donations' : 'Words of support'} (${formatNumber(checkDonorLen.length)})</h4>  ${toReturnRaw}`;
-        }
-        else{
-            toReturn = ""
-        }
-    } catch (error) {
-        console.log(error)
-    }
-    return toReturn;
-}
+
 
 async function listAllUpdatesHere(id){
     let toReturn = fullLoad(true, 'mini');
