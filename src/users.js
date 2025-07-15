@@ -1,10 +1,10 @@
 async function displayAcc(userId){
     let toReturn;
 
-    try {
+    try { 
         
    
-    const userInfo = await signIn()
+    const userInfo = await getRandomUser(userId);
 
 
     toReturn = `

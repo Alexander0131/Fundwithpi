@@ -8,6 +8,9 @@ async function confirmIt(id) {
 async function mainWithdrawList(params) {
     var toReturn = "";
 
+    try {
+        
+  
     const getWithdrawsRaw = await getAllWithdraws();
     const getWithdraws = getWithdrawsRaw.filter(i => i.status == params);
     console.log({getWithdraws});
@@ -19,6 +22,7 @@ async function mainWithdrawList(params) {
         const element = getWithdraws[i];
         const getTheUser = await getRandomUser(element.userId);
         const getTheItem = await getOneFund(element.itemId);
+
         
     toReturn += `
         <div class="approve-user">
@@ -34,7 +38,11 @@ async function mainWithdrawList(params) {
         </div>
     `;
     }
-    return toReturn;
+    } catch (error) {
+      toReturn = `No ${params} withdrawals found`;
+
+    }
+return toReturn;
 }
 
 async function dashWithdrawFunc(params) {

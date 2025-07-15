@@ -126,6 +126,7 @@ else{
 verifiedState == "pending");
         
         approvebody.innerHTML = "";
+        if(listData.length > 0){
         for (let b = 0; b < listData.length; b++) {
             const element = listData[b];
             
@@ -137,7 +138,10 @@ verifiedState == "pending");
 
                                     </div>
 `
-    }
+    }}
+    else{
+    approvebody.innerHTML = "No data available";
+}
     }
     
 } 

@@ -459,41 +459,39 @@ async function postReport(params) {
 
 
 async function makePayment(objId, amount, memo, purpose) {
-    await signIn();
-    console.log("Trying payment");
-    theState = false;
-    const currentUserId = currentUser.uid;
-    const paymentData = {
-      amount,
-      memo,
-      metadata: { productId: objId }
-    };
-    console.log({paymentData})
-  
-    try {
+  await signIn();
+  console.log("Trying payment");
+  const currentUserId = currentUser.uid;
+  const paymentData = {
+    amount,
+    memo,
+    metadata: { productId: objId }
+  };
+  console.log({ paymentData });
+
+  try {
+    const result = await new Promise((resolve, reject) => {
       window.Pi.createPayment(paymentData, {
         onReadyForServerApproval: async function (paymentId) {
           console.log("Ready for server approval:", paymentId);
           try {
             await axios.post(`${API}/payments/approve`, { paymentId, amount, purpose, currentUserId });
-            theState = false;
           } catch (err) {
             console.error("Error during server approval:", err);
           }
         },
-  
+
         onReadyForServerCompletion: async function (paymentId, txid) {
           console.log("Ready for server completion:", paymentId, txid);
           try {
             await axios.post(`${API}/payments/complete`, { paymentId, txid });
-
-            theState = true;
+            resolve(true); 
           } catch (err) {
             console.error("Error during server completion:", err);
-            theState = false;
+            resolve(false);
           }
         },
-  
+
         onCancel: async function (paymentId) {
           console.log("Payment cancelled:", paymentId);
           try {
@@ -501,22 +499,21 @@ async function makePayment(objId, amount, memo, purpose) {
           } catch (err) {
             console.error("Error notifying server of cancellation:", err);
           }
-          theState = false
-        },
-  
+          resolve(false)       },
+
         onError: function (error, paymentId) {
           console.error("Payment error:", error);
-          
+          resolve(false); 
         }
-
+      });
     });
-    console.log({theState})
-    return theState;
-    } catch (err) {
-      console.error("Failed to initiate Pi payment:", err);
-      return false;
-    }
+
+    return result;
+  } catch (err) {
+    console.error("Failed to initiate Pi payment:", err);
+    return false;
   }
+}
   
 
 // Withdraw 
