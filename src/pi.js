@@ -68,14 +68,14 @@ initPiSdk();
 async function signIn() {
 const scopes = ['username', 'payments'];
 // check localstorage 
-const tempAcc = localStorage.getItem("thisuser");
-const tempAccJson = JSON.parse(tempAcc);
-if(tempAcc && !tempAccJson.update && tempAccJson.count < 3) {
-  console.log("Acc gotten from temp");
-  const wrapAcc = { acc: tempAccJson.acc, count: tempAccJson.count + 1, update: tempAccJson.update};
-      localStorage.setItem("thisuser", JSON.stringify(wrapAcc));
-  return tempAccJson.acc;  
-}else{
+// const tempAcc = localStorage.getItem("thisuser");
+// const tempAccJson = JSON.parse(tempAcc);
+// if(tempAcc && !tempAccJson.update && tempAccJson.count < 3) {
+//   console.log("Acc gotten from temp");
+//   const wrapAcc = { acc: tempAccJson.acc, count: tempAccJson.count + 1, update: tempAccJson.update};
+//       localStorage.setItem("thisuser", JSON.stringify(wrapAcc));
+//   return tempAccJson.acc;  
+// }else{
 
   try {
     const authResult = await window.Pi.authenticate(scopes, onIncompletePaymentFound);
@@ -94,7 +94,7 @@ if(tempAcc && !tempAccJson.update && tempAccJson.count < 3) {
   } catch (err) { 
     console.error("Authentication error", err);
   }
-}
+// }
 
 
 }

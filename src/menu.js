@@ -15,12 +15,10 @@ function openMenu(state) {
 
 
 
+async function menuAcc() {
+     let toReturn = fullLoad(true, 'mini');
 
-
-
-async function menuFunc() {
-    //  fullLoad(true, 'true');
-try {
+    try {
      userInfo = await signIn();
 } catch (error) {
 
@@ -32,15 +30,9 @@ try {
     }
     console.error(error)
 }
-
-
-
-    menuWrap.innerHTML = `
-        <div class="menu-container" id="menu-container">
-            <div class="close-menu">
-                <i onclick="openMenu(false)" class="fa fa-x"></i>
-            </div>
-            <div class="menu-user-account">
+    if(userInfo){
+        toReturn = `
+         <div class="menu-user-account">
             ${userInfo.username ?  `
                 <button class="menu-account-wrap" href="#">
                     <div class="menu-account-profile">
@@ -69,6 +61,26 @@ try {
                     : ""
                 }
              </div>
+        `
+    }
+    return toReturn;
+}  
+
+
+ async function menuFunc() {
+    //  fullLoad(true, 'true');
+
+
+
+    menuWrap.innerHTML = `
+        <div class="menu-container" id="menu-container">
+            <div class="close-menu">
+                <i onclick="openMenu(false)" class="fa fa-x"></i>
+            </div>
+           
+                ${ await menuAcc()}
+
+
             <div class="menu-all">
                 <a href="index.html">
                     <span>
