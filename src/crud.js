@@ -17,9 +17,12 @@ async function postToDb(formData, updateParam, donorParam) {
         const resDonor = await axios.post(`${API}/donor/create`, donorParam);
 
 
-        console.log("Posted successfully");
         fullLoad(false, 'false');
-        window.location.href = "myfunds.html";
+        notifier("Created successfully");
+        createNoti(`A new fundraiser "${res.data.title}" has been created`, `f.html?q=${res.data._id}`);
+        setTimeout(() => {
+            window.location.href = "myfunds.html";
+        }, 500)
     } catch (error) {
         console.error("Post error:", error.response?.data || error.message);
         fullLoad(false, 'false');
@@ -581,10 +584,21 @@ async function getAllNotifications() {
 //read all notifications
 async function readAllNotifications(params) {
     try {
-        const res = await axios.post(`${API}/notification/read-all/${params}`);
+        const res = await axios.put(`${API}/notification/read-all/${params}`);
         return res.data;
     } catch (error) {
         console.log(error);
         
+    }
+}
+
+// create notification
+async function createNoti(params, link) {
+    try {
+        const toSend = { content: params, link}
+        const res = await axios.post(`${API}/notification/`, toSend);
+        return true;
+    } catch (error) {
+        return false;
     }
 }

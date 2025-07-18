@@ -2,7 +2,7 @@ async function setNotiNum() {
     const currentUser = await signIn();
     const notiNum = document.getElementById("notiNum");
     const resRaw = await getAllNotifications();
-    const res = resRaw.filter(i => i.status == "unread" || !i.reader.includes(currentUser.uid));
+    const res = resRaw.filter(i => !i.reader.includes(currentUser.uid));
     if(res.length > 0) notiNum.style.display = "flex";
     notiNum.innerText = res.length;
 }

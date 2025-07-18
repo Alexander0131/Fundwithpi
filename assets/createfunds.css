@@ -54,10 +54,9 @@
   display: flex;
   justify-content: space-between;
   margin: 2rem;
-  position: relative;
+  color: var(--text);
   align-items: center;
 }
-
 .nav-button-next, .nav-button-prev {
   padding: 0.75rem 1.5rem;
   background-color: var(--firstGreen);

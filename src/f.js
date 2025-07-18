@@ -81,7 +81,7 @@ async function singleFundFunc(allObj) {
         </span>
         </span>
         <div class="wrap-btn">
-            <div class="default-btn" onclick="donateBtn('${allObj._id}', '${allObj.externals}')">Donate Now!</div>
+            <div class="default-btn" onclick="donateBtn('${allObj._id}', '${allObj.externals}', '${allObj.title}')">Donate Now!</div>
         </div>
     </div>
 </div><div class="flex-detail">

@@ -3,7 +3,9 @@ async function approveUser(id) {
         const toChange = {fundraiserState: "approved"}
         const state = await updateUsersInfo(toChange, id);
         if (state) {
-           approvalswrapFunc('users', 'userAppBtn');
+            notifier("User have been verified");
+            dialogFunc(false);
+            approvalswrapFunc('users', 'userAppBtn');
         }
 };
 
@@ -14,7 +16,8 @@ async function approveFunds(id) {
         formData.append("verifiedState", "active");
         const state = await editToDb(formData, id);
         if (state) {
-        dialogFunc(false);
+            notifier("Fundraiser have been verified");
+            dialogFunc(false);
         }
 };
 

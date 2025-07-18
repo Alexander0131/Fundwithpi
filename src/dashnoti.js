@@ -13,7 +13,7 @@ async function mainNotiList() {
                 ${element.content}
             </span>
             ${element.link != "none" ? ` 
-            <a link="${element.link}" class="see-more">view</a>
+            <a href="${element.link}" class="see-more">view</a>
             ` : " " }
         </div>
     `;
@@ -27,7 +27,6 @@ async function dashNotiFunc(params) {
     notiNum.style.display = "none";
 
     const currentUser = await signIn();
-    console.log(currentUser)
     readAllNotifications(currentUser.uid);
 
     dashbody.innerHTML = `

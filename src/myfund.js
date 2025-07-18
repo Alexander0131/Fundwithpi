@@ -42,7 +42,7 @@ document.getElementById("list-funds").innerHTML = fullLoad(false, 'mini');
         const dataPro = dataToUse[i];
         toReturn += `
            <div class="fund-row">
-                <span class="inner-fund-bar" style="width: ${getPercent(dataPro.goalAmount, dataPro.amountRaised)}%;"></span>
+                <span class="inner-fund-bar" style="width: ${getPercent(dataPro.goalAmount, dataPro.amountRaised)}%; x-index: -5;"></span>
                 <div class="fund-inner">
                     <img src="${dataPro.images[0]}" alt="">
                     <span class="flex-col start">
@@ -52,7 +52,7 @@ document.getElementById("list-funds").innerHTML = fullLoad(false, 'mini');
                         <span class="fund-status ${dataPro.status}">${dataPro.status}</span>
                     </span>
                 </div>
-                <small class="fund-price"><span id="loadPie"></span>${getPercent(dataPro.goalAmount, dataPro.amountRaised)}% raised</small>
+                <small class="fund-price"><span id="loadPie"></span>${getPercent(dataPro.goalAmount, dataPro.amountRaised)}% raised </small>
                 <a href="/mysinglefund.html?q=${dataPro._id}"> <i class="fa fa-info"></i></a>
             </div>
         `;

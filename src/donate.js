@@ -26,7 +26,7 @@ function getActualAmt(val) {
     console.log({actualAmt});
 }
 
-async function makePaymentRaw(objId, externals, memo, purpose) {
+async function makePaymentRaw(objId, externals, memo, purpose, title) {
     // prepare the fundupdate
 
     
@@ -65,9 +65,10 @@ async function makePaymentRaw(objId, externals, memo, purpose) {
 
 
 
-        editToDb(formData, objId);
+        editToDb(formData, objId, title);
         if(postNew){
-            notifier("Donation made succesfully");    
+            notifier("Donation made succesfully");  
+            createNoti(`Donation made by <a href="user.html?q=${currentUser.uid}"><u>${currentUser.username}</u></a> to <a href="f.html?q=${objId}"><u>${title}</u></a> was succesful`);  
             setTimeout(() => {
                 window.location.href = "transaction.html";
             }, 5000)
@@ -77,6 +78,7 @@ async function makePaymentRaw(objId, externals, memo, purpose) {
        }
        else{
         notifier("Donation failed, try again after few minutes");
+        createNoti(`Donation made by <a href="user.html?q=${currentUser.uid}"><u>${currentUser.username}</u></a> to <a href="f.html?q=${objId}"><u>${title}</u></a> was unsuccesful`);  
         console.log("Payment failed");
        }
     
@@ -108,14 +110,14 @@ async function donateBtnRaw(itemId, title, externals) {
                 <textarea placeholder="Kindly enter a word of encouragement." id="wordOfSup"></textarea>
             </div>
             <div class="pay-btn">
-                <button class="default-btn" id="donateState" disabled onclick="makePaymentRaw('${actualObjId}', '${externals}', 'Test payment', '${actualPurpose}')"> Donate <span id="donatePrice"> </span></button>
+                <button class="default-btn" id="donateState" disabled onclick="makePaymentRaw('${actualObjId}', '${externals}', 'Test payment', '${actualPurpose}', '${title}')"> Donate <span id="donatePrice"> </span></button>
             </div>
         </div>
     `;
 }
 
-async function donateBtn(itemId, externals) {
-    dialogFunc(await donateBtnRaw(itemId, "", externals), 'Donate', true);
+async function donateBtn(itemId, externals, title) {
+    dialogFunc(await donateBtnRaw(itemId, title, externals), 'Donate', true);
 
     
     setTimeout(() => {

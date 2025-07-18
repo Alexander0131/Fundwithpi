@@ -67,7 +67,7 @@
 }
 
 .approve-user{
-    height: 40px;
+    min-height: 40px;
     box-shadow: 2px 2px 3px var(--oppText);
     display: flex;
     align-items: center;
