@@ -1,12 +1,19 @@
-function submitReport() {
+async function submitReport() {
     const toSend = {
-        uid: "123456",
-        issueType: document.getElementById("issueType").value,
+        uid: currentUser.uid,
+        issueType: document.getElementById("issueType").value ? document.getElementById("issueType").value : "Unknown",
         desc: document.getElementById("description").value,
         status: "pending"
     };
 
-    postReport(toSend);
+    const post = await postReport(toSend);
+    console.log({post})
+    if(post){
+        notifier("Your report has been submitted successfully");
+    }
+    else{
+        notifier("Failed to submit report");
+    }
 }
 
 function reportPageFunc(){

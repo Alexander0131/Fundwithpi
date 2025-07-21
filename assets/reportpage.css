@@ -5,6 +5,8 @@
 
 .report-wrap{
     width: 90%;
+    color: var(--text);
+
 }
   
   .header h1 {
@@ -14,7 +16,7 @@
   
   .header p {
     font-size: 1rem;
-    color: #666;
+    color: var(--dimText);
   }
   
   .report-form {
@@ -40,6 +42,7 @@
     border-radius: 8px;
     font-size: 1rem;
     transition: border-color 0.3s ease;
+    color: var(--oppText);
   }
   
   .form-group input:focus,

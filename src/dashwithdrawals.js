@@ -2,7 +2,10 @@ async function confirmIt(id) {
     const params = {status: "successful"};
 
     const res = await confirmWithdrawals(id, params);
-    console.log(res)
+    if(res){
+        notifier("Withdrawal confirmed");
+        dashWithdrawFunc('params');
+    }
 }
 
 async function mainWithdrawList(params) {

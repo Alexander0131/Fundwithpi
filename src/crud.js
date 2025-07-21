@@ -451,11 +451,12 @@ async function postReport(params) {
         if (desc) desc.value = "";
         if (reportTextarea) reportTextarea.value = "";
         if (reportEmail) reportEmail.value = "";
-    fullLoad(false, 'false')
+        fullLoad(false, 'false')
+        return true;
     
 } catch (error) {
-        fullLoad(false, 'false')
-        console.log(error)
+        fullLoad(false, 'false');
+        return false;
     }
 };
 
