@@ -66,6 +66,7 @@ const reportHtmlSpace = document.getElementById("reportHtmlSpace");
 var coverBtn = null;
 var coverInput = null;
 var coverContainer = null;
+ localStorage.setItem("tempUID", null);
 
 
 // Account Settings

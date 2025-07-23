@@ -35,6 +35,9 @@
     z-index: var(--overSwiper);
     overflow-y: scroll;
 }
+#menuAcc{
+    width: 90%;
+}
 .close-menu{
     width: 100%;
     text-align: right;

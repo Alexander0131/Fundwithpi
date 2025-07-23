@@ -6,7 +6,7 @@ window.__ENV = {
 
 
 
-let currentUser = "Unknown";
+let currentUser = "null";
 const backendURL = window.__ENV?.backendURL;
 
 const axiosClient = axios.create({
@@ -23,10 +23,11 @@ function initPiSdk() {
     if (mainContent) mainContent.style.display = 'none';
 
     // Initialize Pi SDK
-    window.Pi.init({
+    const winPi = window.Pi.init({
       version: "2.0",
       sandbox: window.__ENV?.sandbox === "true"
     });
+  
 
     document.querySelectorAll('.buy-btn').forEach(btn => {
       btn.addEventListener('click', e => {
@@ -41,18 +42,21 @@ function initPiSdk() {
     async function rawSignIn() {
       return await signIn();
     } 
-    rawSignIn()
+     rawSignIn();
+    
+    
     // Optional: Run any post-init logic
     // console.log("Attempt Sign in")
   
     // Hide loader and show content
     if (loader) loader.style.display = 'none';
     if (mainContent) mainContent.style.display = 'block';
-
+    isPi = true;
   } catch (err) {
     console.error("Pi SDK init failed:", err);
     if (loader) loader.innerText = "Failed to initialize Pi SDK.";
-  }
+  };
+
 }
 initPiSdk();
 
@@ -79,12 +83,16 @@ const scopes = ['username', 'payments'];
 
   try {
     const authResult = await window.Pi.authenticate(scopes, onIncompletePaymentFound);
+    console.log({authResult});
     currentUser = authResult.user;
     const sign = await axiosClient.post(`/user/signin`, { authResult });
     if(sign){
       console.log("Signed In")
       currentUser = sign.data.user;
       updateHeader();
+      tempUID = sign.data.user.uid;
+      localStorage.setItem("tempUID", tempUID);
+      
       const toReturn = await getThisUser(currentUser.uid) ? await getThisUser(currentUser.uid) : sign.data.user;
       const wrapAcc = { acc: toReturn, count: 0, update: false};
       localStorage.setItem("thisuser", JSON.stringify(wrapAcc));
@@ -92,6 +100,7 @@ const scopes = ['username', 'payments'];
     }
     
   } catch (err) { 
+    // console.log("first")
     console.error("Authentication error", err);
   }
 // }

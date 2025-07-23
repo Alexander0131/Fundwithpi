@@ -1,10 +1,12 @@
 
-
+let menuAccLoaded = false;
 function openMenu(state) {
     if(state) {
         if(menuContainer) menuContainer.style.marginRight = "0";
         if (menuCover) menuCover.style.display = 'block';
         body.style.overflow = 'hidden';
+        if (!menuAccLoaded) menuAcc();
+        menuAccLoaded = true;
     }
     else{
         if(menuContainer) menuContainer.style.marginRight = "-100vw";
@@ -16,36 +18,37 @@ function openMenu(state) {
 
 
 async function menuAcc() {
-     let toReturn = fullLoad(true, 'mini');
 
-    try {
-     userInfo = await signIn();
-} catch (error) {
+    const menuAccId = document.getElementById('menuAcc');
+    const theTempUID = localStorage.getItem("tempUID");
 
-    // const userInfo = localStorage.getItem('userInfo');
-     userInfo = {
-        "_id": 1,
-        "username" : "",
-        "role": "void"
-    }
-    console.error(error)
-}
-    if(userInfo){
+     let toReturn = fullLoad(true, 'mini 10');
+     console.log(theTempUID)
+
+     if(theTempUID != "null"){
+     let userInfoMenu;
+
+
+     try {
+         userInfoMenu = await signIn();
+         console.log({userInfoMenu})
+
+    if(userInfoMenu){
         toReturn = `
          <div class="menu-user-account">
-            ${userInfo.username ?  `
+            ${userInfoMenu.username ?  `
                 <button class="menu-account-wrap" href="#">
                     <div class="menu-account-profile">
                         <div class="menu-profile-img-wrap">
                            <span class="menu-img-space" id="menu-img-letter">
-  ${userInfo.username.split(" ")[0][0] + (userInfo.username.split(" ")[1] ? userInfo.username.split(" ")[1][0] : '')}
+  ${userInfoMenu.username.split(" ")[0][0] + (userInfoMenu.username.split(" ")[1] ? userInfoMenu.username.split(" ")[1][0] : '')}
 </span>
 
-                            <img src="${userInfo.profile}" class="menu-img-space" alt=""
+                            <img src="${userInfoMenu.profile}" class="menu-img-space" alt=""
                             id="menu-profile-img" onload="changeImg('menu-profile-img')"/>
                         </div>
                         <p class="caps" id="menu-profile-name">
-                            ${userInfo.name}
+                            ${userInfoMenu.name}
                         </p>                    
                     </div>
                 </button>
@@ -63,22 +66,31 @@ async function menuAcc() {
              </div>
         `
     }
-    return toReturn;
+    } 
+    catch (error) {
+        toReturn = ""
+         console.log("Hello");
+
+        console.error(error)
+}
+     }
+     else{
+        toReturn = "";
+     }
+    menuAccId.innerHTML = toReturn;
 }  
 
 
- async function menuFunc() {
-    //  fullLoad(true, 'true');
+  async function menuFunc() {
 
-
-
-    menuWrap.innerHTML = `
+   
+        menuWrap.innerHTML = `
         <div class="menu-container" id="menu-container">
             <div class="close-menu">
                 <i onclick="openMenu(false)" class="fa fa-x"></i>
             </div>
            
-                ${ await menuAcc()}
+                <div id="menuAcc"></div>
 
 
             <div class="menu-all">
@@ -103,19 +115,7 @@ async function menuAcc() {
                     </span>
                     <i class="fa fa-chevron-right"></i>
                 </a>
-                ${userInfo.roles == "admin" ?
-                    `
-                    <a href="dashboard.html">
-                        <span>
-                            <b>Dashoard</b>
-                            <small>Control users activities</small>
-                        </span>
-                        <i class="fa fa-chevron-right"></i>
-                    </a>
-                    `
-                    : 
-                    ""
-                }
+                
                 <a href="about.html">
                     <span>
                         <b>About</b>
@@ -138,11 +138,7 @@ async function menuAcc() {
                     <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
-            ${userInfo.fundraiser  ? "" : `
-            <div class="start-fund-menu">
-                <a href="fundraiser.html">Start FundWithPi</a>
-            </div>
-            `}
+           
             <br/>
             <br/>
             <br/>
@@ -150,9 +146,8 @@ async function menuAcc() {
         <span onclick="openMenu(false)" class="menu-cover" id="menu-cover"></span>
     `;
     
+    
     menuContainer = document.getElementById('menu-container');
     menuCover = document.getElementById('menu-cover');
 }
  menuFunc();
-
-

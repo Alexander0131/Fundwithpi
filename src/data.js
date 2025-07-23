@@ -882,3 +882,24 @@ const donorsData = [
     }
   ]
 };
+
+
+const noUser = {
+  accessToken:"",
+  accountState:"false",
+  country:"",
+  desc:"",
+  email:"",
+  fundraiser:false,
+  fundraiserState:"",
+  fundraiserTitle:"",
+  name:"",
+  phone:"",
+  profile:"",
+  roles:"",
+  uid:"",
+  username:"",
+  wallet:"",
+  __v:0,
+  _id:"0"
+}
