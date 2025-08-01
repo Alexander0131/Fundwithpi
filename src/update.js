@@ -25,6 +25,8 @@ async function pushNewUpdate(){
     var toUpData = [];
     // get other data...
     const otherData = await getThisUpdate(queryValue);
+    // get main data...
+    const mainData = await getFundByCat("externals", queryValue);
     if(otherData){
         toUpData = otherData.data;
         toUpData.push(
@@ -35,7 +37,17 @@ async function pushNewUpdate(){
             }
         )
     }
-   pushUpdateToAPI(queryValue, toUpData);
+   const pushRes = await pushUpdateToAPI(queryValue, toUpData);
+   if(pushRes){
+        notifier("Update made succesfully");
+        createNoti(`Update were made in <a href="f.html?q=${mainData[0]._id}"><u>${mainData[0].title}</u></a>`);
+        setTimeout(() => {
+            window.location.href = `f.html?q=${mainData[0]._id}`;
+        }, 1000)
+    }
+    else{
+        notifier("Error making update");
+    }
 };
 
 let toUpData = [];
@@ -158,7 +170,7 @@ async function updateFunc() {
                                 ${donorsHtml}
                         </section>
                     </div>
-                ` : `<p>No donor comments yet.</p>`}
+                ` : `<p>No donation yet.</p>`}
             </div>
 
             <div class="update-span">

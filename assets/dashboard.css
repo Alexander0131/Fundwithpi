@@ -26,12 +26,13 @@
 }
 .notiDot{
     color: #fff;
-    font-size: 11px;
+    font-size: 10px;
     background: red;
     padding: 2px;
-    height: 15px;
-    width: 15px;
+    height: 17px;
+    width: 17px;
     border-radius: 50px;
+    text-align: center;
     display: none;
     align-items: center;
     justify-content: center;
@@ -89,6 +90,9 @@
 }
 .approve-user.unread{
     border: 1px solid var(--firstGreen);
+}
+.approve-user span.span{
+    width: 70%;
 }
 #role-select{
     background: #efefef;

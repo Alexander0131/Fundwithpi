@@ -1,42 +1,32 @@
 let withdrawAmt = "";
+const queryValue = getQueryValue();
 
-function changeToWithVal(value) {
+
+function changeToWithVal(value, withVal) {
     const amtToWithdrawBtn = document.getElementById("amtToWithdrawBtn");
     const amtWithdrawMainBtn = document.getElementById("amtWithdrawMainBtn");
+    const sanitized = value.value
+        .replace(/[^0-9.]/g, '')        
+        .replace(/(\..*)\./g, '$1'); 
 
-     if(value.value <= 0){
+     if(Number(sanitized) <= 0 || sanitized > withVal){
             amtWithdrawMainBtn.disabled = true;
         }
         else{
             amtWithdrawMainBtn.disabled = false;
         }
 
-    const sanitized = value.value
-        .replace(/[^0-9.]/g, '')        
-        .replace(/(\..*)\./g, '$1');   
+       
 
     value.value = sanitized; 
     amtToWithdrawBtn.textContent = sanitized;
     withdrawAmt = sanitized;
 }
 
-
-async function mainWithdrawFunc(userId, itemId){
-    const withdrawDialog = document.getElementById("withdraw-dialog");
-    withdrawDialog.innerHTML = fullLoad(true, 'mini');
-    console.log({withdrawAmt})
-    try {
-        const toUpload = {
-            userId: userId,
-            itemId: itemId,
-            withdrawamt: withdrawAmt
-        }
-
-        const uploadWithdraw = await withdrawAPI(toUpload);
-        console.log({uploadWithdraw});
-        if(uploadWithdraw){
-
-       withdrawDialog.innerHTML = `
+function htmlToReturn(state){
+     const withdrawDialog = document.getElementById("withdraw-dialog");
+    if (state){
+    withdrawDialog.innerHTML = `
         <div style="text-align: center; padding: 20px;">
             <i class="fas fa-check-circle" style="color: green; font-size: 48px; margin-bottom: 10px;"></i>
             <h3 style="color: green; margin: 10px 0;">Withdrawal Request Submitted Successfully!</h3>
@@ -45,9 +35,12 @@ async function mainWithdrawFunc(userId, itemId){
             </p>
         </div>
         `;
-
+            
+            setTimeout(() => {
+                window.location.href = `mysinglefund.html?q=${queryValue}`;
+            }, 2000)
         }
-        else{
+else{
              withdrawDialog.innerHTML = `
                 <div style="text-align: center; padding: 20px;">
                     <i class="fas fa-times-circle" style="color: red; font-size: 48px; margin-bottom: 10px;"></i>
@@ -61,29 +54,35 @@ async function mainWithdrawFunc(userId, itemId){
         }
 
 
-    } catch (error) {
+}
+
+
+ function mainWithdrawFunc(username, userId, walPend, itemId, itemTitle, withdrawable, walBal){
+    const withdrawDialog = document.getElementById("withdraw-dialog");
+    withdrawDialog.innerHTML = fullLoad(true, 'mini');
+    console.log({username, userId, walPend, itemId, itemTitle, withdrawAmt, withdrawable, walBal});
        
 
-    }
+       withdrawAPI(username, userId, walPend, itemId, itemTitle, withdrawAmt, withdrawable, walBal, "withdraw");
+        
+
 
 }
 
-async function withDrawFunc(itemId, currentUser){
+async function withDrawFunc(itemId, itemTitle, withdrawable, currentUser, wallet, walletPend, username){
     toReturn = fullLoad(true, 'mini');
-   const foundData = await getOneFund(itemId);
-   withdrawAmt = foundData.withdrawable;
-    if(foundData.organizer[0] == currentUser){
         toReturn = `
             <div class="withdraw-dialog" id="withdraw-dialog">
                 <h2>About to withdraw your raised funds</h2>
-                <h4>Maximum amount to withdraw is ${currency}${foundData.withdrawable}</h4>
+                <h4>Maximum amount to withdraw is ${currency}${withdrawable}</h4>
                 <div class="flex-col">
                     <label>Enter amount to be withdrawn</label>
-                    <input class="withdraw-amt" oninput="changeToWithVal(this)" placeholder="Amount" value="${foundData.withdrawable}"/>
+                    <input class="withdraw-amt" oninput="changeToWithVal(this, '${withdrawable}')" placeholder="Amount" value=""/>
                 </div>
-                <button class="default-btn" id="amtWithdrawMainBtn" onclick="mainWithdrawFunc('${currentUser}', '${itemId}')"> Withdraw ${currency}<span id="amtToWithdrawBtn">${foundData.withdrawable}</span></button>
+                <i><small class="red">You can't withdraw more than ${currency}${withdrawable}.</small></i>
+                <button class="default-btn" id="amtWithdrawMainBtn" onclick="mainWithdrawFunc('${username}','${currentUser}', '${walletPend}',  '${itemId}', '${itemTitle}', '${withdrawable}', '${wallet}')" disabled> Withdraw  ${currency}<span id="amtToWithdrawBtn">-</span></button>
             </div>
         `
-    };
+    
     dialogFunc(toReturn, 'Withdrawal');
 }

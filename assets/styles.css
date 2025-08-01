@@ -119,6 +119,9 @@ a{
 body {
 	background-color: hsl(223, 90%, 95%);
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    word-break: break-word;      
+    overflow-wrap: break-word;   
+    hyphens: auto;
 	--bg: hsl(223, 90%, 95%);
 	--bgPlus: #f9fafb;
     --bgWhiteAsh: #c0c0c0;
@@ -140,6 +143,7 @@ body {
     --blue: #123456;
     transition: 0.5s ease;
     --oppCream: #333;
+    /* color: var(--text); */
 }
 
 body.dark{

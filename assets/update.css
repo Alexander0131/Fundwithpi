@@ -4,6 +4,9 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  word-break: break-word;      
+  overflow-wrap: break-word;   
+  hyphens: auto; 
 }
 
 /* Container */

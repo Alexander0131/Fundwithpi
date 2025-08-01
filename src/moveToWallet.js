@@ -1,7 +1,7 @@
 let moveToWalletAmt = "";
 
 
-function changeToMoveVal(value) {
+function changeToMoveVal(value, moveVal) {
     const amtToMoveBtn = document.getElementById("amtToMovedBtn"); 
     const amtToMoveMainBtn = document.getElementById("amtToMoveMainBtn");
 
@@ -9,7 +9,7 @@ function changeToMoveVal(value) {
         .replace(/[^0-9.]/g, '')        
         .replace(/(\..*)\./g, '$1');  
         
-        if(value.value <= 0){
+        if(Number(sanitized) <= 0 || sanitized > moveVal){
             amtToMoveMainBtn.disabled = true;
         }
         else{
@@ -21,57 +21,68 @@ function changeToMoveVal(value) {
     moveToWalletAmt = sanitized;
 }
 
-function mainMoveFunc(itemId, currentUser, curWallet, withdrawableMain){
-    const moveToWalletDialog = document.getElementById("moveToWallet-dialog");
-    moveToWalletDialog.innerHTML = fullLoad(true, 'mini');
-    console.log(curWallet)
-    if(itemId, moveToWalletAmt, currentUser){
-            const newWallet = Number(curWallet) + Number(moveToWalletAmt);
-            const newBalance = Number(withdrawableMain) - Number(moveToWalletAmt);
-            console.log({newBalance})
-            const post = moveToWalletAPI(currentUser, newWallet, newBalance, itemId); 
-        if (post){
-            moveToWalletDialog.innerHTML =  `<div style="text-align: center; padding: 20px;">
+
+function htmlToReturnWall(state){
+     const moveToWallDialog = document.getElementById("moveToWallet-dialog");
+    if (state){
+    moveToWallDialog.innerHTML = `
+        <div style="text-align: center; padding: 20px;">
             <i class="fas fa-check-circle" style="color: green; font-size: 48px; margin-bottom: 10px;"></i>
             <h3 style="color: green; margin: 10px 0;">Withdrawal Request Submitted Successfully!</h3>
             <p style="font-size: 16px; color: #444;">
-            You’ve moved <strong>${moveToWalletAmt}</strong> into your wallet, your balance is ${newWallet}.
+            You’ve moved <strong>${moveToWalletAmt}</strong> into your wallet.}.
             </p>
-        </div>`;
+        </div>
+        `;
+            
+            setTimeout(() => {
+                window.location.href = `mysinglefund.html?q=${queryValue}`;
+            }, 2000)
         }
-        else{
-            moveToWalletDialog.innerHTML =  `
+else{
+             moveToWallDialog.innerHTML = `
                 <div style="text-align: center; padding: 20px;">
                     <i class="fas fa-times-circle" style="color: red; font-size: 48px; margin-bottom: 10px;"></i>
                     <h3 style="color: red; margin: 10px 0;">Withdrawal Request Failed</h3>
                     <p style="font-size: 16px; color: #444;">
-                    Something went wrong while processing your request of <strong>${withdrawAmt}</strong>.
+                    Something went wrong while processing your request of <strong>${moveToWalletAmt}</strong>.
                     Please try again later or contact support if the issue persists.
                     </p>
                 </div>
-            `
+                `;
         }
-    }
+
+
 }
 
-async function moveToWallet(itemId, currentUser, wallet){
-     toReturn = fullLoad(true, 'mini');
-   const foundData = await getOneFund(itemId);
-   moveToWalletAmt = foundData.withdrawable;
 
-   console.log({wallet})
-    if(foundData.organizer[0] == currentUser){
+
+ function mainMoveFunc(username, userId, walPend, itemId, itemTitle, withdrawable, walBal){
+    const moveToWallDialog = document.getElementById("moveToWallet-dialog");
+    moveToWallDialog.innerHTML = fullLoad(true, 'mini');
+    console.log({username, userId, walPend, itemId, itemTitle, withdrawAmt, withdrawable, walBal});
+       
+
+       withdrawAPI(username, userId, walPend, itemId, itemTitle, moveToWalletAmt, withdrawable, walBal, "toWallet");
+        
+
+
+}
+
+async function moveToWallet(itemId, itemTitle, withdrawable, currentUser, wallet, walletPend, username){
+     toReturn = fullLoad(true, 'mini');
+
         toReturn = `
             <div class="withdraw-dialog" id="moveToWallet-dialog">
                 <h2>About to move your raised funds to your wallet</h2>
-                <h4>Maximum amount to move is ${currency}${foundData.withdrawable}</h4>
+                <h4>Maximum amount to move is ${currency}${withdrawable}</h4>
                 <div class="flex-col">
                     <label>Enter amount to be moved</label>
-                    <input class="withdraw-amt" oninput="changeToMoveVal(this)" placeholder="Amount" value="${foundData.withdrawable}"/>
+                    <input class="withdraw-amt" oninput="changeToMoveVal(this)" placeholder="Amount" value=""/>
+                    <i><small class="red">You can't withdraw more than ${currency}${withdrawable}.</small></i>
                 </div>
-                <button class="default-btn" id="amtToMoveMainBtn" onclick="mainMoveFunc('${itemId}', '${currentUser}', '${Number(wallet)}', '${Number(foundData.withdrawable)}')"> Move (${currency}<span id="amtToMovedBtn">${foundData.withdrawable} </span>) to wallet. </button>
+                <button class="default-btn" id="amtToMoveMainBtn" disabled="true" onclick="mainMoveFunc('${username}','${currentUser}', '${walletPend}',  '${itemId}', '${itemTitle}', '${withdrawable}', '${wallet}')"> Move (${currency}<span id="amtToMovedBtn"> - </span>) to wallet. </button>
             </div>
         `
-    };
     dialogFunc(toReturn, 'Withdrawal');
 }

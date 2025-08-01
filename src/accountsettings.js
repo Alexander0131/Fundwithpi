@@ -129,6 +129,10 @@ async function accSetFunc(){
 
                 <div class="acc-delete">
                     <div class="acc-list">
+                        <span href="transaction.html">
+                            <span>Wallet</span>
+                            <span>${currency}${userInfo.wallet}</span>
+                        </span>
                         <span onclick="setTheme()" id="themeId">
                             <span>Dark Theme</span>
                             <i class="fa fa-moon"></i>

@@ -61,7 +61,7 @@ async function mySingleFundFunc() {
               ${await displayDonorAmt(foundData.externals)}
         </div>
     </div>
-</div><!-- words of support --><div class="donation-users">
+</div><div class="donation-users">
     <div>
         <div class="donor-space">
               ${await displayDonorAmt(foundData.externals, 'text')}
@@ -78,8 +78,8 @@ async function mySingleFundFunc() {
                             <span><b>${currency}${foundData.withdrawable}</b></span>
                         </span>
                         <span class="flex-wrapfund">
-                            <button class="default-btn" onclick="withDrawFunc('${foundData._id}', '${currentUser}')">Withdraw now</button>
-                            <button class="default-btn" onclick="moveToWallet('${foundData._id}', '${currentUser}', '${userInfo.wallet}')">Move to wallet.</button>
+                            <button class="default-btn" onclick="withDrawFunc('${foundData._id}', '${foundData.title}', '${foundData.withdrawable}', '${currentUser}', '${userInfo.wallet}', '${userInfo.walletPend}', '${userInfo.username}')">Withdraw now</button>
+                            <button class="default-btn" onclick="moveToWallet('${foundData._id}', '${foundData.title}', '${foundData.withdrawable}', '${currentUser}', '${userInfo.wallet}', '${userInfo.walletPend}', '${userInfo.username}')">Move to wallet.</button>
                         </span>
                         
                     </div>

@@ -1,12 +1,39 @@
-async function confirmIt(id) {
-    const params = {status: "successful"};
+async function confirmIt(id, withdrawamt) {
+    try {
+        const params = {status: "successful"};
+        userInfo = await signIn();
+        const toEdit = {
+        walletPend: `${Number(userInfo.walletPend)  - Number(withdrawamt)}`
+        };
+    
+        const updateUser = await updateUserInfo(toEdit)
 
-    const res = await confirmWithdrawals(id, params);
-    if(res){
-        notifier("Withdrawal confirmed");
-        dashWithdrawFunc('params');
+        console.log({toEdit})
+        
+        const res = await confirmWithdrawals(id, params);
+        if(res){
+            notifier("Withdrawal confirmed");
+            dashWithdrawFunc('params');
+        }
+    } catch (error) {
+        
     }
 }
+
+async function declineIt(id) {
+    try {
+        const params = {status: "declined"};
+        
+        const res = await confirmWithdrawals(id, params);
+        if(res){
+            notifier("Withdrawal declined");
+            dashWithdrawFunc('params');
+        }
+    } catch (error) {
+        
+    }
+}
+
 
 async function mainWithdrawList(params) {
     var toReturn = "";
@@ -15,7 +42,7 @@ async function mainWithdrawList(params) {
         
   
     const getWithdrawsRaw = await getAllWithdraws();
-    const getWithdraws = getWithdrawsRaw.filter(i => i.status == params);
+    const getWithdraws = getWithdrawsRaw.filter(i => i.status == params).reverse();
     console.log({getWithdraws});
 
     if(getWithdraws.length <= 0) {
@@ -23,18 +50,16 @@ async function mainWithdrawList(params) {
     }
     for (let i = 0; i < getWithdraws.length; i++) {
         const element = getWithdraws[i];
-        const getTheUser = await getRandomUser(element.userId);
-        const getTheItem = await getOneFund(element.itemId);
-
+        
         
     toReturn += `
         <div class="approve-user">
-             <span>
-                ${getTheUser.name} withdraws ${currency}${element.withdrawamt} for <a href="/f.html?q=${getTheItem._id}"><u>${getTheItem.title}</u></a>.
+             <span class="span">
+                ${element.user[1]} ${element.type == "withdraw" ? "withdraws" : "moves to wallet "} ${currency}${element.withdrawamt} for <a href="/f.html?q=${element.item[0]}"><u>${element.item[1]}</u></a>.
             </span> 
 
             ${params == "pending" ? 
-                    `<button class="see-more" onclick="confirmIt('${element._id}')">confirm</button>`
+                    `<div class="flex"> <button class="delete-btn" onclick="declineIt('${element._id}')">Decline</button> <button class="see-more" onclick="confirmIt('${element._id}', '${element.withdrawamt}')">confirm</button></div>`
                     :
                     `<button>Approved</button>`
             }

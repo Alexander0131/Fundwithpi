@@ -1,8 +1,13 @@
- function endDonationFunc() {
+ async function endDonationFunc() {
     const queryValue = getQueryValue();
     const formData = new FormData();
     formData.append('status', 'aborted');
-    editToDb(formData, queryValue);
+    const theState = await editToDb(formData, queryValue);
+    if (theState){
+       notifier("Donation ended successfully");
+        createNoti(`A donation have ended`, `f.html?q=${queryValue}`);
+        openPop("");
+    }
 }
 
 function endDonFunc() {

@@ -37,7 +37,7 @@ async function menuAcc() {
         toReturn = `
          <div class="menu-user-account">
             ${userInfoMenu.username ?  `
-                <button class="menu-account-wrap" href="#">
+                <button class="menu-account-wrap">
                     <div class="menu-account-profile">
                         <div class="menu-profile-img-wrap">
                            <span class="menu-img-space" id="menu-img-letter">
@@ -59,7 +59,21 @@ async function menuAcc() {
                     </span>
                     <i class="fa fa-chevron-right"></i>
                 </a>
-                
+                ${userInfoMenu.roles == "admin" ?
+                    `
+            <div class="menu-all">
+                    <a href="dashboard.html">
+                        <span>
+                            <b>Dashoard</b>
+                            <small>Control users activities</small>
+                        </span>
+                        <i class="fa fa-chevron-right"></i>
+                    </a>
+                    </div>
+                    `
+                    : 
+                    ""
+                }
                 <hr class="hr">`
                     : ""
                 }

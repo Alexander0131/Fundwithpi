@@ -1,5 +1,5 @@
-// const API = "http://localhost:3000";
-const API = "https://fund-backend-gold.vercel.app";
+const API = "http://localhost:3000";
+// const API = "https://fund-backend-gold.vercel.app";
 
 async function postToDb(formData, updateParam, donorParam) {
     console.log("Attempting post");
@@ -55,7 +55,7 @@ async function editToDb(formData, id) {
 
 async function getOneFund(params) {
     try {
-        const res = await axios.get(`${API}/funds/single/${params}`);
+        const res = await axios.get(`${API}/funds/single/${params}`);                                                                                                                           
         return res.data;
     } catch (error) {
         console.error(error)
@@ -189,10 +189,11 @@ async function pushUpdateToAPI(id, data) {
         document.getElementById("textareaUpdate").value = "";
         document.getElementById("shareBtnId").disabled = true;
         callDisUpdate();
-        fullLoad(false, 'false')
+        fullLoad(false, 'false');
+        return true;
     } catch (error) {
         fullLoad(false, 'false')
-        
+        return false;
     }
 }
 
@@ -521,29 +522,37 @@ async function makePayment(objId, amount, memo, purpose) {
   
 
 // Withdraw 
-async function withdrawAPI(params) {
+async function withdrawAPI(username, userId, walPend, itemId, itemTitle, amt, withdrawable, walBal, type) {
     try {
+        const toEdit = {
+        walletPend: `${Number(walPend)  + Number(amt)}`
+        };
+        const params = {
+            user: [userId, username],
+            item: [itemId, itemTitle],
+            withdrawamt: `${amt}`,
+            desc: ``,
+            type,
+            status: "pending"
+        }
+        console.log(params);
+        createNoti(`${username} is withdrawing ${amt} from <a href="f.html?q=${itemId}"><u>${itemTitle}</u></a>.`);
+        const updateUser = await updateUserInfo(toEdit);
+        console.log({updateUser})
         const res = await axios.post(`${API}/withdraw/`, params);
-        return true;
+        console.log({res})
+         const formData = new FormData();
+        formData.append('withdrawable', Number(withdrawable - amt));
+
+        const editState = await editToDb(formData, itemId);
+        console.log({editState})
+        if (type == "withdraw") htmlToReturn(true);
+        if (type == "toWallet") htmlToReturnWall(true);
     } catch (error) {
         console.log(error);
-        return false;
-    }
-}
+       if (type == "withdraw") htmlToReturn(true);
+        if (type == "toWallet") htmlToReturnWall(true);
 
-async function moveToWalletAPI(user, amt, balance, itemId) {
-    console.log({user})
-    console.log({balance})
-    try {
-        const res = await axios.put(`${API}/user/update/${user}`, {wallet: amt});
-        const formData = new FormData();
-        formData.append("withdrawable", balance);
-
-       editToDb(formData, itemId);
-        console.log(res)
-        return true;
-    } catch (error) {
-        return false;
     }
 }
 

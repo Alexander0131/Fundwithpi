@@ -10,7 +10,7 @@ let descChange, imgAdded = false;
 function validEditBtn() {
     const editBtn = document.getElementById('editBtn');
     
-    if(textAreaVal.length >= 150){
+    if(textAreaVal.length >= 150 || imgAdded){
         console.log("first")
         if(!descChange && !imgAdded){
             editBtn.className = 'default-btn disabled';
@@ -103,7 +103,7 @@ function removeImage(id) {
 }
 
 // post edit
-function saveChangesBtn() {
+async function saveChangesBtn(title) {
     const descriptionElement = document.getElementById('description');
     if (!descriptionElement) {
         console.error('Element with id="description" not found.');
@@ -123,7 +123,18 @@ function saveChangesBtn() {
     // Pass FormData to the next function
     const queryValue = getQueryValue();
 
-    editToDb(formData, queryValue);
+    const editState = await editToDb(formData, queryValue);
+    if(editState) {
+        console.log(formData)
+        notifier("Edit saved");
+        createNoti(`Changes were made in <a href="f.html?q=${queryValue}"><u>${title}</u></a>`);
+        setTimeout(() => {
+            window.location.href = `f.html?q=${queryValue}`;
+        }, 1000)
+    }
+    else{
+        notifier("Error saving edit");
+    }
 }
 
 function trackBtn(curVal) {
@@ -147,20 +158,20 @@ async function editMyFundFunc(){
     let errorPage = `
              <div class="errorLand">
                  <img src="./assets/images/error.gif" alt=""/>
-                 <a href="/myfunds.html">Go back</a>
+                 <a href="/myfunds.html" style="color: var(--text);">Go back</a>
              </div>
          `;
      const queryData = getQueryValue();
      if(!queryData){
         editmyfundHtml.innerHTML = errorPage;
      }else{
-
-         const data = await getAllData();
-         const foundData = data.find(i => i._id == queryData);
-         if( queryData == null || !foundData || foundData.organizer[0] != currentUser){
-             editmyfundHtml.innerHTML = errorPage;
-            }
-            if(foundData.organizer[0] == currentUser){
+        const currentUser = await signIn();
+        const data = await getAllData();
+        const foundData = data.find(i => i._id == queryData);
+        if( queryData == null || !foundData || foundData.organizer[0] != currentUser.uid){
+            editmyfundHtml.innerHTML = errorPage;
+        }
+        if(foundData.organizer[0] == currentUser.uid){
                 
          if(foundData){
             descText = foundData.description;
@@ -211,7 +222,7 @@ async function editMyFundFunc(){
               
                 <!-- Action Buttons -->
                 <div class="editfund-actions">
-                  <button id="editBtn" disabled="true" class="default-btn disabled" onclick="saveChangesBtn()">Save Changes</button>
+                  <button id="editBtn" disabled="true" class="default-btn disabled" onclick="saveChangesBtn('${foundData.title}')">Save Changes</button>
                 </div>
               </div>
             
