@@ -35,13 +35,13 @@ async function listDataMsgHere(dataId, type) {
     const data = dataRaw.data;
    var returnData = "";
     for (i = 0; i < data.length; i++) {
-          const aUser = await getRandomUser(data[i].userId);
+
         returnData += `
             <div>
                 <div class="single-stuck-donor-obj">
                 <span class="fa-solid fa-hand-holding-dollar"></span>
                 <div class="single-stuck-detail">
-                    <span>${aUser.username}</span>
+                    <span>${data[i].user[1]}</span>
                     ${type == "text" ? 
                         `<sup><small class="caps"> ${data[i].comments}</small></sup>`
                     :

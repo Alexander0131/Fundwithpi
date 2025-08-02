@@ -164,12 +164,11 @@ async function getDonorsText(data, type) {
   var returnData = ""
   console.log(data)
   for (i = 0; i < data.length; i++) {
-    const aUser = await getRandomUser(data[i].userId);
       returnData += `
         <div class="single-stuck-donor">
               <i class="fa-solid fa-hand-holding-dollar"></i>
               <div class="single-stuck-detail">
-                 
+                 <small>${data[i].user[1]}</small>
                   ${type == "text" ? 
                     `<sup><small> ${data[i]. comments}</small></sup>`
                     :
@@ -263,7 +262,7 @@ function applauseFunc() {
     As a trusted platform built on the Pi Network, we make fundraising simple, secure, and accessible. With transparent tools and a strong focus on trust and safety, you can confidently raise funds or support causes that matter.
   </p>`;
 }
-// applauseFunc();
+applauseFunc();
 
 function closeNotier(){
   console.log("closing")

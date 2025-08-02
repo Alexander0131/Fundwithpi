@@ -241,7 +241,7 @@ async function getRandomUser(params) {
 // --------------- user profile picture Start ----------------------- //
 
 async function changeProImg(params) {
-    fullLoad(true, true);
+    fullLoad(true, 'true');
     try {
         const userInfo = await getThisUser(currentUser.uid);
         if(userInfo.profile){
@@ -256,9 +256,9 @@ async function changeProImg(params) {
                 document.getElementById("menu-profile-img").src = res.data.profile;
             }
             
-            fullLoad(false, false)
+            fullLoad(false, 'false')
         } catch (error) {
-        fullLoad(false, false)
+        fullLoad(false, 'false')
         console.log(error)
     }
 }
@@ -333,7 +333,7 @@ async function updateUsersInfo(data, id) {
 
 async function delProfileImg() {
     // get dataId
-    fullLoad(true, true);
+    fullLoad(true, 'true');
     console.log("Attempting Delete")
     
     try {
@@ -373,15 +373,15 @@ async function delProfileImg() {
 // ------------ deactivate user start   ----------  //
 
 async function deactivateMyAcc() {
-    fullLoad(true, true);
+    fullLoad(true, 'true');
     openPop("");
     try {
         const res = await axios.put(`${API}/user/update/${currentUser.uid}`, {accountState: `deactivated$$${getCurrentDateString(3)}`});
-        fullLoad(false, false);
+        fullLoad(false, 'false');
         accountDeactivateCheck();
         console.log("Account deactivated succesfully");
     } catch (error) {
-        fullLoad(false, false);
+        fullLoad(false, 'false');
         console.log(error);
     }
 }

@@ -53,7 +53,7 @@ async function makePaymentRaw(objId, externals, memo, purpose, title) {
           id: dataLen + 1,
           comments: document.getElementById("wordOfSup").value, 
           amt: document.getElementById("amtToSend").value,
-          userId: currentUser.uid,
+          user: [currentUser.uid, currentUser.username],
           date: getCurrentDateString()
 });
         const postNew = await pushDonorData(getUpdate.objId, prevUpdateData);
