@@ -113,7 +113,7 @@ async function saveChangesBtn(title) {
     const updatedDesc = descriptionElement.value;
 
     const formData = new FormData();
-    formData.append('description', updatedDesc);
+    formData.append('content', updatedDesc);
       if (imgsToUpload && imgsToUpload.length > 0) {
         imgsToUpload.forEach((img) => {
             formData.append("images", img);

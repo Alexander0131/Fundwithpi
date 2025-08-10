@@ -9,11 +9,14 @@ function goBackCart(){
 }
 
 async function loadMoreData(cat) {
-
     const listAllTheCat = cat.toString().replace(/,/g, ", ");
     const listAllTheCatRaw = listAllTheCat.slice(0,40) + `${listAllTheCat.length > 40 ? "..." : ""}`;
-    
 
+    donationList.innerHTML = fullLoad(true, 'mini'); 
+    console.log("first")
+    try {
+        
+   
     if (isLoading) return;
 
     if (page === 0) { 
@@ -94,6 +97,9 @@ async function loadMoreData(cat) {
         });
 
     }, 1000);
+     } catch (error) {
+        
+    }
 }
 
 function showLoading(show) {
