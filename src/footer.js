@@ -1,7 +1,7 @@
 function footerFunc() {
     return `
         <div class="wrap-footer">
-
+            <div class="rewrap">
             <!-- Documentation Links Section -->
             <div class="footer-docs">
                 <h2>Resources</h2>
@@ -26,6 +26,7 @@ function footerFunc() {
                 <p>
                     This platform empowers Pi Network pioneers to raise and donate funds seamlessly within the Pi ecosystem. We support community-driven causes and peer-to-peer fundraising without borders.
                 </p>
+            </div>
             </div>
 
             <!-- Copyright -->

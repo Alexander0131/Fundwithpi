@@ -139,7 +139,7 @@ body {
 	--greenYt: #06402b;
 	--oppText: #fff;
 	--overSwiper: 9999;
-    max-width: 500px;
+    /* max-width: 500px; */
     --blue: #123456;
     transition: 0.5s ease;
     --oppCream: #333;

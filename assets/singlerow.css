@@ -5,6 +5,10 @@
     align-items: center;
     justify-content: space-between;
     gap: 5px;
+    border-radius: 10px;
+}
+.single-row:hover{
+    background: var(--bgPlus);
 }
 .single-row-img{
     width: 120px;

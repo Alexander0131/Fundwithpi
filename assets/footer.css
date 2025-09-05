@@ -27,18 +27,26 @@
 */
 
 /* General Footer Wrapper */
-.wrap-footer {
+.wrap-footer, .rewrap {
     background-color: var(--bgPlus);
     color: var(--dimText);
-    padding: 20px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 10px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    border-top: 1px solid #ddd;
 }
+.wrap-footer{
+    border-top: 1px solid #ddd;
+    flex-direction: column;
 
+}
+.rewrap{
+    padding: 20px;
+}
+.rewrap .footer-about{
+    max-width: 350px;
+}
 /* Individual Footer Sections */
 .wrap-footer > div {
     flex: 1 1 50px;

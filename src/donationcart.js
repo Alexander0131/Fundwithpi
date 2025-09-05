@@ -75,7 +75,8 @@ if (donationCart) {
         console.log("Listing all")
        goCartFunction()
     }else{
-        donationCart.innerHTML = donationCartFunc();
+        // donationCart.innerHTML = donationCartFunc();
+        goCartFunction()
     }
 } else {
     console.error("donationCart element not found.");
